@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import { Button, StatusBar, Text, View } from 'react-native';
 
 export default class Home extends Component {
+  producerHandler = () => {
+    alert('I am a producer');
+  };
+
+  consumerHandler = () => {
+    alert('I am a consumer');
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-        <Text style={styles.titleText}>Food Chain Tracking System</Text>
+        <Text style={styles.titleText}>Food Chain {'\n'} Tracking System</Text>
         <Text style={styles.text}>Please select your role</Text>
-        <Button
-          title="Producer"
-          style={styles.producerButton}
-          onPress={() => alert('Producer selected')}
-        />
-        <Button
-          title="Consumer"
-          style={styles.consumerButton}
-          onPress={() => alert('Consumer selected')}
-        />
+        <Button title="Producer" style={styles.producerButton} onPress={this.producerHandler} />
+        <Button title="Consumer" style={styles.consumerButton} onPress={this.consumerHandler} />
       </View>
     );
   }

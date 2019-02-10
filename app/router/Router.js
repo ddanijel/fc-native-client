@@ -22,7 +22,7 @@ const homeNavigator = createStackNavigator({
       headerTintColor: 'white',
       headerStyle: { backgroundColor: theme.colors.darkGray },
       headerTitleStyle: {
-        fontSize: 18,
+        fontSize: 22,
       },
       headerLeft: <Menu navigation={navigation} />,
     }),
@@ -37,7 +37,7 @@ const aboutNavigator = createStackNavigator({
       headerTintColor: 'white',
       headerStyle: { backgroundColor: theme.colors.darkGray },
       headerTitleStyle: {
-        fontSize: 18,
+        fontSize: 22,
       },
       headerLeft: <Menu navigation={navigation} />,
     }),
@@ -60,7 +60,7 @@ const tabNavigator = createBottomTabNavigator(
   {
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
-        var source;
+        let source;
         switch (navigation.state.routeName) {
           case 'HomeTab':
             source = images.home;
