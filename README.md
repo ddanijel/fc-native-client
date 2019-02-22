@@ -1,2 +1,0 @@
-# food-chain-native-client
-
