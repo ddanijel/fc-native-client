@@ -37,17 +37,23 @@ class WelcomeScreen extends React.Component {
                     </View>
                     <View style={{width: '80%'}}>
                         <Button
-                            buttonStyle={styles.producerButton}
-
-                            title="Producer"
+                            buttonStyle={styles.loginButton}
+                            containerStyle={{marginTop: 32, flex: 0}}
+                            activeOpacity={0.8}
+                            title={"Producer"}
                             onPress={() => this.props.navigation.navigate('Auth')}
+                            titleStyle={styles.loginTextButton}
                         />
                         <Button
-                            title="Consumer"
+                            buttonStyle={styles.loginButton}
+                            containerStyle={{marginTop: 32, flex: 0}}
+                            activeOpacity={0.8}
+                            title={"Producer"}
                             onPress={() => this.props.navigation.navigate('Consumer', {
                                 itemId: 86,
                                 otherParam: 'anything you want here',
                             })}
+                            titleStyle={styles.loginTextButton}
                         />
                     </View>
                 </View>
@@ -57,9 +63,6 @@ class WelcomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    producerButton: {
-        marginBottom: 20,
-    },
     bgImage: {
         flex: 1,
         top: 0,
@@ -68,6 +71,17 @@ const styles = StyleSheet.create({
         height: SCREEN_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    loginTextButton: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    loginButton: {
+        backgroundColor: 'blue',
+        borderRadius: 10,
+        height: 50,
+        width: 200,
     },
 });
 

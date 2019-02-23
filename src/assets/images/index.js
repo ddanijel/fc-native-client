@@ -1,7 +1,7 @@
 import {Asset} from 'expo';
 
 export const images = {
-    background: require('./bg_screen3.jpg'),
+    background: require('./bg_screen1.jpg'),
 };
 
 let imgs = [];
