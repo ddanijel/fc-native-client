@@ -1,16 +1,18 @@
 import React from 'react';
 import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {images} from '../assets/images';
+import {images} from '../../assets/images';
 import {connect} from 'react-redux';
+import {Icon} from "native-base";
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-class WelcomeScreen extends React.Component {
+class HomeScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: navigation.getParam('otherParam', 'Home'),
+            headerLeft: <Icon style={styles.drawerIcon} name="menu" onPress={() => navigation.openDrawer()}/>
         };
     };
 
@@ -69,6 +71,12 @@ class WelcomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    drawerIcon: {
+        marginLeft: 15
+    },
     bgImage: {
         flex: 1,
         top: 0,
@@ -105,4 +113,4 @@ const mapStateToProps = state => {
 //     };
 // };
 
-export default connect(mapStateToProps)(WelcomeScreen);
+export default connect(mapStateToProps)(HomeScreen);

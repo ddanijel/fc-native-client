@@ -7,11 +7,11 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 
 class ConsumerScreen extends React.Component {
-    static navigationOptions = ({navigation}) => {
-        return {
-            title: navigation.getParam('otherParam', 'Consumer Mode'),
-        };
-    };
+    // static navigationOptions = ({navigation}) => {
+    //     return {
+    //         title: navigation.getParam('otherParam', 'Consumer Mode'),
+    //     };
+    // };
 
     render() {
         return (
@@ -22,7 +22,7 @@ class ConsumerScreen extends React.Component {
                     <Text>Please scan a product tag hash</Text>
                     <Button
                         title="Welcome screen"
-                        onPress={() => this.props.navigation.navigate('Welcome')}
+                        onPress={() => this.props.navigation.navigate('drawer')}
                     />
                 </View>
             </ImageBackground>

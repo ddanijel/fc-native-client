@@ -298,7 +298,7 @@ export default class ProducerAuthScreen extends Component {
                                     titleStyle={{color: 'white'}}
                                     buttonStyle={{backgroundColor: 'transparent'}}
                                     underlayColor="transparent"
-                                    onPress={() => this.props.navigation.navigate('Welcome')}
+                                    onPress={() => this.props.navigation.navigate('drawer')}
                                 />
                             </View>
                         </View>
