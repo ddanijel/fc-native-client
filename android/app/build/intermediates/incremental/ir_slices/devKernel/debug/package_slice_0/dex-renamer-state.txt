@@ -1,0 +1,4 @@
+#Sat Feb 23 16:31:14 CET 2019
+base.0=/home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/build/intermediates/transforms/dexMerger/devKernel/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

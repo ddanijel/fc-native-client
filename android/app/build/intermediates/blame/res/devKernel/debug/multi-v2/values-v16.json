@@ -1,0 +1,38 @@
+{
+  "logs": [
+    {
+      "outputFile": "/home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/build/intermediates/incremental/mergeDevKernelDebugResources/merged.dir/values-v16/values-v16.xml",
+      "map": [
+        {
+          "source": "/home/danijel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/3e25161e6a04b385e29647b48d6b107e/res/values-v16/values-v16.xml",
+          "from": {
+            "startLines": "2",
+            "startColumns": "4",
+            "startOffsets": "55",
+            "endColumns": "65",
+            "endOffsets": "116"
+          }
+        },
+        {
+          "source": "/home/danijel/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/261e6edb643dd3cf8057583f1e5cd280/res/values-v16/values-v16.xml",
+          "from": {
+            "startLines": "2",
+            "startColumns": "4",
+            "startOffsets": "55",
+            "endLines": "5",
+            "endColumns": "12",
+            "endOffsets": "223"
+          },
+          "to": {
+            "startLines": "3",
+            "startColumns": "4",
+            "startOffsets": "121",
+            "endLines": "6",
+            "endColumns": "12",
+            "endOffsets": "289"
+          }
+        }
+      ]
+    }
+  ]
+}
