@@ -1,6 +1,7 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actions/actions';
 
 const enTranslation = {
+    languageIndex: 0,
     producerTitle: 'Producer',
     consumerTitle: 'Consumer',
     language: 'Language',
@@ -11,11 +12,13 @@ const enTranslation = {
     mapOpenFullScreen: 'Full Screen',
     mapCloseFullScreen: 'Close Full Screen',
     productTagDetails: 'Product Tag Details',
-    productTagActions: 'Product Tag Action'
+    productTagActions: 'Product Tag Action',
+    logIn: 'Login'
 
 };
 
 const deTranslation = {
+    languageIndex: 1,
     producerTitle: 'ProducerDE',
     consumerTitle: 'ConsumerDE',
     language: 'Sprache',
@@ -26,7 +29,8 @@ const deTranslation = {
     mapOpenFullScreen: 'Vollbild',
     mapCloseFullScreen: 'Vollbild schliessen',
     productTagDetails: 'Product Beschreibung',
-    productTagActions: 'Produkt Aktionen'
+    productTagActions: 'Produkt Aktionen',
+    logIn: 'Anmelden'
 };
 
 const initialState = {
@@ -41,10 +45,10 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CHANGE_LANGUAGE_ACTION:
             let translation = enTranslation;
             switch (action.payload) {
-                case 'EN':
+                case 0:
                     translation = enTranslation;
                     break;
-                case 'DE' :
+                case 1 :
                     translation = deTranslation;
                     break;
             }

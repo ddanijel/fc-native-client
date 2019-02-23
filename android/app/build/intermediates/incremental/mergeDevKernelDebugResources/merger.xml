@@ -21394,7 +21394,8 @@
                 <string name="default_notification_channel_group">Default</string>
                 <string name="persistent_notification_channel_name">Experience notifications</string>
                 <string name="persistent_notification_channel_desc">Persistent notifications that provide debug info
-                    about open experiences
+                    about open
+                    experiences
                 </string>
             </file>
         </source>

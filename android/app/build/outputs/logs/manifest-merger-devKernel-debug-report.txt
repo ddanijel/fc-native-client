@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:2:1-91:12
 MERGED from [com.facebook.react:react-native:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/react-native-32.0.0.aar/949184234448eba4758a1555c53acc00/AndroidManifest.xml:2:1-15:12
 MERGED from [host.exp.exponent:expo-task-manager:1.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-task-manager-1.0.0.aar/22eb5366125792fcb938d9413027489f/AndroidManifest.xml:2:1-27:12
@@ -148,39 +148,39 @@ MERGED from [com.crashlytics.sdk.android:answers:1.3.6] /home/danijel/.gradle/ca
 MERGED from [io.fabric.sdk.android:fabric:1.3.10] /home/danijel/.gradle/caches/transforms-1/files-1.1/fabric-1.3.10.aar/d22ea747edf8227eaef12a644faa1aa1/AndroidManifest.xml:18:1-29:12
 MERGED from [com.crashlytics.sdk.android:beta:1.1.4] /home/danijel/.gradle/caches/transforms-1/files-1.1/beta-1.1.4.aar/9acc1b35f002dd7e38e7e694df077308/AndroidManifest.xml:2:1-13:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/054652585550ef13854fbed758c84bc6/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
-INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
+INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
 	package
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:3:3-30
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:5:9-36
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:5:3-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:4:9-55
 	android:versionCode
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-340:12
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:2:1-339:12
 		INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:4:3-61
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:3:9-67
 permission#fc.react.native.client.permission.C2D_MESSAGE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:7:3-9:42
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:7:5-9:50
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:28:5-30:47
 	android:protectionLevel
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:9:5-40
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:9:13-48
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:8:5-65
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:8:13-73
 uses-permission#fc.react.native.client.permission.C2D_MESSAGE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:12:3-83
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:12:5-84
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:32:5-79
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:12:20-80
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:12:22-82
 uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:13:3-80
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:13:5-81
 MERGED from [com.google.android.gms:play-services-gcm:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-gcm-15.0.1.aar/929a533fdbb9988dcde03601c7317c12/AndroidManifest.xml:23:5-82
 MERGED from [com.google.android.gms:play-services-gcm:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-gcm-15.0.1.aar/929a533fdbb9988dcde03601c7317c12/AndroidManifest.xml:23:5-82
 MERGED from [com.google.android.gms:play-services-iid:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-iid-15.0.1.aar/1457a0657d0d51cea50479b6483bcea2/AndroidManifest.xml:23:5-82
@@ -188,9 +188,9 @@ MERGED from [com.google.android.gms:play-services-iid:15.0.1] /home/danijel/.gra
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:26:5-82
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:26:5-82
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:13:20-77
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:13:22-79
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:14:3-77
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:14:5-78
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:27:5-79
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:27:5-79
 MERGED from [com.facebook.android:audience-network-sdk:4.99.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/audience-network-sdk-4.99.0.aar/3f9efca39cb62d44be9cae21656802fb/AndroidManifest.xml:12:5-79
@@ -214,9 +214,9 @@ MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/cach
 MERGED from [com.google.android.gms:play-services-ads-lite:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-ads-lite-15.0.1.aar/5dc85dfddca6c719cca7078b3f35ee38/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-ads-lite-15.0.1.aar/5dc85dfddca6c719cca7078b3f35ee38/AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:14:20-74
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:14:22-76
 uses-permission#android.permission.INTERNET
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:15:3-65
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:15:5-66
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:21:5-67
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:21:5-67
 MERGED from [com.facebook.android:audience-network-sdk:4.99.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/audience-network-sdk-4.99.0.aar/3f9efca39cb62d44be9cae21656802fb/AndroidManifest.xml:11:5-67
@@ -254,17 +254,17 @@ MERGED from [io.fabric.sdk.android:fabric:1.3.10] /home/danijel/.gradle/caches/t
 MERGED from [com.crashlytics.sdk.android:beta:1.1.4] /home/danijel/.gradle/caches/transforms-1/files-1.1/beta-1.1.4.aar/9acc1b35f002dd7e38e7e694df077308/AndroidManifest.xml:9:5-67
 MERGED from [com.crashlytics.sdk.android:beta:1.1.4] /home/danijel/.gradle/caches/transforms-1/files-1.1/beta-1.1.4.aar/9acc1b35f002dd7e38e7e694df077308/AndroidManifest.xml:9:5-67
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:15:20-62
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:15:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:16:3-76
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:16:5-77
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:23:5-78
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:23:5-78
 MERGED from [com.facebook.react:react-native:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/react-native-32.0.0.aar/949184234448eba4758a1555c53acc00/AndroidManifest.xml:11:5-78
 MERGED from [com.facebook.react:react-native:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/react-native-32.0.0.aar/949184234448eba4758a1555c53acc00/AndroidManifest.xml:11:5-78
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:16:20-73
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:16:22-75
 uses-permission#android.permission.WAKE_LOCK
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:17:3-66
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:17:5-67
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:24:5-68
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:24:5-68
 MERGED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:27:5-68
@@ -280,49 +280,49 @@ MERGED from [com.google.firebase:firebase-analytics-impl:16.1.1] /home/danijel/.
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:24:5-68
 MERGED from [com.google.firebase:firebase-iid:16.2.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.2.0.aar/eb5b5c7df9c4ae60583824353a175aa4/AndroidManifest.xml:24:5-68
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:17:20-63
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:17:22-65
 uses-permission#android.permission.MANAGE_DOCUMENTS
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:21:3-73
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:21:5-74
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:28:5-75
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:28:5-75
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:21:20-70
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:21:22-72
 uses-permission#android.permission.READ_INTERNAL_STORAGE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:22:3-78
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:22:5-79
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:26:5-80
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:26:5-80
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:22:20-75
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:22:22-77
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:23:3-73
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:23:5-74
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:23:20-70
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:23:22-72
 uses-permission#android.permission.USE_FINGERPRINT
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:24:3-72
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:24:5-73
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:29:5-74
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:29:5-74
 MERGED from [host.exp.exponent:expo-local-authentication:2.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-local-authentication-2.0.0.aar/072940bedbc024cbb426bb4a73396577/AndroidManifest.xml:11:5-74
 MERGED from [host.exp.exponent:expo-local-authentication:2.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-local-authentication-2.0.0.aar/072940bedbc024cbb426bb4a73396577/AndroidManifest.xml:11:5-74
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:24:20-69
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:24:22-71
 uses-permission#android.permission.VIBRATE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:25:3-64
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:25:5-65
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:25:20-61
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:25:22-63
 uses-permission#com.android.launcher.permission.INSTALL_SHORTCUT
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:26:3-86
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:26:5-87
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:22:5-88
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:22:5-88
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:26:20-83
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:26:22-85
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:27:3-78
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:27:5-79
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:30:5-80
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:30:5-80
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:27:20-75
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:27:22-77
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:30:3-79
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:30:5-80
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:40:5-81
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:40:5-81
 MERGED from [host.exp.exponent:expo-location:2.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-location-2.0.1.aar/46092534c1b507a17a66399bb0283c1a/AndroidManifest.xml:11:5-81
@@ -330,9 +330,9 @@ MERGED from [host.exp.exponent:expo-location:2.0.1] /home/danijel/.gradle/caches
 MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/danijel/.gradle/caches/transforms-1/files-1.1/library-3.2.11.aar/742e76d8dbaa1e2a26ebab361d1f4636/AndroidManifest.xml:12:5-81
 MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/danijel/.gradle/caches/transforms-1/files-1.1/library-3.2.11.aar/742e76d8dbaa1e2a26ebab361d1f4636/AndroidManifest.xml:12:5-81
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:30:20-76
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:30:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:31:3-77
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:31:5-78
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:41:5-79
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:41:5-79
 MERGED from [host.exp.exponent:expo-location:2.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-location-2.0.1.aar/46092534c1b507a17a66399bb0283c1a/AndroidManifest.xml:12:5-79
@@ -340,77 +340,77 @@ MERGED from [host.exp.exponent:expo-location:2.0.1] /home/danijel/.gradle/caches
 MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/danijel/.gradle/caches/transforms-1/files-1.1/library-3.2.11.aar/742e76d8dbaa1e2a26ebab361d1f4636/AndroidManifest.xml:14:5-79
 MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/danijel/.gradle/caches/transforms-1/files-1.1/library-3.2.11.aar/742e76d8dbaa1e2a26ebab361d1f4636/AndroidManifest.xml:14:5-79
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:31:20-74
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:31:22-76
 uses-permission#android.permission.CAMERA
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:32:3-63
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:32:5-64
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:39:5-65
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:39:5-65
 MERGED from [com.google.android:cameraview:1.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/cameraview-1.0.0.aar/ea57927298d6050addd58f9130e898b7/AndroidManifest.xml:23:5-65
 MERGED from [com.google.android:cameraview:1.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/cameraview-1.0.0.aar/ea57927298d6050addd58f9130e898b7/AndroidManifest.xml:23:5-65
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:32:20-60
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:32:22-62
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:33:3-70
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:33:5-71
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:34:5-72
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:34:5-72
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:33:20-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:33:22-69
 uses-permission#android.permission.READ_CALENDAR
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:34:3-70
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:34:5-71
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:35:5-72
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:35:5-72
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:34:20-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:34:22-69
 uses-permission#android.permission.WRITE_CALENDAR
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:35:3-71
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:35:5-72
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:36:5-73
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:36:5-73
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:35:20-68
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:35:22-70
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:36:3-78
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:36:5-79
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:37:5-80
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:37:5-80
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:36:20-75
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:36:22-77
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:37:3-69
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:37:5-70
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:37:20-66
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:37:22-68
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:38:3-79
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:38:5-80
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:38:5-81
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:38:5-81
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:38:20-76
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:38:22-78
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:39:3-71
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:39:5-72
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:39:20-68
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:39:22-70
 uses-feature#0x00020000
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:3-77
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:5-78
 MERGED from [host.exp.exponent:expo-gl:2.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-gl-2.0.0.aar/96b6c2b777352ab8347e38dbf2d86b2c/AndroidManifest.xml:11:5-13:36
 MERGED from [host.exp.exponent:expo-gl:2.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expo-gl-2.0.0.aar/96b6c2b777352ab8347e38dbf2d86b2c/AndroidManifest.xml:11:5-13:36
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-maps-15.0.1.aar/f5d35e562a726240543fc225478fd38f/AndroidManifest.xml:26:5-28:35
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-maps-15.0.1.aar/f5d35e562a726240543fc225478fd38f/AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:17-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:19-51
 	android:required
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:50-74
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:44:52-76
 uses-feature#android.software.leanback
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:3-85
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:5-86
 	android:required
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:58-82
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:60-84
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:17-57
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:45:19-59
 uses-feature#android.hardware.touchscreen
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:3-88
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:5-89
 	android:required
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:61-85
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:63-87
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:17-60
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:46:19-62
 application
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:48:3-338:17
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:48:5-337:19
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:71:5-89:19
 MERGED from [host.exp.exponent:expoview:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/expoview-32.0.0.aar/9817246b32a0e335ac58f67f4ca823a5/AndroidManifest.xml:71:5-89:19
 MERGED from [com.facebook.react:react-native:32.0.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/react-native-32.0.0.aar/949184234448eba4758a1555c53acc00/AndroidManifest.xml:13:5-20
@@ -536,397 +536,397 @@ MERGED from [com.crashlytics.sdk.android:beta:1.1.4] /home/danijel/.gradle/cache
 	android:supportsRtl
 		ADDED from [com.facebook.android:facebook-android-sdk:4.39.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.39.0.aar/8b3309b73408872f0aff8d459e15048d/AndroidManifest.xml:28:18-44
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:52:5-37
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:52:13-45
 	android:largeHeap
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:53:5-29
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:53:13-37
 	android:icon
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:51:5-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:51:13-47
 	android:allowBackup
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:50:5-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:50:13-39
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:49:5-36
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:49:13-44
 activity#host.exp.exponent.LauncherActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:55:5-61:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:55:9-61:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:59:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:59:17-53
 	android:launchMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:58:7-38
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:58:17-48
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:57:7-30
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:57:17-40
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:60:7-66
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:60:17-76
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:56:7-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:56:17-49
 activity#host.exp.exponent.experience.ExperienceActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:63:5-68:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:63:9-68:20
 	android:windowSoftInputMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:67:7-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:67:17-59
 	android:configChanges
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:65:7-77
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:65:17-87
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:66:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:66:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:64:7-52
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:64:17-62
 activity#host.exp.exponent.MainActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:70:5-90:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:70:9-90:20
 	android:launchMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:72:7-38
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:72:17-48
 	android:windowSoftInputMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:75:7-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:75:17-59
 	android:configChanges
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:73:7-77
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:73:17-87
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:74:7-51
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:74:17-61
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:71:7-35
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:71:17-45
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:exp1e1dd6674115405e9576a3095ea73174
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:76:7-83:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:76:13-83:29
 data
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:77:9-69
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:77:17-77
 	android:path
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:159:55-83
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:158:63-91
 	android:scheme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:77:15-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:77:23-75
 action#android.intent.action.VIEW
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:79:9-60
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:79:17-68
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:79:17-58
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:79:25-66
 category#android.intent.category.DEFAULT
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:81:9-67
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:81:17-75
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:81:19-65
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:81:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:82:9-69
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:82:17-77
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:82:19-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:82:27-75
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:84:7-88:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:84:13-88:29
 action#android.intent.action.MAIN
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:85:9-60
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:85:17-68
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:85:17-58
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:85:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:87:9-68
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:87:17-76
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:87:19-66
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:87:27-74
 activity#host.exp.exponent.experience.HomeActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:92:5-98:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:92:9-98:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:96:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:96:17-53
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:94:7-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:94:17-49
 	android:launchMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:95:7-38
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:95:17-48
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:97:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:97:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:93:7-46
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:93:17-56
 activity#host.exp.exponent.experience.TvActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:100:5-109:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:100:9-109:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:104:7-44
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:104:17-54
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:102:7-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:102:17-49
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:103:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:103:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:101:7-44
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:101:17-54
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LEANBACK_LAUNCHER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:105:6-108:22
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:105:13-108:29
 category#android.intent.category.LEANBACK_LAUNCHER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:107:8-77
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:107:17-85
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:107:18-74
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:107:27-83
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:113:5-81
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:112:9-85
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:113:15-79
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:112:19-83
 activity#abi32_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:116:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:115:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:116:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:115:19-93
 activity#abi31_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:118:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:117:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:118:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:117:19-93
 activity#abi30_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:121:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:120:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:121:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:120:19-93
 activity#abi29_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:124:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:123:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:124:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:123:19-93
 activity#abi28_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:127:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:126:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:127:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:126:19-93
 activity#abi27_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:130:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:129:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:130:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:129:19-93
 activity#abi26_0_0.com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:133:5-91
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:132:9-95
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:133:15-89
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:132:19-93
 activity#host.exp.exponent.ExponentDevActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:137:5-144:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:136:9-143:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:141:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:140:17-53
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:140:7-48
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:139:17-58
 	android:windowSoftInputMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:143:7-46
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:142:17-56
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:139:7-30
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:138:17-40
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:142:7-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:141:17-59
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:138:7-42
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:137:17-52
 activity#host.exp.exponent.oauth.OAuthWebViewActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:146:5-150:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:145:9-149:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:148:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:147:17-53
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:149:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:148:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:147:7-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:146:17-59
 activity#net.openid.appauth.RedirectUriReceiverActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:152:5-161:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:151:9-160:20
 REJECTED from [net.openid:appauth:0.7.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/appauth-0.7.1.aar/0cda493f76c577760500cbecd587a527/AndroidManifest.xml:32:9-43:20
 	tools:node
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:154:9-29
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:153:17-37
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:153:9-70
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:152:17-78
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:path:oauthredirect+data:scheme:fc.react.native.client
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:155:7-160:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:154:13-159:29
 activity#host.exp.exponent.oauth.OAuthResultActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:163:5-165:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:162:9-164:20
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:164:7-48
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:163:17-58
 activity#abi32_0_0.expo.modules.appauth.AppAuthBrowserActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:167:5-169:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:166:9-168:20
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:168:7-75
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:167:17-85
 activity#expo.modules.payments.stripe.RedirectUriReceiver
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:172:5-183:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:171:9-182:20
 	android:launchMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:174:9-40
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:173:17-48
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:173:9-32
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:172:17-40
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:176:9-79
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:175:17-87
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:175:9-72
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:174:17-80
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:expo.modules.payments.stripe.81dc0ea6-484a-46b4-841b-5736013cdd00
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:177:9-182:25
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:176:13-181:29
 activity#abi31_0_0.expo.modules.payments.stripe.RedirectUriReceiver
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:185:5-196:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:184:9-195:20
 	android:launchMode
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:187:9-40
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:186:17-48
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:186:9-32
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:185:17-40
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:189:9-79
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:188:17-87
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:188:9-82
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:187:17-90
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:abi31_0_0.expo.modules.payments.stripe
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:190:9-195:25
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:189:13-194:29
 activity#host.exp.exponent.chrometabs.ChromeTabsManagerActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:200:5-202:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:199:9-201:20
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:201:7-59
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:200:17-69
 activity#host.exp.exponent.experience.ErrorActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:204:5-208:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:203:9-207:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:207:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:206:17-53
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:206:7-49
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:205:17-59
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:205:7-47
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:204:17-57
 activity#host.exp.exponent.experience.InfoActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:210:5-214:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:209:9-213:20
 	android:screenOrientation
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:212:7-43
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:211:17-53
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:213:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:212:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:211:7-46
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:210:17-56
 activity#com.facebook.FacebookActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:216:5-221:39
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:215:9-220:48
 MERGED from [com.facebook.android:facebook-common:4.39.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/facebook-common-4.39.0.aar/04fc035545c9c828414d05420274f720/AndroidManifest.xml:29:9-32:66
 MERGED from [com.facebook.android:facebook-common:4.39.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/facebook-common-4.39.0.aar/04fc035545c9c828414d05420274f720/AndroidManifest.xml:29:9-32:66
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:219:7-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:218:17-49
 	android:configChanges
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:218:7-90
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:217:17-100
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:220:7-66
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:219:17-76
 		REJECTED from [com.facebook.android:facebook-common:4.39.0] /home/danijel/.gradle/caches/transforms-1/files-1.1/facebook-common-4.39.0.aar/04fc035545c9c828414d05420274f720/AndroidManifest.xml:32:13-63
 	tools:replace
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:221:7-36
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:220:17-46
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:217:7-51
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:216:17-61
 activity#com.facebook.ads.InterstitialAdActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:223:5-227:69
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:222:9-226:78
 	android:label
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:226:7-39
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:225:17-49
 	android:configChanges
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:225:7-90
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:224:17-100
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:227:7-66
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:226:17-76
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:224:7-61
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:223:17-71
 service#host.exp.exponent.ExponentIntentService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:229:5-231:34
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:228:9-230:43
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:231:7-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:230:17-41
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:230:7-44
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:229:17-54
 receiver#host.exp.exponent.referrer.InstallReferrerReceiver
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:234:5-240:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:233:9-239:20
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:236:7-30
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:235:17-40
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:235:7-72
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:234:17-82
 intent-filter#action:name:com.android.vending.INSTALL_REFERRER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:237:7-239:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:236:13-238:29
 action#com.android.vending.INSTALL_REFERRER
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:238:9-71
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:237:17-78
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:238:17-68
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:237:25-76
 receiver#com.google.android.gms.analytics.AnalyticsReceiver
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:250:5-255:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:249:9-254:20
 MERGED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:30:9-34:20
 MERGED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:30:9-34:20
 	android:enabled
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:251:15-37
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:250:19-41
 	android:exported
 		ADDED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:250:15-80
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:249:19-84
 intent-filter#action:name:com.google.android.gms.analytics.ANALYTICS_DISPATCH
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:252:7-254:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:251:13-253:29
 action#com.google.android.gms.analytics.ANALYTICS_DISPATCH
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:253:9-86
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:252:17-93
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:253:17-83
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:252:25-91
 service#com.google.android.gms.analytics.AnalyticsService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:257:5-259:40
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:256:9-258:44
 MERGED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:36:9-39:40
 MERGED from [com.google.android.gms:play-services-analytics:16.0.1] /home/danijel/.gradle/caches/transforms-1/files-1.1/play-services-analytics-16.0.1.aar/e3f8ee24f3f18cd9069b2c7ec973d7eb/AndroidManifest.xml:36:9-39:40
 	android:enabled
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:258:14-36
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:257:18-40
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:259:14-38
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:258:18-42
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:257:14-78
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:256:18-82
 receiver#com.google.android.gms.gcm.GcmReceiver
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:262:5-272:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:261:9-271:20
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:264:7-30
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:263:17-40
 	android:permission
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:265:7-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:264:17-77
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:263:7-60
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:262:17-70
 intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+action:name:com.google.android.c2dm.intent.REGISTRATION+category:name:fc.react.native.client
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:266:7-271:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:265:13-270:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:267:9-72
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:266:17-80
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:267:17-70
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:266:25-78
 action#com.google.android.c2dm.intent.REGISTRATION
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:268:9-77
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:267:17-85
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:268:17-75
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:267:25-83
 category#fc.react.native.client
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:270:9-58
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:269:17-66
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:270:19-56
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:269:27-64
 service#host.exp.exponent.gcm.ExponentGcmListenerService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:274:5-280:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:273:9-279:19
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:276:7-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:275:17-41
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:275:7-53
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:274:17-63
 intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:277:7-279:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:276:13-278:29
 service#host.exp.exponent.gcm.ExponentInstanceIDListenerService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:281:5-287:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:280:9-286:19
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:283:7-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:282:17-41
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:282:7-60
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:281:17-70
 intent-filter#action:name:com.google.android.gms.iid.InstanceID
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:284:7-286:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:283:13-285:29
 action#com.google.android.gms.iid.InstanceID
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:285:9-71
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:284:17-79
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:285:17-69
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:284:25-77
 service#host.exp.exponent.gcm.GcmRegistrationIntentService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:288:5-291:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:287:9-290:19
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:290:7-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:289:17-41
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:289:7-55
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:288:17-65
 service#host.exp.exponent.fcm.ExpoFcmMessagingService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:294:5-299:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:293:9-298:19
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:295:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:294:17-60
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:296:7-298:23
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:295:13-297:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:297:9-69
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:296:17-77
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:297:17-67
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:296:25-75
 meta-data#com.google.firebase.messaging.default_notification_icon
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:300:5-302:62
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:299:9-301:71
 	android:resource
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:302:7-59
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:301:17-69
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:301:7-77
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:300:17-87
 meta-data#com.google.firebase.messaging.default_notification_color
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:303:5-305:47
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:302:9-304:56
 	android:resource
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:305:7-44
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:304:17-54
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:304:7-78
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:303:17-88
 service#host.exp.exponent.fcm.FcmRegistrationIntentService
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:306:5-309:15
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:305:9-308:19
 	android:exported
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:308:7-31
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:307:17-41
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:307:7-55
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:306:17-65
 activity#com.theartofdev.edmodo.cropper.CropImageActivity
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:312:5-315:16
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:311:9-314:20
 	android:theme
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:314:7-50
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:313:17-60
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:313:7-70
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:312:17-80
 meta-data#io.fabric.ApiKey
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:320:5-322:65
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:319:9-321:75
 	android:value
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:322:7-63
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:321:17-73
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:321:7-38
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:320:17-48
 meta-data#com.google.android.geo.API_KEY
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:327:5-329:64
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:326:9-328:74
 	android:value
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:329:7-62
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:328:17-72
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:328:7-52
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:327:17-62
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:335:5-83
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:334:9-87
 	android:value
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:335:62-81
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:334:66-85
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:335:16-61
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:334:20-65
 meta-data#standaloneStripeScheme
-ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:337:5-109
+ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:336:9-112
 	android:value
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:337:54-106
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:336:58-110
 	android:name
-		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:337:16-53
+		ADDED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml:336:20-57
 uses-sdk
 INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/danijel/Projects/UZH/IS/food-chain-native-client/android/app/src/main/AndroidManifest.xml

@@ -1,13 +1,7 @@
 import React from 'react';
-import {AsyncStorage, Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, View,} from 'react-native';
+import {AsyncStorage, Button, StatusBar, StyleSheet, View} from 'react-native';
 
-import {
-    createAppContainer,
-    createDrawerNavigator,
-    createStackNavigator,
-    createSwitchNavigator,
-    DrawerItems
-} from 'react-navigation';
+import {createAppContainer, createStackNavigator, createSwitchNavigator,} from 'react-navigation';
 
 import ProducerAuthScreen from '../screens/producer/auth/ProducerAuthScreen';
 import ProducerScreen from '../screens/producer/ProducerScreen';
@@ -76,24 +70,19 @@ const HomeStack = createStackNavigator({Home: HomeScreen});
 const ConsumerStack = createStackNavigator({Home: ConsumerScreen});
 
 
-const CustomDrawerComponent = (props) => (
-    <SafeAreaView style={{height: 150, backgroundColor: 'gray'}}>
-        <ScrollView>
-            <DrawerItems {...props} />
-        </ScrollView>
-    </SafeAreaView>
-);
-
-const HomeDrawerNavigator = createDrawerNavigator({
-        Home: HomeStack
-    },
-    {contentComponent: CustomDrawerComponent},
-    {
-        headerMode: 'none',
-        navigationOptions: {
-            headerVisible: false
-        }
-    });
+//
+// const HomeDrawerNavigator = createDrawerNavigator({
+//         Home: HomeStack,
+//     },
+//     {contentComponent: HomeScreenDrawer},
+//     {
+//         headerMode: 'none',
+//         navigationOptions: {
+//             headerVisible: false
+//         }
+//     });
+//
+// const HomeHomeStack = createStackNavigator({Home: HomeDrawerNavigator});
 
 export default createAppContainer(createSwitchNavigator(
     {
@@ -102,10 +91,10 @@ export default createAppContainer(createSwitchNavigator(
         Auth: AuthStack,
         // Welcome: WelcomeStack,
         Consumer: ConsumerStack,
-        HomeDrawer: HomeDrawerNavigator
+        Home: HomeStack
     },
     {
-        initialRouteName: 'HomeDrawer',
+        initialRouteName: 'Home',
     }
 ));
 
