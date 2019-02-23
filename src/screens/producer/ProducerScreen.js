@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {AsyncStorage, Button, StyleSheet, View} from "react-native";
 
 class ProducerScreen extends Component {
-    static navigationOptions = {
-        title: 'Welcome to the producer screen!',
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: navigation.getParam('otherParam', 'Home'),
+        };
     };
 
     render() {

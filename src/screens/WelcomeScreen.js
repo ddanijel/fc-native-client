@@ -8,6 +8,11 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class WelcomeScreen extends React.Component {
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: navigation.getParam('otherParam', 'Home'),
+        };
+    };
 
     render() {
         return (
