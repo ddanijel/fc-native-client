@@ -2,6 +2,7 @@ import React from 'react';
 import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {images} from '../assets/images';
+import {connect} from 'react-redux';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -40,7 +41,7 @@ class WelcomeScreen extends React.Component {
                             buttonStyle={styles.loginButton}
                             containerStyle={{marginTop: 32, flex: 0}}
                             activeOpacity={0.8}
-                            title={"Producer"}
+                            title={this.props.producerTitle}
                             onPress={() => this.props.navigation.navigate('Auth')}
                             titleStyle={styles.loginTextButton}
                         />
@@ -48,7 +49,7 @@ class WelcomeScreen extends React.Component {
                             buttonStyle={styles.loginButton}
                             containerStyle={{marginTop: 32, flex: 0}}
                             activeOpacity={0.8}
-                            title={"Producer"}
+                            title={this.props.consumerTitle}
                             onPress={() => this.props.navigation.navigate('Consumer', {
                                 itemId: 86,
                                 otherParam: 'anything you want here',
@@ -85,4 +86,18 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WelcomeScreen;
+const mapStateToProps = state => {
+    console.log(state.languages);
+    return {
+        producerTitle: state.languages.translations.producerTitle,
+        consumerTitle: state.languages.translations.consumerTitle
+    };
+};
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         on
+//     };
+// };
+
+export default connect(mapStateToProps)(WelcomeScreen);
