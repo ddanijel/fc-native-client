@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button as NativeButton, Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {images} from '../../../assets/images';
 import {connect} from 'react-redux';
@@ -13,23 +13,33 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 class HomeScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            headerLeft: <Icon style={styles.drawerIcon} name="menu"/>
+            title: navigation.getParam('otherParam', 'Home'),
+            headerLeft: <Icon style={styles.drawerIcon} name="menu" onPress={() => {
+                navigation.getParam('openSideDrawer')();
+            }}/>
         };
     };
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        navigation.setParams({
+            openSideDrawer: this.openSideDrawer,
+        })
+    }
 
     closeSideDrawer = () => {
         this._drawer.close()
     };
+
     openSideDrawer = () => {
         this._drawer.open()
     };
-
 
     render() {
         const drawerStyles = {
             drawer: {shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
             main: {paddingLeft: 3},
-        }
+        };
         return (
             <Drawer
                 type="overlay"
@@ -53,7 +63,6 @@ class HomeScreen extends React.Component {
                             alignItems: 'center',
                             // justifyContent: 'center',
                         }}>
-                        <NativeButton title="open drawer" onPress={() => this.openSideDrawer()}/>
                         <View>
                             <Text
                                 style={{
@@ -71,29 +80,8 @@ class HomeScreen extends React.Component {
                             </Text>
                         </View>
                         <View style={{width: '80%', alignItems: 'center', justifyContent: 'center'}}>
-                            <View style={{backgroundColor: 'white'}}>
-                                <Button
-                                    buttonStyle={styles.loginButton}
-                                    containerStyle={{marginTop: 32, flex: 0}}
-                                    activeOpacity={0.8}
-                                    title={this.props.producerTitle}
-                                    onPress={() => this.props.navigation.navigate('Auth')}
-                                    titleStyle={styles.loginTextButton}
-                                />
-                            </View>
                             <Button
-                                buttonStyle={styles.loginButton}
-                                containerStyle={{marginTop: 32, flex: 0}}
-                                activeOpacity={0.8}
-                                title={this.props.consumerTitle}
-                                onPress={() => this.props.navigation.navigate('Consumer', {
-                                    itemId: 86,
-                                    otherParam: 'anything you want here',
-                                })}
-                                titleStyle={styles.loginTextButton}
-                            />
-                            <Button
-                                title="Log in"
+                                title={this.props.producerTitle}
                                 loading={false}
                                 loadingProps={{size: 'small', color: 'white'}}
                                 buttonStyle={{
@@ -102,7 +90,23 @@ class HomeScreen extends React.Component {
                                 }}
                                 titleStyle={{fontWeight: 'bold', fontSize: 23}}
                                 containerStyle={{marginVertical: 10, height: 50, width: 230}}
-                                onPress={() => console.log('aye')}
+                                onPress={() => this.props.navigation.navigate('Auth')}
+                                underlayColor="transparent"
+                            />
+                            <Button
+                                title={this.props.consumerTitle}
+                                loading={false}
+                                loadingProps={{size: 'small', color: 'white'}}
+                                buttonStyle={{
+                                    backgroundColor: 'rgba(111, 202, 186, 1)',
+                                    borderRadius: 5,
+                                }}
+                                titleStyle={{fontWeight: 'bold', fontSize: 23}}
+                                containerStyle={{marginVertical: 10, height: 50, width: 230}}
+                                onPress={() => this.props.navigation.navigate('Consumer', {
+                                    itemId: 86,
+                                    otherParam: 'anything you want here',
+                                })}
                                 underlayColor="transparent"
                             />
                         </View>

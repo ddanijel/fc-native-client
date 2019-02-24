@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 const AppStack = createStackNavigator({Home: ProducerScreen, Other: OtherScreen});
 const AuthStack = createStackNavigator({SignIn: ProducerAuthScreen});
 const HomeStack = createStackNavigator({Home: HomeScreen});
-const ConsumerStack = createStackNavigator({Home: ConsumerScreen});
+const ConsumerStack = createStackNavigator({Consumer: ConsumerScreen});
 
 
 //
@@ -89,7 +89,6 @@ export default createAppContainer(createSwitchNavigator(
         // AuthLoading: AuthLoadingScreen,
         App: AppStack,
         Auth: AuthStack,
-        // Welcome: WelcomeStack,
         Consumer: ConsumerStack,
         Home: HomeStack
     },

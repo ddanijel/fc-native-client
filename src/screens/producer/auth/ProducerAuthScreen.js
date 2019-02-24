@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {Font} from 'expo';
 import {Button, Input} from 'react-native-elements';
-
+import {Button as BaseButton, Text as NativeText} from "native-base";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
@@ -41,8 +41,12 @@ export default class ProducerAuthScreen extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             title: navigation.getParam('otherParam', 'Producer Mode'),
+            headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
+                <NativeText>Home</NativeText>
+            </BaseButton>
         };
     };
+
     constructor(props) {
         super(props);
 
@@ -397,5 +401,8 @@ const styles = StyleSheet.create({
         height: 64,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    drawerIcon: {
+        marginLeft: 15
     },
 });

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {images} from "../../../assets/images";
-import {Button} from "react-native-elements";
+import QrCodeScannerComponent from "../QrCodeScannerScreen";
+import {Button as BaseButton, Text as NativeText} from "native-base";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -12,6 +13,9 @@ class ConsumerScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             title: navigation.getParam('otherParam', 'Consumer Mode'),
+            headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
+                <NativeText>Home</NativeText>
+            </BaseButton>
         };
     };
 
@@ -19,14 +23,17 @@ class ConsumerScreen extends React.Component {
         return (
 
             <ImageBackground source={images.background} style={styles.bgImage}>
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text>Consumer page</Text>
-                    <Text>Please scan a product tag hash</Text>
-                    <Button
-                        title="Welcome screen"
-                        onPress={() => this.props.navigation.navigate('Home')}
-                    />
-                </View>
+                {/*<View style={{*/}
+                    {/*flex: 1,*/}
+                    {/*alignItems: 'center',*/}
+                    {/*justifyContent: 'center',*/}
+                    {/*width: SCREEN_WIDTH * 0.8,*/}
+                    {/*height: SCREEN_HEIGHT * 0.6*/}
+                {/*}}>*/}
+                    <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
+                        <QrCodeScannerComponent/>
+                    </View>
+                {/*</View>*/}
             </ImageBackground>
         );
     }
