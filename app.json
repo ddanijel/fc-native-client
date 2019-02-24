@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FoodChain",
-    "slug": "fc-native-client",
+    "name": "fc-mobile-client",
+    "slug": "fc-mobile-client",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,16 +24,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "isDetached": true,
-    "detach": {
-      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.10.7-sdk32.0.0-3ff7f3bf-8e53-4d61-b963-1d7d92a77d79.tar.gz"
-    },
-    "scheme": "exp1e1dd6674115405e9576a3095ea73174",
-    "android": {
-      "package": "fc.react.native.client",
-      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
-      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     }
   }
 }

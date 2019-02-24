@@ -1,5 +1,5 @@
 import {Image, SafeAreaView, ScrollView, Text, View} from "react-native";
-import {images} from "../../assets/images";
+import {images} from "../../../assets/images";
 import React from "react";
 import {connect} from "react-redux";
 import {ButtonGroup} from "react-native-elements";

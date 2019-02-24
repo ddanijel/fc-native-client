@@ -16,7 +16,7 @@ import {Button, Input} from 'react-native-elements';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
-import {images} from '../../../assets/images';
+import {images} from '../../../../assets/images';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -64,9 +64,9 @@ export default class ProducerAuthScreen extends Component {
 
     async componentDidMount() {
         await Font.loadAsync({
-            georgia: require('../../../assets/fonts/Georgia.ttf'),
-            regular: require('../../../assets/fonts/Montserrat-Regular.ttf'),
-            light: require('../../../assets/fonts/Montserrat-Light.ttf'),
+            georgia: require('../../../../assets/fonts/Georgia.ttf'),
+            regular: require('../../../../assets/fonts/Montserrat-Regular.ttf'),
+            light: require('../../../../assets/fonts/Montserrat-Light.ttf'),
         });
 
         this.setState({fontLoaded: true});

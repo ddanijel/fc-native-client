@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {images} from "../../assets/images";
+import {images} from "../../../assets/images";
 import {Button} from "react-native-elements";
 
 

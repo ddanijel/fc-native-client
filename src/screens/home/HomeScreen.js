@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button as NativeButton, Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {images} from '../../assets/images';
+import {images} from '../../../assets/images';
 import {connect} from 'react-redux';
 import {Icon} from "native-base";
 import Drawer from 'react-native-drawer'
