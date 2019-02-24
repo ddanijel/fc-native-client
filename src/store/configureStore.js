@@ -1,9 +1,10 @@
 import thunk from "redux-thunk";
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 
 import languageReducer from './reducers/languageReducer';
 import consumerReducer from './reducers/consumerReducer';
 import producerReducer from './reducers/producerReducer';
+
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,12 @@ const rootReducer = combineReducers({
     consumer: consumerReducer,
     producer: producerReducer
 });
+
+let composeEnhancers = compose;
+
+if (__DEV__) {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+}
 
 const addLoggingToDispatch = store => {
     const rawDispatch = store.dispatch;
@@ -32,7 +39,7 @@ const addLoggingToDispatch = store => {
 };
 
 export default function configureStore() {
-    const store = createStore(rootReducer, applyMiddleware(thunk));
+    const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
     store.dispatch = addLoggingToDispatch(store);
     return store;
 }

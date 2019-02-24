@@ -3,7 +3,7 @@ import {images} from "../../../assets/images";
 import React from "react";
 import {connect} from "react-redux";
 import {ButtonGroup} from "react-native-elements";
-import * as actionCreators from '../../store/actions/actions';
+import * as actionCreators from '../../store/actions/languageActionCreators';
 
 const HomeScreenDrawer = (props) => (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Alert} from 'react-native';
 import { Constants, BarCodeScanner, Permissions} from 'expo';
+import {connect} from "react-redux";
+import * as actionCreators from "../store/actions/consumerActionsCreators";
 
 class QrCodeScannerScreen extends Component {
     state = {
@@ -21,8 +23,9 @@ class QrCodeScannerScreen extends Component {
     _handleBarCodeRead = data => {
         Alert.alert(
             'Scan successful!',
-            JSON.stringify(data)
+            data.data
         );
+        this.props.onScanProductTagHash(data.data);
     };
 
     render() {
@@ -53,4 +56,20 @@ const styles = StyleSheet.create({
     }
 });
 
-export default QrCodeScannerScreen;
+
+const mapStateToProps = state => {
+    return {
+        languages: state.languages.languages,
+        currentLanguageIndex: state.languages.translations.languageIndex,
+        languageTitle: state.languages.translations.language
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onScanProductTagHash: (productTagHash) => dispatch(
+            actionCreators.getProductTagData(productTagHash))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QrCodeScannerScreen);

@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../actions/actionTypes';
 
 const enTranslation = {
     languageIndex: 0,
@@ -43,7 +43,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.CHANGE_LANGUAGE_ACTION:
-            let translation = enTranslation;
+            let translation = state.translations;
             switch (action.payload) {
                 case 0:
                     translation = enTranslation;

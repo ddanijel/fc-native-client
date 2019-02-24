@@ -1,4 +1,4 @@
-import {FETCH_SIGN_UP_FORM_DATA} from "src/store/actions/actions";
+import {FETCH_SIGN_UP_FORM_DATA} from "./actionTypes";
 
 
 export const fetchSignUpFormData = () => {

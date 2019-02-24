@@ -296,15 +296,6 @@ export default class ProducerAuthScreen extends Component {
                                     />
                                 </View>
                             </KeyboardAvoidingView>
-                            <View style={styles.helpContainer}>
-                                <Button
-                                    title="Welcome screen"
-                                    titleStyle={{color: 'white'}}
-                                    buttonStyle={{backgroundColor: 'transparent'}}
-                                    underlayColor="transparent"
-                                    onPress={() => this.props.navigation.navigate('Home')}
-                                />
-                            </View>
                         </View>
                     ) : (
                         <Text>Loading...</Text>

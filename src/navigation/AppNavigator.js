@@ -7,6 +7,7 @@ import ProducerAuthScreen from '../screens/producer/auth/ProducerAuthScreen';
 import ProducerScreen from '../screens/producer/ProducerScreen';
 import HomeScreen from '../screens/home/HomeScreen';
 import ConsumerScreen from "../screens/consumer/ConsumerScreen";
+import MapScreen from "../screens/map/MapScreen";
 
 
 class OtherScreen extends React.Component {
@@ -68,6 +69,7 @@ const AppStack = createStackNavigator({Home: ProducerScreen, Other: OtherScreen}
 const AuthStack = createStackNavigator({SignIn: ProducerAuthScreen});
 const HomeStack = createStackNavigator({Home: HomeScreen});
 const ConsumerStack = createStackNavigator({Consumer: ConsumerScreen});
+const MapStack = createStackNavigator({Map: MapScreen});
 
 
 //
@@ -90,7 +92,8 @@ export default createAppContainer(createSwitchNavigator(
         App: AppStack,
         Auth: AuthStack,
         Consumer: ConsumerStack,
-        Home: HomeStack
+        Home: HomeStack,
+        Map: MapStack
     },
     {
         initialRouteName: 'Home',
