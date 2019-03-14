@@ -10,13 +10,16 @@ import {
     Text,
     UIManager,
     View,
+    ActivityIndicator
 } from 'react-native';
+import {connect} from "react-redux";
 import {Font} from 'expo';
 import {Button, Input} from 'react-native-elements';
 import {Button as BaseButton, Text as NativeText} from "native-base";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
+import {tryAuth} from "../../../store/actions/producerActionCreators";
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -37,7 +40,7 @@ TabSelector.propTypes = {
     selected: PropTypes.bool.isRequired,
 };
 
-export default class ProducerAuthScreen extends Component {
+class ProducerAuthScreen extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             title: navigation.getParam('otherParam', 'Producer Mode'),
@@ -51,11 +54,12 @@ export default class ProducerAuthScreen extends Component {
         super(props);
 
         this.state = {
+            username: '',
             email: '',
             password: '',
             fontLoaded: false,
             selectedCategory: 0,
-            isLoading: false,
+            // isLoading: false,
             isEmailValid: true,
             isPasswordValid: true,
             isConfirmationValid: true,
@@ -80,7 +84,7 @@ export default class ProducerAuthScreen extends Component {
         LayoutAnimation.easeInEaseOut();
         this.setState({
             selectedCategory,
-            isLoading: false,
+            // isLoading: false,
         });
     }
 
@@ -90,51 +94,59 @@ export default class ProducerAuthScreen extends Component {
         return re.test(email);
     }
 
-    login() {
-        const {email, password} = this.state;
-        this.setState({isLoading: true});
-        // Simulate an API call
-        setTimeout(() => {
-            LayoutAnimation.easeInEaseOut();
-            this.setState({
-                isLoading: false,
-                isEmailValid: this.validateEmail(email) || this.emailInput.shake(),
-                isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
-            });
-        }, 1500);
+    login = () => {
+        // const {email, password} = this.state;
+        // this.setState({isLoading: true});
+        // // Simulate an API call
+        // setTimeout(() => {
+        //     LayoutAnimation.easeInEaseOut();
+        //     this.setState({
+        //         isLoading: false,
+        //         isEmailValid: this.validateEmail(email) || this.emailInput.shake(),
+        //         isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
+        //     });
+        // }, 1500);
         console.log("Login....");
-        this.props.navigation.navigate('ConsumerStack')
-    }
+        const {username, password} = this.state;
+        const authData = {
+            username,
+            password
+        };
+        this.props.onLogin(authData);
+        // this.props.navigation.navigate('Consumer')
+    };
 
     signUp() {
-        const {email, password, passwordConfirmation} = this.state;
-        this.setState({isLoading: true});
-        // Simulate an API call
-        setTimeout(() => {
-            LayoutAnimation.easeInEaseOut();
-            this.setState({
-                isLoading: false,
-                isEmailValid: this.validateEmail(email) || this.emailInput.shake(),
-                isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
-                isConfirmationValid:
-                    password == passwordConfirmation || this.confirmationInput.shake(),
-            });
-            console.log("Login....");
-            this.props.navigation.navigate('ConsumerStack')
-        }, 1500);
+        // const {email, password, passwordConfirmation} = this.state;
+        // this.setState({isLoading: true});
+        // // Simulate an API call
+        // setTimeout(() => {
+        //     LayoutAnimation.easeInEaseOut();
+        //     this.setState({
+        //         isLoading: false,
+        //         isEmailValid: this.validateEmail(email) || this.emailInput.shake(),
+        //         isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
+        //         isConfirmationValid:
+        //             password == passwordConfirmation || this.confirmationInput.shake(),
+        //     });
+        //     console.log("Login....");
+        //     this.props.navigation.navigate('ConsumerStack')
+        // }, 1500);
     }
 
     render() {
         const {
             selectedCategory,
-            isLoading,
+            // isLoading,
             isEmailValid,
             isPasswordValid,
             isConfirmationValid,
+            username,
             email,
             password,
             passwordConfirmation,
         } = this.state;
+        const {isLoading} = this.props;
         const isLoginPage = selectedCategory === 0;
         const isSignUpPage = selectedCategory === 1;
         return (
@@ -185,33 +197,61 @@ export default class ProducerAuthScreen extends Component {
                                     <TabSelector selected={isSignUpPage}/>
                                 </View>
                                 <View style={styles.formContainer}>
+                                    {/*<Input*/}
+                                    {/*leftIcon={*/}
+                                    {/*<Icon*/}
+                                    {/*name="envelope-o"*/}
+                                    {/*color="rgba(0, 0, 0, 0.38)"*/}
+                                    {/*size={25}*/}
+                                    {/*style={{backgroundColor: 'transparent'}}*/}
+                                    {/*/>*/}
+                                    {/*}*/}
+                                    {/*value={email}*/}
+                                    {/*keyboardAppearance="light"*/}
+                                    {/*autoFocus={false}*/}
+                                    {/*autoCapitalize="none"*/}
+                                    {/*autoCorrect={false}*/}
+                                    {/*keyboardType="email-address"*/}
+                                    {/*returnKeyType="next"*/}
+                                    {/*inputStyle={{marginLeft: 10}}*/}
+                                    {/*placeholder={'Email'}*/}
+                                    {/*containerStyle={{*/}
+                                    {/*borderBottomColor: 'rgba(0, 0, 0, 0.38)',*/}
+                                    {/*}}*/}
+                                    {/*ref={input => (this.emailInput = input)}*/}
+                                    {/*onSubmitEditing={() => this.passwordInput.focus()}*/}
+                                    {/*onChangeText={email => this.setState({email})}*/}
+                                    {/*errorMessage={*/}
+                                    {/*isEmailValid ? null : 'Please enter a valid email address'*/}
+                                    {/*}*/}
+                                    {/*/>*/}
                                     <Input
                                         leftIcon={
                                             <Icon
-                                                name="envelope-o"
+                                                name="user-o"
                                                 color="rgba(0, 0, 0, 0.38)"
                                                 size={25}
                                                 style={{backgroundColor: 'transparent'}}
                                             />
                                         }
-                                        value={email}
+                                        value={username}
                                         keyboardAppearance="light"
                                         autoFocus={false}
                                         autoCapitalize="none"
                                         autoCorrect={false}
-                                        keyboardType="email-address"
+                                        keyboardType="default"
                                         returnKeyType="next"
                                         inputStyle={{marginLeft: 10}}
-                                        placeholder={'Email'}
+                                        placeholder={'Username'}
                                         containerStyle={{
                                             borderBottomColor: 'rgba(0, 0, 0, 0.38)',
                                         }}
-                                        ref={input => (this.emailInput = input)}
-                                        onSubmitEditing={() => this.passwordInput.focus()}
-                                        onChangeText={email => this.setState({email})}
-                                        errorMessage={
-                                            isEmailValid ? null : 'Please enter a valid email address'
-                                        }
+                                        ref={input => (this.userInput = input)}
+                                        onSubmitEditing={() => this.userInput.focus()}
+                                        onChangeText={username => this.setState({username})}
+                                        // errorMessage={
+                                        //     isEmailValid ? null : 'Please enter a username'
+                                        // }
                                     />
                                     <Input
                                         leftIcon={
@@ -305,6 +345,20 @@ export default class ProducerAuthScreen extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLoading: state.ui.isLoading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: authData => dispatch(tryAuth(authData))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProducerAuthScreen);
 
 const styles = StyleSheet.create({
     container: {

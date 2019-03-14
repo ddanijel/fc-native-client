@@ -190,7 +190,7 @@ class MapScreen extends React.Component {
                             title={"Some title"}
                             description={metadata}
                         >
-                            <NativeText>some custom stuff inside marker</NativeText>
+                            <NativeText>1</NativeText>
                         </MapView.Marker>
                     );
                 })}

@@ -4,13 +4,15 @@ import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import languageReducer from './reducers/languageReducer';
 import consumerReducer from './reducers/consumerReducer';
 import producerReducer from './reducers/producerReducer';
+import uiReducer from './reducers/uiReducer';
 
 
 
 const rootReducer = combineReducers({
     languages: languageReducer,
     consumer: consumerReducer,
-    producer: producerReducer
+    producer: producerReducer,
+    ui: uiReducer
 });
 
 let composeEnhancers = compose;
