@@ -9,8 +9,7 @@ import {
     StyleSheet,
     Text,
     UIManager,
-    View,
-    ActivityIndicator
+    View
 } from 'react-native';
 import {connect} from "react-redux";
 import {Font} from 'expo';
@@ -20,6 +19,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
 import {tryAuth} from "../../../store/actions/producerActionCreators";
+import {LOG_IN, SIGN_UP} from "../../../store/actions/actionTypes";
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -54,9 +55,9 @@ class ProducerAuthScreen extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            username: 'u1',
             email: '',
-            password: '',
+            password: 'p1',
             fontLoaded: false,
             selectedCategory: 0,
             // isLoading: false,
@@ -112,7 +113,7 @@ class ProducerAuthScreen extends Component {
             username,
             password
         };
-        this.props.onLogin(authData);
+        this.props.onAuth(authData, LOG_IN, this);
         // this.props.navigation.navigate('Consumer')
     };
 
@@ -354,7 +355,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: authData => dispatch(tryAuth(authData))
+        onAuth: (authData, authMode, thisRef) => dispatch(tryAuth(authData, authMode, thisRef))
     }
 };
 

@@ -13,6 +13,7 @@ class ProducerScreen extends Component {
             <View style={styles.container}>
                 <Button title="Show me more of the app" onPress={this._showMoreApp}/>
                 <Button title="Actually, sign me out :)" onPress={this._signOutAsync}/>
+
             </View>
         );
     }
@@ -22,7 +23,7 @@ class ProducerScreen extends Component {
     };
 
     _signOutAsync = async () => {
-        await AsyncStorage.clear();
+        // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
     };
 }

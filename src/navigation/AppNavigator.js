@@ -1,7 +1,7 @@
 import React from 'react';
 import {AsyncStorage, Button, StatusBar, StyleSheet, View} from 'react-native';
 
-import {createAppContainer, createStackNavigator, createSwitchNavigator,} from 'react-navigation';
+import {createAppContainer, createStackNavigator, createSwitchNavigator} from 'react-navigation';
 
 import ProducerAuthScreen from '../screens/producer/auth/ProducerAuthScreen';
 import ProducerScreen from '../screens/producer/ProducerScreen';
@@ -25,7 +25,7 @@ class OtherScreen extends React.Component {
     }
 
     _signOutAsync = async () => {
-        await AsyncStorage.clear();
+        // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
     };
 }
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
 });
 
 
-const AppStack = createStackNavigator({Home: ProducerScreen, Other: OtherScreen});
-const AuthStack = createStackNavigator({SignIn: ProducerAuthScreen});
+const ProducerStack = createStackNavigator({Home: ProducerScreen, Other: OtherScreen});
+const ProducerAuthStack = createStackNavigator({SignIn: ProducerAuthScreen});
 const HomeStack = createStackNavigator({Home: HomeScreen});
 const ConsumerStack = createStackNavigator({Consumer: ConsumerScreen});
 const MapStack = createStackNavigator({Map: MapScreen});
@@ -89,8 +89,8 @@ const MapStack = createStackNavigator({Map: MapScreen});
 export default createAppContainer(createSwitchNavigator(
     {
         // AuthLoading: AuthLoadingScreen,
-        App: AppStack,
-        Auth: AuthStack,
+        Producer: ProducerStack,
+        Auth: ProducerAuthStack,
         Consumer: ConsumerStack,
         Home: HomeStack,
         Map: MapStack
