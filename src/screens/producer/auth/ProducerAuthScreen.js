@@ -21,6 +21,8 @@ import {images} from '../../../../assets/images';
 import {tryAuth} from "../../../store/actions/producerActionCreators";
 import {LOG_IN, SIGN_UP} from "../../../store/actions/actionTypes";
 
+import CustomButton from './elements/CustomButton';
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -55,15 +57,35 @@ class ProducerAuthScreen extends Component {
         super(props);
 
         this.state = {
-            username: 'u1',
-            email: '',
-            password: 'p1',
+            logIn: {
+                username: 'u1',
+                password: 'p1',
+                isPasswordValid: true
+            },
+
+            signUp: {
+                username: '',
+                password: '',
+                passwordConfirmation: '',
+                isPasswordValid: true,
+                isConfirmationValid: true,
+                producerName: '',
+                ethereumAccount: '',
+                isEthereumAccountValid: true,
+                licenceNumber: '',
+                website: '',
+                certificates: [],
+                actions: []
+            },
+
+            // username: 'u1',
+            // email: '',
+            // password: 'p1',
             fontLoaded: false,
             selectedCategory: 0,
             // isLoading: false,
             isEmailValid: true,
-            isPasswordValid: true,
-            isConfirmationValid: true,
+
         };
 
         this.selectCategory = this.selectCategory.bind(this);
@@ -108,7 +130,7 @@ class ProducerAuthScreen extends Component {
         //     });
         // }, 1500);
         console.log("Login....");
-        const {username, password} = this.state;
+        const {username, password} = this.state.logIn;
         const authData = {
             username,
             password
@@ -140,21 +162,23 @@ class ProducerAuthScreen extends Component {
             selectedCategory,
             // isLoading,
             isEmailValid,
-            isPasswordValid,
-            isConfirmationValid,
-            username,
-            email,
-            password,
-            passwordConfirmation,
+            // isPasswordValid,
+            // isConfirmationValid,
+            // username,
+            // email,
+            // password,
+            // passwordConfirmation,
         } = this.state;
+
+
         const {isLoading} = this.props;
         const isLoginPage = selectedCategory === 0;
         const isSignUpPage = selectedCategory === 1;
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <ImageBackground source={images.background} style={styles.bgImage}>
                     {this.state.fontLoaded ? (
-                        <View>
+                        <ScrollView>
                             <KeyboardAvoidingView
                                 contentContainerStyle={styles.loginContainer}
                                 behavior="position"
@@ -198,133 +222,392 @@ class ProducerAuthScreen extends Component {
                                     <TabSelector selected={isSignUpPage}/>
                                 </View>
                                 <View style={styles.formContainer}>
-                                    {/*<Input*/}
-                                    {/*leftIcon={*/}
-                                    {/*<Icon*/}
-                                    {/*name="envelope-o"*/}
-                                    {/*color="rgba(0, 0, 0, 0.38)"*/}
-                                    {/*size={25}*/}
-                                    {/*style={{backgroundColor: 'transparent'}}*/}
-                                    {/*/>*/}
-                                    {/*}*/}
-                                    {/*value={email}*/}
-                                    {/*keyboardAppearance="light"*/}
-                                    {/*autoFocus={false}*/}
-                                    {/*autoCapitalize="none"*/}
-                                    {/*autoCorrect={false}*/}
-                                    {/*keyboardType="email-address"*/}
-                                    {/*returnKeyType="next"*/}
-                                    {/*inputStyle={{marginLeft: 10}}*/}
-                                    {/*placeholder={'Email'}*/}
-                                    {/*containerStyle={{*/}
-                                    {/*borderBottomColor: 'rgba(0, 0, 0, 0.38)',*/}
-                                    {/*}}*/}
-                                    {/*ref={input => (this.emailInput = input)}*/}
-                                    {/*onSubmitEditing={() => this.passwordInput.focus()}*/}
-                                    {/*onChangeText={email => this.setState({email})}*/}
-                                    {/*errorMessage={*/}
-                                    {/*isEmailValid ? null : 'Please enter a valid email address'*/}
-                                    {/*}*/}
-                                    {/*/>*/}
-                                    <Input
-                                        leftIcon={
-                                            <Icon
-                                                name="user-o"
-                                                color="rgba(0, 0, 0, 0.38)"
-                                                size={25}
-                                                style={{backgroundColor: 'transparent'}}
+
+                                    {isLoginPage && (
+                                        <View style={{width: '100%'}}>
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="user"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.logIn.username}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Username'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={username => {
+                                                    const logIn = {
+                                                        ...this.state.logIn,
+                                                        username
+                                                    };
+                                                    this.setState({logIn})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
                                             />
-                                        }
-                                        value={username}
-                                        keyboardAppearance="light"
-                                        autoFocus={false}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        keyboardType="default"
-                                        returnKeyType="next"
-                                        inputStyle={{marginLeft: 10}}
-                                        placeholder={'Username'}
-                                        containerStyle={{
-                                            borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                                        }}
-                                        ref={input => (this.userInput = input)}
-                                        onSubmitEditing={() => this.userInput.focus()}
-                                        onChangeText={username => this.setState({username})}
-                                        // errorMessage={
-                                        //     isEmailValid ? null : 'Please enter a username'
-                                        // }
-                                    />
-                                    <Input
-                                        leftIcon={
-                                            <SimpleIcon
-                                                name="lock"
-                                                color="rgba(0, 0, 0, 0.38)"
-                                                size={25}
-                                                style={{backgroundColor: 'transparent'}}
+
+                                            <Input
+                                                leftIcon={
+                                                    <SimpleIcon
+                                                        name="lock"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.logIn.password}
+                                                keyboardAppearance="light"
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                secureTextEntry={true}
+                                                returnKeyType={isSignUpPage ? 'next' : 'done'}
+                                                blurOnSubmit={true}
+                                                containerStyle={{
+                                                    marginTop: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Password'}
+                                                ref={input => (this.passwordInput = input)}
+                                                onSubmitEditing={() =>
+                                                    isSignUpPage
+                                                        ? this.confirmationInput.focus()
+                                                        : this.login()
+                                                }
+                                                onChangeText={password => {
+                                                    const logIn = {
+                                                        ...this.state.logIn,
+                                                        password
+                                                    };
+                                                    this.setState({logIn})
+                                                }}
+                                                errorMessage={
+                                                    this.state.logIn.isPasswordValid
+                                                        ? null
+                                                        : 'Please enter at least 8 characters'
+                                                }
                                             />
-                                        }
-                                        value={password}
-                                        keyboardAppearance="light"
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        secureTextEntry={true}
-                                        returnKeyType={isSignUpPage ? 'next' : 'done'}
-                                        blurOnSubmit={true}
-                                        containerStyle={{
-                                            marginTop: 16,
-                                            borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                                        }}
-                                        inputStyle={{marginLeft: 10}}
-                                        placeholder={'Password'}
-                                        ref={input => (this.passwordInput = input)}
-                                        onSubmitEditing={() =>
-                                            isSignUpPage
-                                                ? this.confirmationInput.focus()
-                                                : this.login()
-                                        }
-                                        onChangeText={password => this.setState({password})}
-                                        errorMessage={
-                                            isPasswordValid
-                                                ? null
-                                                : 'Please enter at least 8 characters'
-                                        }
-                                    />
-                                    {isSignUpPage && (
-                                        <Input
-                                            icon={
-                                                <SimpleIcon
-                                                    name="lock"
-                                                    color="rgba(0, 0, 0, 0.38)"
-                                                    size={25}
-                                                    style={{backgroundColor: 'transparent'}}
-                                                />
-                                            }
-                                            value={passwordConfirmation}
-                                            secureTextEntry={true}
-                                            keyboardAppearance="light"
-                                            autoCapitalize="none"
-                                            autoCorrect={false}
-                                            keyboardType="default"
-                                            returnKeyType={'done'}
-                                            blurOnSubmit={true}
-                                            containerStyle={{
-                                                marginTop: 16,
-                                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                                            }}
-                                            inputStyle={{marginLeft: 10}}
-                                            placeholder={'Confirm password'}
-                                            ref={input => (this.confirmationInput = input)}
-                                            onSubmitEditing={this.signUp}
-                                            onChangeText={passwordConfirmation =>
-                                                this.setState({passwordConfirmation})
-                                            }
-                                            errorMessage={
-                                                isConfirmationValid
-                                                    ? null
-                                                    : 'Please enter the same password'
-                                            }
-                                        />
+                                        </View>
                                     )}
+
+                                    {isSignUpPage && (
+                                        <View style={{width: '100%'}}>
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="user-o"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.producerName}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Producer Name'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={producerName => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        producerName
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
+                                            />
+
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="drivers-license-o"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.licenceNumber}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Licence Number'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={licenceNumber => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        licenceNumber
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
+                                            />
+
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="user"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.username}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Username'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={username => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        username
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
+                                            />
+
+                                            <Input
+                                                leftIcon={
+                                                    <SimpleIcon
+                                                        name="lock"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.password}
+                                                keyboardAppearance="light"
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                secureTextEntry={true}
+                                                returnKeyType={isSignUpPage ? 'next' : 'done'}
+                                                blurOnSubmit={true}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Password'}
+                                                ref={input => (this.passwordInput = input)}
+                                                onSubmitEditing={() =>
+                                                    isSignUpPage
+                                                        ? this.confirmationInput.focus()
+                                                        : this.login()
+                                                }
+                                                onChangeText={password => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        password
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                errorMessage={
+                                                    this.state.signUp.isPasswordValid
+                                                        ? null
+                                                        : 'Please enter at least 8 characters'
+                                                }
+                                            />
+
+                                            <Input
+                                                icon={
+                                                    <SimpleIcon
+                                                        name="lock"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.passwordConfirmation}
+                                                secureTextEntry={true}
+                                                keyboardAppearance="light"
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType={'done'}
+                                                blurOnSubmit={true}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Confirm password'}
+                                                ref={input => (this.confirmationInput = input)}
+                                                onSubmitEditing={this.signUp}
+                                                onChangeText={passwordConfirmation => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        passwordConfirmation
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                errorMessage={
+                                                    this.state.signUp.isConfirmationValid
+                                                        ? null
+                                                        : 'Please enter the same password'
+                                                }
+                                            />
+
+
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="connectdevelop"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.ethereumAccount}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Ethereum Account'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={ethereumAccount => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        ethereumAccount
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
+                                            />
+
+                                            <Input
+                                                leftIcon={
+                                                    <Icon
+                                                        name="chrome"
+                                                        color="rgba(0, 0, 0, 0.38)"
+                                                        size={25}
+                                                        style={{backgroundColor: 'transparent'}}
+                                                    />
+                                                }
+                                                value={this.state.signUp.website}
+                                                keyboardAppearance="light"
+                                                autoFocus={false}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                keyboardType="default"
+                                                returnKeyType="next"
+                                                inputStyle={{marginLeft: 10}}
+                                                placeholder={'Your Website URL'}
+                                                containerStyle={{
+                                                    marginBottom: 16,
+                                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                                }}
+                                                ref={input => (this.userInput = input)}
+                                                onSubmitEditing={() => this.userInput.focus()}
+                                                onChangeText={website => {
+                                                    const signUp = {
+                                                        ...this.state.signUp,
+                                                        website
+                                                    };
+                                                    this.setState({signUp})
+                                                }}
+                                                // errorMessage={
+                                                //     isEmailValid ? null : 'Please enter a username'
+                                                // }
+                                            />
+
+                                            <ScrollView
+                                                style={{ flex: 1, backgroundColor: 'silver' }}
+                                                horizontal
+                                                showsHorizontalScrollIndicator={false}
+                                            >
+                                                <View
+                                                    style={{
+                                                        flex: 1,
+                                                        flexDirection: 'column',
+                                                        height: 170,
+                                                        marginLeft: 40,
+                                                        marginRight: 10,
+                                                        color: '#141823'
+                                                    }}
+                                                >
+                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                        <CustomButton title="Philosophysssssssssssssssss" selected={true} />
+                                                        <CustomButton title="Sport" />
+                                                        <CustomButton title="Swimming" selected={true} />
+                                                        <CustomButton title="Religion" />
+                                                    </View>
+                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                        <CustomButton title="Music" />
+                                                        <CustomButton title="Soccer" selected={true} />
+                                                        <CustomButton title="Radiohead" selected={true} />
+                                                        <CustomButton title="Micheal Jackson" />
+                                                    </View>
+                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                        <CustomButton title="Travelling" selected={true} />
+                                                        <CustomButton title="Rock'n'Roll" />
+                                                        <CustomButton title="Dogs" selected={true} />
+                                                        <CustomButton title="France" selected={true} />
+                                                    </View>
+                                                </View>
+                                            </ScrollView>
+
+                                        </View>
+                                    )}
+
                                     <Button
                                         buttonStyle={styles.loginButton}
                                         containerStyle={{marginTop: 32, flex: 0}}
@@ -337,12 +620,12 @@ class ProducerAuthScreen extends Component {
                                     />
                                 </View>
                             </KeyboardAvoidingView>
-                        </View>
+                        </ScrollView>
                     ) : (
                         <Text>Loading...</Text>
                     )}
                 </ImageBackground>
-            </ScrollView>
+            </View>
         );
     }
 }
