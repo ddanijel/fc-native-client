@@ -13,15 +13,13 @@ import {
 } from 'react-native';
 import {connect} from "react-redux";
 import {Font} from 'expo';
-import {Button, Input} from 'react-native-elements';
+import {Button, Card, Input, ListItem} from 'react-native-elements';
 import {Button as BaseButton, Text as NativeText} from "native-base";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
-import {tryAuth} from "../../../store/actions/producerActionCreators";
+import {fetchSignUpFormData, tryAuth} from "../../../store/actions/producerActionCreators";
 import {LOG_IN, SIGN_UP} from "../../../store/actions/actionTypes";
-
-import CustomButton from './elements/CustomButton';
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -44,25 +42,14 @@ TabSelector.propTypes = {
 };
 
 class ProducerAuthScreen extends Component {
-    static navigationOptions = ({navigation}) => {
-        return {
-            title: navigation.getParam('otherParam', 'Producer Mode'),
-            headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
-                <NativeText>Home</NativeText>
-            </BaseButton>
-        };
-    };
-
     constructor(props) {
         super(props);
-
         this.state = {
             logIn: {
                 username: 'u1',
                 password: 'p1',
                 isPasswordValid: true
             },
-
             signUp: {
                 username: '',
                 password: '',
@@ -75,23 +62,28 @@ class ProducerAuthScreen extends Component {
                 licenceNumber: '',
                 website: '',
                 certificates: [],
-                actions: []
+                actions: [],
+                newCertificate: '',
+                newAction: ''
             },
-
-            // username: 'u1',
-            // email: '',
-            // password: 'p1',
             fontLoaded: false,
             selectedCategory: 0,
-            // isLoading: false,
             isEmailValid: true,
-
         };
 
         this.selectCategory = this.selectCategory.bind(this);
         this.login = this.login.bind(this);
         this.signUp = this.signUp.bind(this);
     }
+
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: navigation.getParam('otherParam', 'Producer Mode'),
+            headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
+                <NativeText>Home</NativeText>
+            </BaseButton>
+        };
+    };
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -129,14 +121,14 @@ class ProducerAuthScreen extends Component {
         //         isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
         //     });
         // }, 1500);
-        console.log("Login....");
+        // console.log("Login....");
         const {username, password} = this.state.logIn;
         const authData = {
             username,
             password
         };
         this.props.onAuth(authData, LOG_IN, this);
-        // this.props.navigation.navigate('Consumer')
+        this.cleanUpState();
     };
 
     signUp() {
@@ -155,21 +147,39 @@ class ProducerAuthScreen extends Component {
         //     console.log("Login....");
         //     this.props.navigation.navigate('ConsumerStack')
         // }, 1500);
+        const {
+            producerName,
+            licenceNumber,
+            ethereumAccount,
+            website,
+            password,
+            username,
+            certificates,
+            actions
+        } = this.state.signUp;
+
+        const authData = {
+            producerName: producerName,
+            licenceNumber: licenceNumber,
+            ethereumAccount: ethereumAccount,
+            url: website,
+            password: password,
+            username: username,
+            producerCertificates: certificates,
+            producerActions: actions
+        };
+        this.props.onAuth(authData, SIGN_UP, this);
+        this.cleanUpState();
     }
+
+    cleanUpState = () => {
+
+    };
 
     render() {
         const {
-            selectedCategory,
-            // isLoading,
-            isEmailValid,
-            // isPasswordValid,
-            // isConfirmationValid,
-            // username,
-            // email,
-            // password,
-            // passwordConfirmation,
+            selectedCategory
         } = this.state;
-
 
         const {isLoading} = this.props;
         const isLoginPage = selectedCategory === 0;
@@ -178,11 +188,13 @@ class ProducerAuthScreen extends Component {
             <View style={styles.container}>
                 <ImageBackground source={images.background} style={styles.bgImage}>
                     {this.state.fontLoaded ? (
-                        <ScrollView>
-                            <KeyboardAvoidingView
-                                contentContainerStyle={styles.loginContainer}
-                                behavior="position"
-                            >
+
+                        <KeyboardAvoidingView
+                            behavior="position"
+                        >
+                            <ScrollView
+                                contentContainerStyle={styles.loginContainer}>
+
                                 <View style={styles.titleContainer}>
                                     <View style={{flexDirection: 'row'}}>
                                         <Text style={styles.titleText}>FOOD</Text>
@@ -208,7 +220,10 @@ class ProducerAuthScreen extends Component {
                                         disabled={isLoading}
                                         clear
                                         activeOpacity={0.7}
-                                        onPress={() => this.selectCategory(1)}
+                                        onPress={() => {
+                                            this.selectCategory(1);
+                                            this.props.onSignUpFormOpened();
+                                        }}
                                         containerStyle={{flex: 1}}
                                         titleStyle={[
                                             styles.categoryText,
@@ -569,41 +584,129 @@ class ProducerAuthScreen extends Component {
                                                 // }
                                             />
 
-                                            <ScrollView
-                                                style={{ flex: 1, backgroundColor: 'silver' }}
-                                                horizontal
-                                                showsHorizontalScrollIndicator={false}
-                                            >
-                                                <View
-                                                    style={{
-                                                        flex: 1,
-                                                        flexDirection: 'column',
-                                                        height: 170,
-                                                        marginLeft: 40,
-                                                        marginRight: 10,
-                                                        color: '#141823'
-                                                    }}
-                                                >
-                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                        <CustomButton title="Philosophysssssssssssssssss" selected={true} />
-                                                        <CustomButton title="Sport" />
-                                                        <CustomButton title="Swimming" selected={true} />
-                                                        <CustomButton title="Religion" />
-                                                    </View>
-                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                        <CustomButton title="Music" />
-                                                        <CustomButton title="Soccer" selected={true} />
-                                                        <CustomButton title="Radiohead" selected={true} />
-                                                        <CustomButton title="Micheal Jackson" />
-                                                    </View>
-                                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                        <CustomButton title="Travelling" selected={true} />
-                                                        <CustomButton title="Rock'n'Roll" />
-                                                        <CustomButton title="Dogs" selected={true} />
-                                                        <CustomButton title="France" selected={true} />
-                                                    </View>
+                                            <Card title="Certificates">
+                                                <View style={{width: '100%'}}>
+                                                    <ScrollView style={{
+                                                        height: SCREEN_HEIGHT * 0.3,
+                                                        width: '100%'
+                                                    }}>
+                                                        {this.props.signUpFormInitData.certificates.map(certificate => (
+                                                            <ListItem title={certificate.certificateName}
+                                                                      key={Math.random()} switch={{
+                                                                value: this.state.signUp.certificates.some(cert => cert.certificateName === certificate.certificateName),
+                                                                onValueChange: value => {
+                                                                    console.log("toggle value: ", value);
+                                                                    const signUp = value ? {
+                                                                        ...this.state.signUp,
+                                                                        certificates: [...this.state.signUp.certificates, certificate],
+                                                                    } : {
+                                                                        ...this.state.signUp,
+                                                                        certificates: [...this.state.signUp.certificates.filter(cert => cert.certificateName !== certificate.certificateName)]
+                                                                    };
+                                                                    this.setState({signUp})
+                                                                },
+                                                            }} bottomDivider/>
+                                                        ))}
+                                                    </ScrollView>
+
+                                                    <Input
+                                                        style={{width: '100%'}}
+                                                        containerStyle={[styles.inputContainerStyle]}
+                                                        placeholder="Enter new Certificate"
+                                                        value={this.state.signUp.newCertificate}
+                                                        onChangeText={newCertificate => {
+                                                            const signUp = {
+                                                                ...this.state.signUp,
+                                                                newCertificate
+                                                            };
+                                                            this.setState({signUp})
+                                                        }}
+                                                        ref={ref1 => (this.shakeInput1 = ref1)}
+                                                        rightIcon={
+                                                            <Button
+                                                                title="Add"
+                                                                onPress={() => {
+                                                                    this.props.signUpFormInitData.certificates.push({
+                                                                        certificateName: this.state.signUp.newCertificate
+                                                                    });
+                                                                    const signUp = {
+                                                                        ...this.state.signUp,
+                                                                        certificates: [...this.state.signUp.certificates, {
+                                                                            certificateName: this.state.signUp.newCertificate
+                                                                        }],
+                                                                        newCertificate: ''
+                                                                    };
+                                                                    this.setState({signUp});
+                                                                    this.shakeInput1 && this.shakeInput1.shake()
+                                                                }}
+                                                            />
+                                                        }
+                                                        errorMessage="Shake me on error !"
+                                                    />
                                                 </View>
-                                            </ScrollView>
+                                            </Card>
+
+                                            <Card title="Actions">
+                                                <View style={{width: '100%'}}>
+                                                    <ScrollView style={{
+                                                        height: SCREEN_HEIGHT * 0.3,
+                                                        width: '100%'
+                                                    }}>
+                                                        {this.props.signUpFormInitData.actions.map(action => (
+                                                            <ListItem title={action.actionName}
+                                                                      key={Math.random()} switch={{
+                                                                value: this.state.signUp.actions.some(act => act.actionName === action.actionName),
+                                                                onValueChange: value => {
+                                                                    console.log("toggle value: ", value);
+                                                                    const signUp = value ? {
+                                                                        ...this.state.signUp,
+                                                                        actions: [...this.state.signUp.actions, action],
+                                                                    } : {
+                                                                        ...this.state.signUp,
+                                                                        actions: [...this.state.signUp.actions.filter(act => act.actionName !== action.actionName)]
+                                                                    };
+                                                                    this.setState({signUp})
+                                                                },
+                                                            }} bottomDivider/>
+                                                        ))}
+                                                    </ScrollView>
+
+                                                    <Input
+                                                        style={{width: '100%'}}
+                                                        containerStyle={[styles.inputContainerStyle]}
+                                                        placeholder="Enter new Action"
+                                                        value={this.state.signUp.newAction}
+                                                        onChangeText={newAction => {
+                                                            const signUp = {
+                                                                ...this.state.signUp,
+                                                                newAction
+                                                            };
+                                                            this.setState({signUp})
+                                                        }}
+                                                        ref={ref => (this.shakeInput2 = ref)}
+                                                        rightIcon={
+                                                            <Button
+                                                                title="Add"
+                                                                onPress={() => {
+                                                                    this.props.signUpFormInitData.actions.push({
+                                                                        actionName: this.state.signUp.newAction
+                                                                    });
+                                                                    const signUp = {
+                                                                        ...this.state.signUp,
+                                                                        actions: [...this.state.signUp.actions, {
+                                                                            actionName: this.state.signUp.newAction
+                                                                        }],
+                                                                        newAction: ''
+                                                                    };
+                                                                    this.setState({signUp});
+                                                                    this.shakeInput2 && this.shakeInput2.shake()
+                                                                }}
+                                                            />
+                                                        }
+                                                        errorMessage="Shake me on error !"
+                                                    />
+                                                </View>
+                                            </Card>
 
                                         </View>
                                     )}
@@ -619,8 +722,9 @@ class ProducerAuthScreen extends Component {
                                         disabled={isLoading}
                                     />
                                 </View>
-                            </KeyboardAvoidingView>
-                        </ScrollView>
+
+                            </ScrollView>
+                        </KeyboardAvoidingView>
                     ) : (
                         <Text>Loading...</Text>
                     )}
@@ -632,12 +736,14 @@ class ProducerAuthScreen extends Component {
 
 const mapStateToProps = state => {
     return {
+        signUpFormInitData: state.producer.signUpFormInitData,
         isLoading: state.ui.isLoading
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        onSignUpFormOpened: () => dispatch(fetchSignUpFormData()),
         onAuth: (authData, authMode, thisRef) => dispatch(tryAuth(authData, authMode, thisRef))
     }
 };
@@ -734,4 +840,8 @@ const styles = StyleSheet.create({
     drawerIcon: {
         marginLeft: 15
     },
+    inputContainerStyle: {
+        marginTop: 16,
+        width: '100%',
+    }
 });
