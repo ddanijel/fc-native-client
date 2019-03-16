@@ -1,0 +1,37 @@
+import {SET_FETCHED_PT} from "../actions/actionTypes";
+import sortArray from "../../util/sortutil";
+
+
+
+const initialState = {
+    scannedPTChain: []
+};
+
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_FETCHED_PT :
+        {
+            console.log("pt action: ", action);
+            return {
+                ...state,
+                scannedPTChain: sortProductTags(action.ptChain)
+            };
+        }
+        default:
+            return state;
+    }
+};
+
+const sortProductTags = ptChain => {
+    const updatedPTChain = ptChain.map(
+        productTag => {
+            return {
+                ...productTag,
+                dateTime: new Date(productTag.dateTime)
+            }
+        });
+    return updatedPTChain.sort(sortArray('dateTime'));
+};
+
+export default reducer;

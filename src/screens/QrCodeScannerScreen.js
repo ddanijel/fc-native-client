@@ -75,21 +75,34 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(QrCodeScannerScreen);
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
+import {connect} from "react-redux";
+import {fetchPTByHash} from "../store/actions/productTagActionCreators";
 
-export default class QrCodeScannerScreen extends React.Component {
+class QrCodeScannerScreen extends React.Component {
     state = {
         hasCameraPermission: null,
-    }
+    };
 
     async componentDidMount() {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ hasCameraPermission: status === 'granted' });
     }
 
+    handleBarCodeScanned = ({ type, data }) => {
+        // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        this.props.onQRScanned(data, this.props.thisRef);
+    };
+
     render() {
         const { hasCameraPermission } = this.state;
+
+        const barCodeScanner = this.props.isLoading ? <ActivityIndicator/> :
+            <BarCodeScanner
+                onBarCodeScanned={this.handleBarCodeScanned}
+                style={StyleSheet.absoluteFill}
+            />;
 
         if (hasCameraPermission === null) {
             return <Text>Requesting for camera permission</Text>;
@@ -99,15 +112,22 @@ export default class QrCodeScannerScreen extends React.Component {
         }
         return (
             <View style={{ flex: 1 }}>
-                <BarCodeScanner
-                    onBarCodeScanned={this.handleBarCodeScanned}
-                    style={StyleSheet.absoluteFill}
-                />
+                {barCodeScanner}
             </View>
         );
     }
-
-    handleBarCodeScanned = ({ type, data }) => {
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLoading: state.ui.isLoading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onQRScanned: (hash, thisRef) => dispatch(fetchPTByHash(hash, thisRef))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QrCodeScannerScreen);

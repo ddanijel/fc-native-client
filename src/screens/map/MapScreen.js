@@ -127,8 +127,11 @@
 
 
 import React from 'react';
-import { MapView } from 'expo';
+import {MapView} from 'expo';
 import {Button as BaseButton, Text as NativeText} from "native-base";
+import {connect} from "react-redux";
+import {ScrollView, View} from "react-native";
+import {Card} from "react-native-elements";
 
 
 class MapScreen extends React.Component {
@@ -147,41 +150,44 @@ class MapScreen extends React.Component {
     };
 
     componentDidMount() {
-        this.fetchMarkerData();
+        // this.fetchMarkerData();
+
+        console.log("map screen open: data:", this.props.ptChain);
+
     }
 
-    fetchMarkerData() {
-        fetch('https://feeds.citibikenyc.com/stations/stations.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    isLoading: false,
-                    markers: responseJson.stationBeanList,
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    // fetchMarkerData() {
+    //     fetch('https://feeds.citibikenyc.com/stations/stations.json')
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.setState({
+    //                 isLoading: false,
+    //                 markers: responseJson.stationBeanList,
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.error(error);
+    //         });
+    // }
 
     render() {
         return (
             <MapView
                 style={{ flex: 1 }}
-                region={{
-                    latitude: 40.76727216,
-                    longitude: -73.99392888,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
+                // region={{
+                //     latitude: 40.76727216,
+                //     longitude: -73.99392888,
+                //     latitudeDelta: 0.0922,
+                //     longitudeDelta: 0.0421,
+                // }}
             >
-                {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+                {this.props.isLoading ? null : this.props.ptChain.map((pt, index) => {
                     const coords = {
-                        latitude: marker.latitude,
-                        longitude: marker.longitude,
+                        latitude: pt.latitude,
+                        longitude: pt.longitude,
                     };
 
-                    const metadata = `Status: ${marker.statusValue}`;
+                    const metadata = `Status: ${pt.productTagId}`;
 
                     return (
                         <MapView.Marker
@@ -190,7 +196,21 @@ class MapScreen extends React.Component {
                             title={"Some title"}
                             description={metadata}
                         >
-                            <NativeText>1</NativeText>
+
+                            {/*<NativeText>1</NativeText>*/}
+                            <MapView.Callout tooltip >
+                                <Card title="Product Tag Details">
+                                    <View style={{width: '100%'}}>
+                                        <ScrollView style={{
+                                            height: '100%',
+                                            width: '100%'
+                                        }}>
+
+                                        </ScrollView>
+
+                                    </View>
+                                </Card>
+                            </MapView.Callout>
                         </MapView.Marker>
                     );
                 })}
@@ -199,4 +219,11 @@ class MapScreen extends React.Component {
     }
 }
 
-export default MapScreen;
+const mapStateToProps = state => {
+    return {
+        ptChain: state.productTag.scannedPTChain,
+        isLoading: state.ui.isLoading
+    };
+};
+
+export default connect(mapStateToProps, null)(MapScreen);

@@ -31,13 +31,19 @@ class ConsumerScreen extends React.Component {
                     {/*height: SCREEN_HEIGHT * 0.6*/}
                 {/*}}>*/}
                     <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
-                        <QrCodeScannerComponent/>
+                        {/* don't do this Danijel*/}
+                        <QrCodeScannerComponent thisRef={this}/>
                     </View>
                 {/*</View>*/}
             </ImageBackground>
         );
     }
 }
+
+
+
+export default ConsumerScreen;
+
 
 const styles = StyleSheet.create({
     bgImage: {
@@ -51,4 +57,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ConsumerScreen;

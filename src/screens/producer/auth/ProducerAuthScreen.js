@@ -595,7 +595,6 @@ class ProducerAuthScreen extends Component {
                                                                       key={Math.random()} switch={{
                                                                 value: this.state.signUp.certificates.some(cert => cert.certificateName === certificate.certificateName),
                                                                 onValueChange: value => {
-                                                                    console.log("toggle value: ", value);
                                                                     const signUp = value ? {
                                                                         ...this.state.signUp,
                                                                         certificates: [...this.state.signUp.certificates, certificate],
@@ -657,7 +656,6 @@ class ProducerAuthScreen extends Component {
                                                                       key={Math.random()} switch={{
                                                                 value: this.state.signUp.actions.some(act => act.actionName === action.actionName),
                                                                 onValueChange: value => {
-                                                                    console.log("toggle value: ", value);
                                                                     const signUp = value ? {
                                                                         ...this.state.signUp,
                                                                         actions: [...this.state.signUp.actions, action],

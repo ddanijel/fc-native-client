@@ -55,7 +55,7 @@ export const authLogin = (authData, thisRef) => {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
-    console.log("Sending data: ", formData);
+    // console.log("Sending data: ", formData);
 
     return dispatch => {
         dispatch(uiStartLoading());
