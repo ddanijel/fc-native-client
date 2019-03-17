@@ -124,17 +124,24 @@
 // });
 
 
-
-
 import React from 'react';
 import {MapView} from 'expo';
 import {Button as BaseButton, Text as NativeText} from "native-base";
 import {connect} from "react-redux";
-import {ScrollView, View} from "react-native";
+import {ScrollView, View, Dimensions} from "react-native";
 import {Card} from "react-native-elements";
+import CustomMarker from '../../components/map/CustomMarker';
+import ProductTagDetails from '../../components/productTag/ProductTagDetails';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class MapScreen extends React.Component {
+    state = {
+        isLoading: true,
+        markers: [],
+    };
+
     static navigationOptions = ({navigation}) => {
         return {
             title: navigation.getParam('otherParam', 'Map Mode'),
@@ -142,11 +149,6 @@ class MapScreen extends React.Component {
                 <NativeText>Home</NativeText>
             </BaseButton>
         };
-    };
-
-    state = {
-        isLoading: true,
-        markers: [],
     };
 
     componentDidMount() {
@@ -173,7 +175,7 @@ class MapScreen extends React.Component {
     render() {
         return (
             <MapView
-                style={{ flex: 1 }}
+                style={{flex: 1}}
                 // region={{
                 //     latitude: 40.76727216,
                 //     longitude: -73.99392888,
@@ -197,20 +199,28 @@ class MapScreen extends React.Component {
                             description={metadata}
                         >
 
+                            <CustomMarker title={index + 1}/>
                             {/*<NativeText>1</NativeText>*/}
-                            <MapView.Callout tooltip >
-                                <Card title="Product Tag Details">
-                                    <View style={{width: '100%'}}>
-                                        <ScrollView style={{
-                                            height: '100%',
-                                            width: '100%'
-                                        }}>
+                            {/*<MapView.Callout tooltip >*/}
+                            {/*<Card title="Product Tag Details">*/}
+                            {/*<View style={{width: '100%'}}>*/}
+                            {/*<ScrollView style={{*/}
+                            {/*height: '100%',*/}
+                            {/*width: '100%'*/}
+                            {/*}}>*/}
 
-                                        </ScrollView>
+                            {/*</ScrollView>*/}
 
-                                    </View>
-                                </Card>
+                            {/*</View>*/}
+                            {/*</Card>*/}
+                            {/*</MapView.Callout>*/}
+
+                            <MapView.Callout>
+                                <View style={{width: SCREEN_WIDTH * 0.7, height: SCREEN_HEIGHT * 0.6}}>
+                                    <ProductTagDetails productTag={pt}/>
+                                </View>
                             </MapView.Callout>
+
                         </MapView.Marker>
                     );
                 })}
