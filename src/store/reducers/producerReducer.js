@@ -1,4 +1,4 @@
-import {SET_SIGN_UP_FORM_INIT_DATA} from "../actions/actionTypes";
+import {SET_SIGN_UP_FORM_INIT_DATA, AUTH_SET_JWT_TOKEN} from "../actions/actionTypes";
 
 
 const initialState = {
@@ -22,6 +22,12 @@ const reducer = (state = initialState, action) => {
                     actions: action.signUpFormInitData.actions,
                     certificates: action.signUpFormInitData.certificates
                 }
+            };
+        case AUTH_SET_JWT_TOKEN :
+            console.log("setting the token: ", action);
+            return {
+                ...state,
+                jwtToken: action.token
             };
         default:
             return state;

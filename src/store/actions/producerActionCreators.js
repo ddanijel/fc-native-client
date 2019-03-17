@@ -1,7 +1,8 @@
 import {
     SET_SIGN_UP_FORM_INIT_DATA,
     LOG_IN,
-    SIGN_UP
+    SIGN_UP,
+    AUTH_SET_JWT_TOKEN
 } from "./actionTypes";
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
@@ -74,11 +75,11 @@ export const authLogin = (authData, thisRef) => {
             .then(result => result.json())
             .then(jsonResult => {
                 dispatch(uiStopLoading());
-                if (jsonResult.errors) {
-                    const errors = Object.values(jsonResult.errors);
-                    alert("Authentication failed. Error: ", errors);
+                if (!jsonResult.token) {
+                    alert("Authentication failed. Please try again.");
                 } else {
-                    console.log("success: ", jsonResult);
+                    // console.log("signup success: ", jsonResult);
+                    dispatch(authSetJwtToken(jsonResult.token));
                     thisRef.props.navigation.navigate('Producer')
                 }
             });
@@ -104,13 +105,36 @@ export const authSignUp = (authData, thisRef) => {
             .then(result => result.json())
             .then(jsonResult => {
                 dispatch(uiStopLoading());
-                if (jsonResult.errors) {
-                    const errors = Object.values(jsonResult.errors);
-                    alert("Authentication failed. Error: ", errors);
+                if (!jsonResult.token) {
+                    alert("Authentication failed. Please try again.");
                 } else {
-                    console.log("signup success: ", jsonResult);
+                    // console.log("signup success: ", jsonResult);
+                    dispatch(authSetJwtToken(jsonResult.token));
                     thisRef.props.navigation.navigate('Producer')
                 }
             });
     };
 };
+
+export const authSetJwtToken = token => {
+    return {
+        type: AUTH_SET_JWT_TOKEN,
+        token
+    }
+};
+
+
+// todo Continue here, now we have a token. the next step is to create a pt
+export const authGetJwtToken = () => {
+    return (dispatch, getState) => {
+        const promise = new Promise((resolve, reject) => {
+            const token = getState().producer.jwtToken;
+            if(!token) {
+                reject();
+            } else {
+                resolve(token);
+            }
+        });
+
+    }
+}

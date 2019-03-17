@@ -90,6 +90,7 @@ class ProducerAuthScreen extends Component {
             georgia: require('../../../../assets/fonts/Georgia.ttf'),
             regular: require('../../../../assets/fonts/Montserrat-Regular.ttf'),
             light: require('../../../../assets/fonts/Montserrat-Light.ttf'),
+            Roboto_medium: require("../../../../assets/fonts/Roboto_medium.ttf")
         });
 
         this.setState({fontLoaded: true});
