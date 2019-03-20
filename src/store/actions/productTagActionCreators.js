@@ -18,14 +18,15 @@ export const fetchPTByHash = (hash, thisRef) => {
                     alert("There is no product tag for the give hash");
                 }
                 thisRef.props.navigation.navigate('Map');
-                dispatch(setFetchedPTChain(ptChain));
+                dispatch(setFetchedPTChain(hash, ptChain));
             })
     }
 };
 
-export const setFetchedPTChain = ptChain => {
+export const setFetchedPTChain = (scannedHash, ptChain) => {
     return {
         type: SET_FETCHED_PT,
-        ptChain
+        ptChain,
+        scannedHash
     }
 };

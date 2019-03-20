@@ -43,7 +43,7 @@ class MapScreen extends React.Component {
                             title={"Some title"}
                             description={metadata}
                         >
-                            <CustomMarker title={index + 1}/>
+                            <CustomMarker title={index + 1} diffColor={pt.productTagHash===this.props.scannedHash}/>
 
                             <MapView.Callout>
                                 <View style={{width: SCREEN_WIDTH * 0.7, height: SCREEN_HEIGHT * 0.6}}>
@@ -62,6 +62,7 @@ class MapScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         ptChain: state.productTag.scannedPTChain,
+        scannedHash: state.productTag.scannedHash,
         isLoading: state.ui.isLoading
     };
 };

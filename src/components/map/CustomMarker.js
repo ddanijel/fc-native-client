@@ -17,7 +17,7 @@ class CustomMarker extends React.Component {
         const {fontSize, title} = this.props;
         return (
             <View style={styles.container}>
-                <View style={styles.bubble}>
+                <View style={this.props.diffColor ? {...styles.bubble, backgroundColor: '#22FF00'} : styles.bubble}>
                     <Text style={[styles.title, {fontSize}]}>{title}</Text>
                 </View>
                 <View style={styles.arrowBorder}/>

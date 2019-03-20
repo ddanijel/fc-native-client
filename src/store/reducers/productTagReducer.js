@@ -4,7 +4,8 @@ import sortArray from "../../util/sortutil";
 
 
 const initialState = {
-    scannedPTChain: []
+    scannedPTChain: [],
+    scannedHash: ''
 };
 
 
@@ -15,7 +16,8 @@ const reducer = (state = initialState, action) => {
             console.log("pt action: ", action);
             return {
                 ...state,
-                scannedPTChain: sortProductTags(action.ptChain)
+                scannedPTChain: sortProductTags(action.ptChain),
+                scannedHash: action.scannedHash
             };
         }
         default:
@@ -31,7 +33,7 @@ const sortProductTags = ptChain => {
                 dateTime: new Date(productTag.dateTime)
             }
         });
-    return updatedPTChain.sort(sortArray('dateTime'));
+    return updatedPTChain.sort(sortArray('productTagId'));
 };
 
 export default reducer;
