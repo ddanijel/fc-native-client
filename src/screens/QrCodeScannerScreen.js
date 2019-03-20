@@ -79,6 +79,7 @@ import { StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
 import {connect} from "react-redux";
 import {fetchPTByHash} from "../store/actions/productTagActionCreators";
+import PTMapDetails from "../components/map/PTMapDetails";
 
 class QrCodeScannerScreen extends React.Component {
     state = {
@@ -113,6 +114,7 @@ class QrCodeScannerScreen extends React.Component {
         return (
             <View style={{ flex: 1 }}>
                 {barCodeScanner}
+                <PTMapDetails/>
             </View>
         );
     }

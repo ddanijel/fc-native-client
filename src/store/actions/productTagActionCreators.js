@@ -2,7 +2,7 @@ import {
     SET_FETCHED_PT
 } from "./actionTypes";
 
-import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
+import {openPtMapViewModal} from "./uiActionCreators";
 
 
 export const fetchPTByHash = (hash, thisRef) => {
@@ -17,8 +17,9 @@ export const fetchPTByHash = (hash, thisRef) => {
                 if (ptChain.length === 0) {
                     alert("There is no product tag for the give hash");
                 }
-                thisRef.props.navigation.navigate('Map');
+                // thisRef.props.navigation.navigate('Map');
                 dispatch(setFetchedPTChain(hash, ptChain));
+                dispatch(openPtMapViewModal());
             })
     }
 };

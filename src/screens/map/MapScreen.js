@@ -15,14 +15,14 @@ class MapScreen extends React.Component {
         markers: [],
     };
 
-    static navigationOptions = ({navigation}) => {
-        return {
-            title: navigation.getParam('otherParam', 'Map Mode'),
-            headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
-                <NativeText>Home</NativeText>
-            </BaseButton>
-        };
-    };
+    // static navigationOptions = ({navigation}) => {
+    //     return {
+    //         title: navigation.getParam('otherParam', 'Map Mode'),
+    //         headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
+    //             <NativeText>Home</NativeText>
+    //         </BaseButton>
+    //     };
+    // };
 
     render() {
         return (
