@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, View} from 'react-native';
 import {connect} from "react-redux";
 
 import {images} from "../../../assets/images";
@@ -15,7 +15,7 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 class ConsumerScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: navigation.getParam('otherParam', 'Consumer Mode'),
+            title: navigation.getParam('otherParam', 'Scan QR Code'),
             headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
                 <NativeText>Home</NativeText>
             </BaseButton>
@@ -30,17 +30,9 @@ class ConsumerScreen extends React.Component {
         return (
 
             <ImageBackground source={images.background} style={styles.bgImage}>
-                {/*<View style={{*/}
-                    {/*flex: 1,*/}
-                    {/*alignItems: 'center',*/}
-                    {/*justifyContent: 'center',*/}
-                    {/*width: SCREEN_WIDTH * 0.8,*/}
-                    {/*height: SCREEN_HEIGHT * 0.6*/}
-                {/*}}>*/}
-                    <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
-                        <QrCodeScannerComponent/>
-                    </View>
-                {/*</View>*/}
+                <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
+                    <QrCodeScannerComponent thisNavigationRef={this.props.navigation}/>
+                </View>
             </ImageBackground>
         );
     }
@@ -51,7 +43,6 @@ const mapDispatchToProps = dispatch => {
         onConsumerScreenOpen: () => dispatch(openQrScanner())
     }
 };
-
 
 
 export default connect(null, mapDispatchToProps)(ConsumerScreen);

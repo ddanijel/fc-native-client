@@ -646,7 +646,7 @@ class ProducerAuthScreen extends Component {
                                                 </View>
                                             </Card>
 
-                                            <Card title="Actions">
+                                            <Card title="Default Actions">
                                                 <View style={{width: '100%'}}>
                                                     <ScrollView style={{
                                                         height: SCREEN_HEIGHT * 0.3,

@@ -1,9 +1,14 @@
 import React from 'react';
 import {ExpoConfigView} from '@expo/samples';
+import {Button} from "react-native-elements";
 
 export default class SettingsScreen extends React.Component {
-    static navigationOptions = {
-        title: 'app.json',
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: 'Producer Settings',
+            left: 'Back',
+            right: <Button title='About' onPress={() => navigation.navigate('Producer')} />
+        }
     };
 
     render() {

@@ -8,27 +8,10 @@ import ProducerScreen from '../screens/producer/ProducerScreen';
 import HomeScreen from '../screens/home/HomeScreen';
 import ConsumerScreen from "../screens/consumer/ConsumerScreen";
 import MapScreen from "../screens/map/MapScreen";
+import SettingsScreen from "../screens/producer/SettingsScreen";
 
 
-class OtherScreen extends React.Component {
-    // static navigationOptions = {
-    //     title: 'Lots of features here',
-    // };
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <Button title="I'm done, sign me out" onPress={this._signOutAsync}/>
-                <StatusBar barStyle="default"/>
-            </View>
-        );
-    }
-
-    _signOutAsync = async () => {
-        // await AsyncStorage.clear();
-        this.props.navigation.navigate('Auth');
-    };
-}
 
 // class AuthLoadingScreen extends React.Component {
 //     constructor() {
@@ -65,7 +48,7 @@ const styles = StyleSheet.create({
 });
 
 
-const ProducerStack = createStackNavigator({Home: ProducerScreen, Other: OtherScreen});
+const ProducerStack = createStackNavigator({Home: ProducerScreen, ProducerSettings: SettingsScreen});
 const ProducerAuthStack = createStackNavigator({SignIn: ProducerAuthScreen});
 const HomeStack = createStackNavigator({Home: HomeScreen});
 const ConsumerStack = createStackNavigator({Consumer: ConsumerScreen});

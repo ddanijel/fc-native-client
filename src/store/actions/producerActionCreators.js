@@ -64,7 +64,7 @@ export const authLogin = (authData, thisRef) => {
             method: 'POST',
             body: formData,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "multipart/form-data"
             }
         })
             .catch(error => {

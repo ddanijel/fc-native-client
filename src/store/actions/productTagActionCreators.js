@@ -1,9 +1,9 @@
 import {
     SET_FETCHED_PT_ACTION,
-    PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION
+    PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION, PT_DOES_NOT_EXIST_ACTION
 } from "./actionTypes";
 
-import {closePtMapViewModal, openPtMapViewModal, closeQrScanner} from "./uiActionCreators";
+import {closePtMapViewModal, openPtMapViewModal, closeQrScanner, openQrScanner} from "./uiActionCreators";
 
 import {Alert} from "react-native";
 
@@ -19,7 +19,7 @@ export const fetchPTByHash = (hash) => {
             .then(ptChain => {
                 if (ptChain.length === 0) {
                     dispatch(closeQrScanner());
-                    showAlertPtDoesNotExist();
+                    dispatch(setPTDoesNotExist())
                     // alert("There is no product tag for the give hash");
                 }
                 // thisRef.props.navigation.navigate('Map');
@@ -29,21 +29,12 @@ export const fetchPTByHash = (hash) => {
     }
 };
 
-const showAlertPtDoesNotExist = () => {
-    Alert.alert(
-        'Alert Title',
-        'My Alert Msg',
-        [
-            {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-            {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-            },
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
-    );
+
+export const onScanAgainPressed = () => {
+    return dispatch => {
+        dispatch(prepareStateForQrCodeScannerScreen());
+        dispatch(openQrScanner())
+    }
 };
 
 export const setFetchedPTChain = (scannedHash, ptChain) => {
@@ -51,6 +42,12 @@ export const setFetchedPTChain = (scannedHash, ptChain) => {
         type: SET_FETCHED_PT_ACTION,
         ptChain,
         scannedHash
+    }
+};
+
+export const setPTDoesNotExist = () => {
+    return {
+        type: PT_DOES_NOT_EXIST_ACTION
     }
 };
 

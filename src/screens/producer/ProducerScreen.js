@@ -19,7 +19,7 @@ class ProducerScreen extends Component {
     }
 
     _showMoreApp = () => {
-        this.props.navigation.navigate('Other');
+        this.props.navigation.navigate('ProducerSettings');
     };
 
     _signOutAsync = async () => {

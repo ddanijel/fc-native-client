@@ -13,6 +13,9 @@ const defaultProps = {
 };
 
 class CustomMarker extends React.Component {
+
+
+
     render() {
         const {fontSize, title} = this.props;
         return (
