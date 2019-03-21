@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
 import {fetchSignUpFormData, tryAuth} from "../../../store/actions/producerActionCreators";
-import {LOG_IN, SIGN_UP} from "../../../store/actions/actionTypes";
+import {LOG_IN_ACTION, SIGN_UP_ACTION} from "../../../store/actions/actionTypes";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -128,7 +128,7 @@ class ProducerAuthScreen extends Component {
             username,
             password
         };
-        this.props.onAuth(authData, LOG_IN, this);
+        this.props.onAuth(authData, LOG_IN_ACTION, this);
         this.cleanUpState();
     };
 
@@ -169,7 +169,7 @@ class ProducerAuthScreen extends Component {
             producerCertificates: certificates,
             producerActions: actions
         };
-        this.props.onAuth(authData, SIGN_UP, this);
+        this.props.onAuth(authData, SIGN_UP_ACTION, this);
         this.cleanUpState();
     }
 
@@ -641,7 +641,7 @@ class ProducerAuthScreen extends Component {
                                                                 }}
                                                             />
                                                         }
-                                                        errorMessage="Shake me on error !"
+                                                        // errorMessage="Shake me on error !"
                                                     />
                                                 </View>
                                             </Card>
@@ -702,7 +702,7 @@ class ProducerAuthScreen extends Component {
                                                                 }}
                                                             />
                                                         }
-                                                        errorMessage="Shake me on error !"
+                                                        // errorMessage="Shake me on error !"
                                                     />
                                                 </View>
                                             </Card>

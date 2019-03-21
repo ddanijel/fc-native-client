@@ -1,4 +1,4 @@
-import {SET_PRODUCT_TAG} from "./actionTypes";
+import {SET_PRODUCT_TAG_ACTION} from "./actionTypes";
 
 
 import {Alert} from "react-native";
@@ -23,7 +23,7 @@ export const getProductTagData = (productTagHash) => {
 
 export const setProductTag = productTag => {
     return {
-        type: SET_PRODUCT_TAG,
+        type: SET_PRODUCT_TAG_ACTION,
         productTag
     }
 };

@@ -1,8 +1,11 @@
 import React from 'react';
 import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {connect} from "react-redux";
+
 import {images} from "../../../assets/images";
 import QrCodeScannerComponent from "../QrCodeScannerScreen";
 import {Button as BaseButton, Text as NativeText} from "native-base";
+import {openQrScanner} from "../../store/actions/uiActionCreators";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -19,6 +22,10 @@ class ConsumerScreen extends React.Component {
         };
     };
 
+    componentDidMount() {
+        this.props.onConsumerScreenOpen();
+    }
+
     render() {
         return (
 
@@ -31,8 +38,7 @@ class ConsumerScreen extends React.Component {
                     {/*height: SCREEN_HEIGHT * 0.6*/}
                 {/*}}>*/}
                     <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
-                        {/* don't do this Danijel*/}
-                        <QrCodeScannerComponent thisRef={this}/>
+                        <QrCodeScannerComponent/>
                     </View>
                 {/*</View>*/}
             </ImageBackground>
@@ -40,9 +46,15 @@ class ConsumerScreen extends React.Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onConsumerScreenOpen: () => dispatch(openQrScanner())
+    }
+};
 
 
-export default ConsumerScreen;
+
+export default connect(null, mapDispatchToProps)(ConsumerScreen);
 
 
 const styles = StyleSheet.create({

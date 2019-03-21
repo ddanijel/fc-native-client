@@ -1,4 +1,4 @@
-import {SET_PRODUCT_TAG} from "../actions/actionTypes";
+import {SET_PRODUCT_TAG_ACTION} from "../actions/actionTypes";
 
 const initialState = {
     scannedProductTag: null
@@ -6,7 +6,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_PRODUCT_TAG:
+        case SET_PRODUCT_TAG_ACTION:
             return {
                 scannedProductTag: action.productTag
             };

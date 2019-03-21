@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet} from "react-native";
 import {Card, ListItem, Text} from "react-native-elements";
 
 const ProductTagDetails = props => {
-    console.log("ProductTagDetails: ", props.productTag);
+    // console.log("ProductTagDetails: ", props.productTag);
     const {
         productTagId,
         dateTime,

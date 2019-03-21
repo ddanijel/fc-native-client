@@ -31,7 +31,7 @@ const addLoggingToDispatch = store => {
     }
 
     return action => {
-        console.group(action.type);
+        console.group("Return action from configure store: ", action.type);
         // console.log("%c prev state", "color: gray", store.getState());
         // console.log("%c action", "color: blue", action);
         const returnValue = rawDispatch(action);

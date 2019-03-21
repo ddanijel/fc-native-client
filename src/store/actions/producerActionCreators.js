@@ -1,8 +1,8 @@
 import {
-    SET_SIGN_UP_FORM_INIT_DATA,
-    LOG_IN,
-    SIGN_UP,
-    AUTH_SET_JWT_TOKEN
+    SET_SIGN_UP_FORM_INIT_DATA_ACTION,
+    LOG_IN_ACTION,
+    SIGN_UP_ACTION,
+    AUTH_SET_JWT_TOKEN_ACTION
 } from "./actionTypes";
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
@@ -13,7 +13,7 @@ export const fetchSignUpFormData = () => {
         fetch("https://foodchain-csg.ch/api/v2/producers/registerData")
             .catch(error => {
                 alert("Error while fetching form data from the server.");
-                console.log(error);
+                console.error(error);
             })
             .then(response => response.json())
             .then(jsonResult => {
@@ -32,7 +32,7 @@ export const fetchSignUpFormData = () => {
 
 export const setInitSignUpFormData = signUpFormInitData => {
     return {
-        type: SET_SIGN_UP_FORM_INIT_DATA,
+        type: SET_SIGN_UP_FORM_INIT_DATA_ACTION,
         signUpFormInitData
     }
 };
@@ -40,10 +40,10 @@ export const setInitSignUpFormData = signUpFormInitData => {
 export const tryAuth = (authData, authMode, thisRef) => {
     return dispatch => {
         switch (authMode) {
-            case LOG_IN :
+            case LOG_IN_ACTION :
                 dispatch(authLogin(authData, thisRef));
                 break;
-            case SIGN_UP :
+            case SIGN_UP_ACTION :
                 dispatch(authSignUp(authData, thisRef));
                 break;
         }
@@ -118,7 +118,7 @@ export const authSignUp = (authData, thisRef) => {
 
 export const authSetJwtToken = token => {
     return {
-        type: AUTH_SET_JWT_TOKEN,
+        type: AUTH_SET_JWT_TOKEN_ACTION,
         token
     }
 };

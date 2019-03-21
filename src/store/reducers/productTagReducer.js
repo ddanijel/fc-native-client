@@ -1,4 +1,4 @@
-import {SET_FETCHED_PT} from "../actions/actionTypes";
+import {PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION, SET_FETCHED_PT_ACTION} from "../actions/actionTypes";
 import sortArray from "../../util/sortutil";
 
 
@@ -11,14 +11,20 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_FETCHED_PT :
+        case SET_FETCHED_PT_ACTION :
         {
-            console.log("pt action: ", action);
             return {
                 ...state,
                 scannedPTChain: sortProductTags(action.ptChain),
                 scannedHash: action.scannedHash
             };
+        }
+        case PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION:
+        {
+            return {
+                scannedPTChain: [],
+                scannedHash: ''
+            }
         }
         default:
             return state;
