@@ -46,8 +46,8 @@ class ProducerAuthScreen extends Component {
         super(props);
         this.state = {
             logIn: {
-                username: 'u1',
-                password: 'p1',
+                username: 'l',
+                password: 'l',
                 isPasswordValid: true
             },
             signUp: {

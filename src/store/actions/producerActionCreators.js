@@ -1,8 +1,9 @@
 import {
-    SET_SIGN_UP_FORM_INIT_DATA_ACTION,
+    AUTH_SET_JWT_TOKEN_ACTION,
     LOG_IN_ACTION,
-    SIGN_UP_ACTION,
-    AUTH_SET_JWT_TOKEN_ACTION
+    SET_PRODUCER_DATA_ACTION,
+    SET_SIGN_UP_FORM_INIT_DATA_ACTION,
+    SIGN_UP_ACTION
 } from "./actionTypes";
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
@@ -30,13 +31,6 @@ export const fetchSignUpFormData = () => {
     }
 };
 
-export const setInitSignUpFormData = signUpFormInitData => {
-    return {
-        type: SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-        signUpFormInitData
-    }
-};
-
 export const tryAuth = (authData, authMode, thisRef) => {
     return dispatch => {
         switch (authMode) {
@@ -56,8 +50,6 @@ export const authLogin = (authData, thisRef) => {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
-    // console.log("Sending data: ", formData);
-
     return dispatch => {
         dispatch(uiStartLoading());
         fetch("https://foodchain-csg.ch/api/v1/producers/login", {
@@ -75,11 +67,11 @@ export const authLogin = (authData, thisRef) => {
             .then(result => result.json())
             .then(jsonResult => {
                 dispatch(uiStopLoading());
-                if (!jsonResult.token) {
+                if (!jsonResult.token || !jsonResult.resourceId) {
                     alert("Authentication failed. Please try again.");
                 } else {
-                    // console.log("signup success: ", jsonResult);
-                    dispatch(authSetJwtToken(jsonResult.token));
+                    dispatch(fetchProducerData(jsonResult.token, jsonResult.resourceId));
+                    dispatch(authSetJwtToken(jsonResult.token, jsonResult.resourceId));
                     thisRef.props.navigation.navigate('Producer')
                 }
             });
@@ -105,36 +97,70 @@ export const authSignUp = (authData, thisRef) => {
             .then(result => result.json())
             .then(jsonResult => {
                 dispatch(uiStopLoading());
-                if (!jsonResult.token) {
+                if (!jsonResult.token || !jsonResult.resourceId) {
                     alert("Authentication failed. Please try again.");
                 } else {
-                    // console.log("signup success: ", jsonResult);
-                    dispatch(authSetJwtToken(jsonResult.token));
+                    dispatch(fetchProducerData(jsonResult.token, jsonResult.resourceId));
+                    dispatch(authSetJwtToken(jsonResult.token, jsonResult.resourceId));
                     thisRef.props.navigation.navigate('Producer')
                 }
             });
     };
 };
 
-export const authSetJwtToken = token => {
-    return {
-        type: AUTH_SET_JWT_TOKEN_ACTION,
-        token
+export const fetchProducerData = (token, producerId) => {
+    return dispatch => {
+        fetch(`https://foodchain-csg.ch/api/v1/producers/${producerId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .catch(error => {
+                alert("Error while fetching producer's data from the server.");
+                console.error(error);
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(jsonResult => {
+                dispatch(setProducerData(jsonResult));
+            })
     }
 };
-
 
 // todo Continue here, now we have a token. the next step is to create a pt
 export const authGetJwtToken = () => {
     return (dispatch, getState) => {
         const promise = new Promise((resolve, reject) => {
             const token = getState().producer.jwtToken;
-            if(!token) {
+            if (!token) {
                 reject();
             } else {
                 resolve(token);
             }
         });
-
     }
-}
+};
+
+
+export const setInitSignUpFormData = signUpFormInitData => {
+    return {
+        type: SET_SIGN_UP_FORM_INIT_DATA_ACTION,
+        signUpFormInitData
+    }
+};
+
+export const setProducerData = producerData => {
+    return {
+        type: SET_PRODUCER_DATA_ACTION,
+        producerData
+    }
+};
+
+export const authSetJwtToken = (token, producerId) => {
+    return {
+        type: AUTH_SET_JWT_TOKEN_ACTION,
+        token,
+        producerId
+    }
+};
