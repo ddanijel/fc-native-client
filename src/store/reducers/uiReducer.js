@@ -4,13 +4,19 @@ import {
     OPEN_PT_MAP_VIEW_MODAL_ACTION,
     OPEN_QR_CODE_SCANNER_ACTION,
     UI_START_LOADING_ACTION,
-    UI_STOP_LOADING_ACTION
+    UI_STOP_LOADING_ACTION,
+    OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION,
+    CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION,
+    OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION,
+    CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
 } from "../actions/actionTypes";
 
 const initialState = {
     isLoading: false,
     isMapModalOpen: false,
-    isQrCodeScannerOpen: false
+    isQrCodeScannerOpen: false,
+    isProducerQrScannerModalOpen: false,
+    isProducerMapViewModalOpen: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +50,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isQrCodeScannerOpen: false
+            };
+        case OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION:
+            return {
+                ...state,
+                isProducerQrScannerModalOpen: true
+            };
+        case CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION:
+            return {
+                ...state,
+                isProducerQrScannerModalOpen: false
+            };
+        case OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION:
+            return {
+                ...state,
+                isProducerMapViewModalOpen: true
+            };
+        case CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION:
+            return {
+                ...state,
+                isProducerMapViewModalOpen: false
             };
         default:
             return state;

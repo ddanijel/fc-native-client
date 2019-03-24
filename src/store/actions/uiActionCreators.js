@@ -4,7 +4,11 @@ import {
     OPEN_PT_MAP_VIEW_MODAL_ACTION,
     CLOSE_PT_MAP_VIEW_MODAL_ACTION,
     OPEN_QR_CODE_SCANNER_ACTION,
-    CLOSE_QR_CODE_SCANNER_ACTION
+    CLOSE_QR_CODE_SCANNER_ACTION,
+    OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION,
+    CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION,
+    OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION,
+    CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
 } from "./actionTypes";
 
 
@@ -42,5 +46,29 @@ export const openPtMapViewModal = () => {
 export const closePtMapViewModal = () => {
     return {
         type: CLOSE_PT_MAP_VIEW_MODAL_ACTION
+    };
+};
+
+export const openProducerQrScannerModal = () => {
+    return {
+        type: OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION
+    };
+};
+
+export const closeProducerQrScannerModal = () => {
+    return {
+        type: CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION
+    };
+};
+
+export const openProducerMapViewModal = () => {
+    return {
+        type: OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION
+    };
+};
+
+export const closeProducerMapViewModal = () => {
+    return {
+        type: CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
     };
 };

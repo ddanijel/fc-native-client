@@ -5,7 +5,6 @@ import {
 
 import {closePtMapViewModal, openPtMapViewModal, closeQrScanner, openQrScanner} from "./uiActionCreators";
 
-import {Alert} from "react-native";
 
 
 export const fetchPTByHash = (hash) => {

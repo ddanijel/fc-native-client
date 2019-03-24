@@ -3,7 +3,12 @@ import {
     LOG_IN_ACTION,
     SET_PRODUCER_DATA_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-    SIGN_UP_ACTION
+    SIGN_UP_ACTION,
+    SCANNED_PT_VALID_ACTION,
+    OPEN_ALERT_ON_SCAN_ACTION,
+    CLOSE_ALERT_ON_SCAN_ACTION,
+    SET_SCANNED_PT_ACTION,
+    SET_PT_FOR_MAP_VIEW_ACTION
 } from "./actionTypes";
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
@@ -70,7 +75,6 @@ export const authLogin = (authData, thisRef) => {
                 if (!jsonResult.token || !jsonResult.resourceId) {
                     alert("Authentication failed. Please try again.");
                 } else {
-                    dispatch(fetchProducerData(jsonResult.token, jsonResult.resourceId));
                     dispatch(authSetJwtToken(jsonResult.token, jsonResult.resourceId));
                     thisRef.props.navigation.navigate('Producer')
                 }
@@ -100,7 +104,6 @@ export const authSignUp = (authData, thisRef) => {
                 if (!jsonResult.token || !jsonResult.resourceId) {
                     alert("Authentication failed. Please try again.");
                 } else {
-                    dispatch(fetchProducerData(jsonResult.token, jsonResult.resourceId));
                     dispatch(authSetJwtToken(jsonResult.token, jsonResult.resourceId));
                     thisRef.props.navigation.navigate('Producer')
                 }
@@ -162,5 +165,61 @@ export const authSetJwtToken = (token, producerId) => {
         type: AUTH_SET_JWT_TOKEN_ACTION,
         token,
         producerId
+    }
+};
+
+
+export const fetchPTByHash = (hash) => {
+    return dispatch => {
+        fetch(`https://foodchain-csg.ch/api/v2/productTags/hash/${hash}`)
+            .catch(error => {
+                alert("Error while fetching product tag data from the server.");
+                console.error(error);
+            })
+            .then(response => response.json())
+            .then(ptChain => {
+                if (ptChain.length === 0) {
+                    dispatch(scannedProductTagValid(false));
+                } else {
+                    dispatch(scannedProductTagValid(true));
+                    dispatch(setScannedPT(hash, ptChain))
+                }
+            })
+    }
+};
+
+export const scannedProductTagValid = valid => {
+    return {
+        type: SCANNED_PT_VALID_ACTION,
+        valid
+    }
+};
+
+export const openAlertOnScan = () => {
+    return {
+        type: OPEN_ALERT_ON_SCAN_ACTION
+    }
+};
+
+export const closeAlertOnScan = () => {
+    return {
+        type: CLOSE_ALERT_ON_SCAN_ACTION
+    }
+};
+
+export const setScannedPT = (hash, ptChain) => {
+    return {
+        type: SET_SCANNED_PT_ACTION,
+        scannedProductTag: {
+            hash,
+            ptChain
+        }
+    }
+};
+
+export const setPTForMapView = pt => {
+    return {
+        type: SET_PT_FOR_MAP_VIEW_ACTION,
+        pt
     }
 };

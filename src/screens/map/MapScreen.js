@@ -12,7 +12,6 @@ const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
 class MapScreen extends React.Component {
     state = {
         isLoading: true,
-        markers: [],
     };
 
     // static navigationOptions = ({navigation}) => {
