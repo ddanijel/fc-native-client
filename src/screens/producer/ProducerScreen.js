@@ -4,14 +4,15 @@ import {Icon} from "native-base";
 import {connect} from "react-redux";
 import {Button, Card, ListItem} from "react-native-elements";
 import Layout from "../../constants/Layout";
-import {closeAlertOnScan, fetchProducerData, setPTForMapView} from "../../store/actions/producerActionCreators";
+import {closeAlertOnScan, fetchProducerData} from "../../store/actions/producerActionCreators";
+import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import QrScannerModal from "./QrScannerModal";
 import {
     closeProducerMapViewModal,
     closeProducerQrScannerModal, openProducerMapViewModal,
     openProducerQrScannerModal
 } from "../../store/actions/uiActionCreators";
-import MapViewModal from "./MapViewModal";
+import MapViewModal from "../map/MapViewModal";
 
 class ProducerScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -102,12 +103,12 @@ class ProducerScreen extends Component {
         }
     };
 
-    showPTDetails = pt => {
-        this.props.setPTForMapView(pt);
+    showPTDetails = productTag => {
+        this.props.setPTForMapView(productTag);
         this.props.onMapViewModalOpen();
     };
 
-    removeSelectedPT = pt => {
+    removeSelectedPT = productTag => {
 
     };
 
@@ -131,7 +132,7 @@ class ProducerScreen extends Component {
                                                  title={pt.ptDetails.dateTime}
                                                  buttonGroup={{
                                                      buttons: ['Details', 'Remove'],
-                                                     onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt)
+                                                     onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
                                                  }}
                                 />
                             })}
@@ -221,7 +222,7 @@ const mapDispatchToProps = dispatch => {
         onQrScannerModalClose: () => dispatch(closeProducerQrScannerModal()),
         onMapViewModalClose: () => dispatch(closeProducerMapViewModal()),
         onMapViewModalOpen: () => dispatch(openProducerMapViewModal()),
-        setPTForMapView: (ptChain) => dispatch(setPTForMapView(ptChain))
+        setPTForMapView: productTag => dispatch(setPTForMapView(productTag))
     }
 };
 

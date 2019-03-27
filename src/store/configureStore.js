@@ -6,6 +6,7 @@ import consumerReducer from './reducers/consumerReducer';
 import producerReducer from './reducers/producerReducer';
 import productTagReducer from './reducers/productTagReducer';
 import uiReducer from './reducers/uiReducer';
+import mapReducer from "./reducers/mapReducer";
 
 
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     consumer: consumerReducer,
     producer: producerReducer,
     productTag: productTagReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    map: mapReducer
 });
 
 let composeEnhancers = compose;
