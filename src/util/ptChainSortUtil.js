@@ -19,7 +19,6 @@ const sortProductTags = ptChain => {
                 dateTime: new Date(productTag.dateTime)
             }
         });
-    console.log("updatedPTChain: ", updatedPTChain);
     return updatedPTChain.sort(dynamicSort('productTagId'));
 };
 

@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import {Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Icon} from "native-base";
 import {connect} from "react-redux";
 import {Button, Card, ListItem} from "react-native-elements";
 import Layout from "../../constants/Layout";
-import {closeAlertOnScan, fetchProducerData} from "../../store/actions/producerActionCreators";
+import Common from "../../constants/Common";
+import {fetchProducerData} from "../../store/actions/producerActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
-import QrScannerModal from "./QrScannerModal";
+import QrScannerModal from "../qrScanner/QrScannerModal";
 import {
-    closeProducerMapViewModal,
-    closeProducerQrScannerModal, openProducerMapViewModal,
-    openProducerQrScannerModal
+    closeQrScannerModal, openMapViewModal,
+    openQrScannerModal
 } from "../../store/actions/uiActionCreators";
 import MapViewModal from "../map/MapViewModal";
 
@@ -48,13 +48,6 @@ class ProducerScreen extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        if (this.props.isAlertOnScanOpen === false && nextProps.isAlertOnScanOpen === true) {
-            this.showAlertOnPTScan();
-        }
-    }
-
-
     openSettingsScreen = () => {
         this.props.navigation.navigate('ProducerSettings');
     };
@@ -64,33 +57,6 @@ class ProducerScreen extends Component {
         this.props.navigation.navigate('Auth');
     };
 
-    showAlertOnPTScan = () => {
-        const alertTitle = this.props.scannedProductTagValid ?
-            'Success' : 'Error';
-        const alertMessage = this.props.scannedProductTagValid ?
-            'Product tag successfully found for the scanned QR code!' :
-            'There is no product tag for the scanned QR code!';
-        Alert.alert(
-            alertTitle,
-            alertMessage,
-            [
-                {
-                    text: 'Scan again',
-                    onPress: () => {
-                        this.props.closeAlertOnScan();
-                    },
-                    style: 'default',
-                },
-                {
-                    text: 'Close', onPress: () => {
-                        this.props.closeAlertOnScan();
-                        this.props.onQrScannerModalClose();
-                    }
-                },
-            ],
-            {cancelable: false},
-        );
-    };
 
     onScannedProductButtonGroupPressed = (index, pt) => {
         switch (index) {
@@ -141,8 +107,8 @@ class ProducerScreen extends Component {
                 </Card>
 
                 <Button title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
-                {this.props.isProducerQrScannerModalOpen ? <QrScannerModal/> : null}
-                {this.props.isProducerMapViewModalOpen ? <MapViewModal/> : null}
+                {this.props.isQrScannerModalOpen ? <QrScannerModal mode={Common.mode.PRODUCER}/> : null}
+                {this.props.isMapViewModalOpen ? <MapViewModal mode={Common.mode.PRODUCER}/> : null}
 
                 <Card style={{width: width}} title="PT Actions">
                     <View style={{width: width}}>
@@ -207,21 +173,20 @@ const mapStateToProps = state => {
         activeProducerId: state.producer.activeProducerId,
         jwtToken: state.producer.jwtToken,
         scannedProductTags: state.producer.scannedProductTags,
-        scannedProductTagValid: state.producer.scannedProductTagValid,
+        // scannedProductTagValid: state.productTag.scannedProductTagValid,
         isAlertOnScanOpen: state.producer.isAlertOnScanOpen,
-        isProducerQrScannerModalOpen: state.ui.isProducerQrScannerModalOpen,
-        isProducerMapViewModalOpen: state.ui.isProducerMapViewModalOpen
+        isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
+        isMapViewModalOpen: state.ui.isMapViewModalOpen
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onProducerScreenMounted: (token, producerId) => dispatch(fetchProducerData(token, producerId)),
-        onQrScannerModalOpen: () => dispatch(openProducerQrScannerModal()),
-        closeAlertOnScan: () => dispatch(closeAlertOnScan()),
-        onQrScannerModalClose: () => dispatch(closeProducerQrScannerModal()),
-        onMapViewModalClose: () => dispatch(closeProducerMapViewModal()),
-        onMapViewModalOpen: () => dispatch(openProducerMapViewModal()),
+        // closeAlertOnScan: () => dispatch(closeAlertOnScan()),
+        onQrScannerModalOpen: () => dispatch(openQrScannerModal()),
+        onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
+        onMapViewModalOpen: () => dispatch(openMapViewModal()),
         setPTForMapView: productTag => dispatch(setPTForMapView(productTag))
     }
 };

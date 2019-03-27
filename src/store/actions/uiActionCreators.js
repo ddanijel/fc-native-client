@@ -5,10 +5,10 @@ import {
     CLOSE_PT_MAP_VIEW_MODAL_ACTION,
     OPEN_QR_CODE_SCANNER_ACTION,
     CLOSE_QR_CODE_SCANNER_ACTION,
-    OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION,
-    CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION,
-    OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION,
-    CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
+    OPEN_QR_SCANNER_MODAL_ACTION,
+    CLOSE_QR_SCANNER_MODAL_ACTION,
+    OPEN_MAP_VIEW_MODAL_ACTION,
+    CLOSE_MAP_VIEW_MODAL_ACTION
 } from "./actionTypes";
 
 
@@ -25,11 +25,11 @@ export const uiStopLoading = () => {
     };
 };
 
-export const openQrScanner = () => {
-    return {
-        type: OPEN_QR_CODE_SCANNER_ACTION
-    };
-};
+// export const openQrScanner = () => {
+//     return {
+//         type: OPEN_QR_CODE_SCANNER_ACTION
+//     };
+// };
 
 export const closeQrScanner = () => {
     return {
@@ -49,26 +49,26 @@ export const closePtMapViewModal = () => {
     };
 };
 
-export const openProducerQrScannerModal = () => {
+export const openQrScannerModal = () => {
     return {
-        type: OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION
+        type: OPEN_QR_SCANNER_MODAL_ACTION
     };
 };
 
-export const closeProducerQrScannerModal = () => {
+export const closeQrScannerModal = () => {
     return {
-        type: CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION
+        type: CLOSE_QR_SCANNER_MODAL_ACTION
     };
 };
 
-export const openProducerMapViewModal = () => {
+export const openMapViewModal = () => {
     return {
-        type: OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION
+        type: OPEN_MAP_VIEW_MODAL_ACTION
     };
 };
 
-export const closeProducerMapViewModal = () => {
+export const closeMapViewModal = () => {
     return {
-        type: CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
+        type: CLOSE_MAP_VIEW_MODAL_ACTION
     };
 };

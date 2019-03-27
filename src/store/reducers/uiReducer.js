@@ -5,18 +5,18 @@ import {
     OPEN_QR_CODE_SCANNER_ACTION,
     UI_START_LOADING_ACTION,
     UI_STOP_LOADING_ACTION,
-    OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION,
-    CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION,
-    OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION,
-    CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION
+    OPEN_QR_SCANNER_MODAL_ACTION,
+    CLOSE_QR_SCANNER_MODAL_ACTION,
+    OPEN_MAP_VIEW_MODAL_ACTION,
+    CLOSE_MAP_VIEW_MODAL_ACTION
 } from "../actions/actionTypes";
 
 const initialState = {
     isLoading: false,
     isMapModalOpen: false,
     isQrCodeScannerOpen: false,
-    isProducerQrScannerModalOpen: false,
-    isProducerMapViewModalOpen: false
+    isQrScannerModalOpen: false,
+    isMapViewModalOpen: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,25 +51,25 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isQrCodeScannerOpen: false
             };
-        case OPEN_PRODUCER_QR_SCANNER_MODAL_ACTION:
+        case OPEN_QR_SCANNER_MODAL_ACTION:
             return {
                 ...state,
-                isProducerQrScannerModalOpen: true
+                isQrScannerModalOpen: true
             };
-        case CLOSE_PRODUCER_QR_SCANNER_MODAL_ACTION:
+        case CLOSE_QR_SCANNER_MODAL_ACTION:
             return {
                 ...state,
-                isProducerQrScannerModalOpen: false
+                isQrScannerModalOpen: false
             };
-        case OPEN_PRODUCER_MAP_VIEW_MODAL_ACTION:
+        case OPEN_MAP_VIEW_MODAL_ACTION:
             return {
                 ...state,
-                isProducerMapViewModalOpen: true
+                isMapViewModalOpen: true
             };
-        case CLOSE_PRODUCER_MAP_VIEW_MODAL_ACTION:
+        case CLOSE_MAP_VIEW_MODAL_ACTION:
             return {
                 ...state,
-                isProducerMapViewModalOpen: false
+                isMapViewModalOpen: false
             };
         default:
             return state;

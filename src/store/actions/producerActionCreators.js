@@ -3,20 +3,17 @@ import {
     LOG_IN_ACTION,
     SET_PRODUCER_DATA_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-    SIGN_UP_ACTION,
-    SCANNED_PT_VALID_ACTION,
-    OPEN_ALERT_ON_SCAN_ACTION,
-    CLOSE_ALERT_ON_SCAN_ACTION,
-    SET_SCANNED_PT_ACTION,
-    SET_PT_FOR_MAP_VIEW_ACTION
+    SIGN_UP_ACTION
 } from "./actionTypes";
+
+import Common from '../../constants/Common';
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
 
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
-        fetch("https://foodchain-csg.ch/api/v2/producers/registerData")
+        fetch(`${Common.BACKEND_BASE_URL}/producers/registerData`)
             .catch(error => {
                 alert("Error while fetching form data from the server.");
                 console.error(error);
@@ -57,7 +54,7 @@ export const authLogin = (authData, thisRef) => {
     formData.append("password", password);
     return dispatch => {
         dispatch(uiStartLoading());
-        fetch("https://foodchain-csg.ch/api/v1/producers/login", {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v1/producers/login`, {
             method: 'POST',
             body: formData,
             headers: {
@@ -86,7 +83,7 @@ export const authSignUp = (authData, thisRef) => {
 
     return dispatch => {
         dispatch(uiStartLoading());
-        fetch("https://foodchain-csg.ch/api/v1/producers/register", {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v1/producers/register`, {
             method: 'POST',
             body: JSON.stringify(authData),
             headers: {
@@ -113,7 +110,7 @@ export const authSignUp = (authData, thisRef) => {
 
 export const fetchProducerData = (token, producerId) => {
     return dispatch => {
-        fetch(`https://foodchain-csg.ch/api/v1/producers/${producerId}`, {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v1/producers/${producerId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -165,54 +162,5 @@ export const authSetJwtToken = (token, producerId) => {
         type: AUTH_SET_JWT_TOKEN_ACTION,
         token,
         producerId
-    }
-};
-
-
-export const fetchPTByHash = (hash) => {
-    return dispatch => {
-        fetch(`https://foodchain-csg.ch/api/v2/productTags/hash/${hash}`)
-            .catch(error => {
-                alert("Error while fetching product tag data from the server.");
-                console.error(error);
-            })
-            .then(response => response.json())
-            .then(ptChain => {
-                if (ptChain.length === 0) {
-                    dispatch(scannedProductTagValid(false));
-                } else {
-                    dispatch(scannedProductTagValid(true));
-                    dispatch(setScannedPT(hash, ptChain))
-                }
-            })
-    }
-};
-
-export const scannedProductTagValid = valid => {
-    return {
-        type: SCANNED_PT_VALID_ACTION,
-        valid
-    }
-};
-
-export const openAlertOnScan = () => {
-    return {
-        type: OPEN_ALERT_ON_SCAN_ACTION
-    }
-};
-
-export const closeAlertOnScan = () => {
-    return {
-        type: CLOSE_ALERT_ON_SCAN_ACTION
-    }
-};
-
-export const setScannedPT = (hash, ptChain) => {
-    return {
-        type: SET_SCANNED_PT_ACTION,
-        scannedProductTag: {
-            hash,
-            ptChain
-        }
     }
 };

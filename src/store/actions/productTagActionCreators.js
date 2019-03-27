@@ -1,15 +1,17 @@
 import {
     SET_FETCHED_PT_ACTION,
-    PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION, PT_DOES_NOT_EXIST_ACTION
+    PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION,
+    PT_DOES_NOT_EXIST_ACTION, SET_PRODUCER_SCANNED_PT_ACTION, SCANNED_PT_VALID_ACTION, SET_CONSUMER_SCANNED_PT_ACTION
 } from "./actionTypes";
 
-import {closePtMapViewModal, openPtMapViewModal, closeQrScanner, openQrScanner} from "./uiActionCreators";
+import Common from '../../constants/Common'
+
+// import {closePtMapViewModal, openQrScanner} from "./uiActionCreators";
 
 
-
-export const fetchPTByHash = (hash) => {
+export const fetchPTByHash = (hash, mode) => {
     return dispatch => {
-        fetch(`https://foodchain-csg.ch/api/v2/productTags/hash/${hash}`)
+        fetch(`${Common.BACKEND_BASE_URL}/api/v2/productTags/hash/${hash}`)
             .catch(error => {
                 alert("Error while fetching product tag data from the server.");
                 console.error(error);
@@ -17,24 +19,42 @@ export const fetchPTByHash = (hash) => {
             .then(response => response.json())
             .then(ptChain => {
                 if (ptChain.length === 0) {
-                    dispatch(closeQrScanner());
-                    dispatch(setPTDoesNotExist())
-                    // alert("There is no product tag for the give hash");
+                    dispatch(scannedProductTagValid(false));
+                } else {
+                    dispatch(scannedProductTagValid(true));
+                    dispatch(setScannedPT(hash, ptChain, mode))
                 }
-                // thisRef.props.navigation.navigate('Map');
-                dispatch(setFetchedPTChain(hash, ptChain));
-                dispatch(openPtMapViewModal());
             })
     }
 };
 
+export const setScannedPT = (hash, ptChain, mode) => {
+    const action = (mode === Common.mode.CONSUMER) ?
+        SET_CONSUMER_SCANNED_PT_ACTION :
+        SET_PRODUCER_SCANNED_PT_ACTION;
+    return {
+        type: action,
+        scannedProductTag: {
+            hash,
+            ptChain
+        }
+    }
+};
 
-export const onScanAgainPressed = () => {
+export const scannedProductTagValid = valid => {
+    return {
+        type: SCANNED_PT_VALID_ACTION,
+        valid
+    }
+};
+
+
+/*export const onScanAgainPressed = () => {
     return dispatch => {
         dispatch(prepareStateForQrCodeScannerScreen());
         dispatch(openQrScanner())
     }
-};
+};*/
 
 export const setFetchedPTChain = (scannedHash, ptChain) => {
     return {
@@ -51,12 +71,12 @@ export const setPTDoesNotExist = () => {
 };
 
 
-export const prepareStateForQrCodeScannerScreen = () => {
-    return dispatch => {
-        dispatch(closePtMapViewModal());
-        dispatch(initializeScannedPtState());
-    };
-};
+// export const prepareStateForQrCodeScannerScreen = () => {
+//     return dispatch => {
+//         dispatch(closePtMapViewModal());
+//         dispatch(initializeScannedPtState());
+//     };
+// };
 
 export const initializeScannedPtState = () => {
     return {

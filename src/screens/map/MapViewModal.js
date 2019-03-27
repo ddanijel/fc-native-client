@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Alert, Dimensions, Modal, View, TouchableOpacity, Text, StyleSheet} from "react-native";
-import {closeProducerMapViewModal} from "../../store/actions/uiActionCreators";
+import {closeMapViewModal} from "../../store/actions/uiActionCreators";
 import {connect} from "react-redux";
 import {MapView} from "expo";
 import CustomMarker from "../../components/map/CustomMarker";
@@ -8,23 +8,23 @@ import ProductTagDetails from "../../components/productTag/ProductTagDetails";
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
+// const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
 
 class MapViewModal extends Component {
 
-    componentDidMount() {
-        setTimeout(function () {
-            this.refs.SCANNED_HASH_MARKER_REF.showCallout();
-        }.bind(this), 2000);
-
-    }
+    // componentDidMount() {
+    //     setTimeout(function () {
+    //         this.refs.SCANNED_HASH_MARKER_REF.showCallout();
+    //     }.bind(this), 2000);
+    //
+    // }
 
     render() {
         return (
             <Modal
                 animationType="slide"
                 transparent={false}
-                visible={this.props.isProducerMapViewModalOpen}
+                visible={this.props.isMapViewModalOpen}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                 }}>
@@ -37,8 +37,8 @@ class MapViewModal extends Component {
                             longitude: pt.longitude,
                         };
                         const metadata = `Status: ${pt.productTagId}`;
-                        const markerScannedPTHashRef = (this.props.ptHash === pt.productTagHash) ?
-                            SCANNED_HASH_MARKER_REF : null;
+                        // const markerScannedPTHashRef = (this.props.ptHash === pt.productTagHash) ?
+                        //     SCANNED_HASH_MARKER_REF : null;
 
                         return (
                             <MapView.Marker
@@ -46,13 +46,13 @@ class MapViewModal extends Component {
                                 coordinate={coords}
                                 title={"Some title"}
                                 description={metadata}
-                                ref={markerScannedPTHashRef}
-                                style={markerScannedPTHashRef ? {zIndex: 0} : {}}
+                                // ref={markerScannedPTHashRef}
+                                // style={markerScannedPTHashRef ? {zIndex: 0} : {}}
                             >
                                 <CustomMarker
                                     title={index + 1}
                                     diffColor={pt.productTagHash === this.props.ptHash}
-                                    style={markerScannedPTHashRef ? {zIndex: 0} : {}}
+                                    // style={markerScannedPTHashRef ? {zIndex: 0} : {}}
                                 />
 
                                 <MapView.Callout>
@@ -80,13 +80,13 @@ class MapViewModal extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onModalClose: () => dispatch(closeProducerMapViewModal()),
+        onModalClose: () => dispatch(closeMapViewModal()),
     }
 };
 
 const mapStateToProps = state => {
     return {
-        isProducerMapViewModalOpen: state.ui.isProducerMapViewModalOpen,
+        isMapViewModalOpen: state.ui.isMapViewModalOpen,
         ptChain: state.map.ptChain,
         ptHash: state.map.hash
     };

@@ -1,11 +1,13 @@
 import React from 'react';
-import {Dimensions, ImageBackground, StyleSheet, View} from 'react-native';
+import {Dimensions, ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from "react-redux";
 
 import {images} from "../../../assets/images";
-import QrCodeScannerComponent from "../QrCodeScannerScreen";
 import {Button as BaseButton, Text as NativeText} from "native-base";
-import {openQrScanner} from "../../store/actions/uiActionCreators";
+import {openQrScannerModal} from "../../store/actions/uiActionCreators";
+import QrScannerModal from "../qrScanner/QrScannerModal";
+import Common from "../../constants/Common";
+import MapViewModal from "../map/MapViewModal";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -23,29 +25,43 @@ class ConsumerScreen extends React.Component {
     };
 
     componentDidMount() {
-        this.props.onConsumerScreenOpen();
+        this.props.onQrScannerModalOpen();
     }
 
     render() {
         return (
 
             <ImageBackground source={images.background} style={styles.bgImage}>
-                <View style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}}>
-                    <QrCodeScannerComponent thisNavigationRef={this.props.navigation}/>
-                </View>
+                {this.props.isQrScannerModalOpen ?
+                    <QrScannerModal mode={Common.mode.CONSUMER}
+                                    thisNavigationRef={this.props.navigation}
+                    /> : null}
+                {this.props.isMapViewModalOpen ?
+                    <MapViewModal mode={Common.mode.CONSUMER}
+                                  thisNavigationRef={this.props.navigation}
+                    /> : null}
             </ImageBackground>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
+        isMapViewModalOpen: state.ui.isMapViewModalOpen
+    };
+};
+
+
 const mapDispatchToProps = dispatch => {
     return {
-        onConsumerScreenOpen: () => dispatch(openQrScanner())
+        // onConsumerScreenOpen: () => dispatch(openQrScanner()),
+        onQrScannerModalOpen: () => dispatch(openQrScannerModal())
     }
 };
 
 
-export default connect(null, mapDispatchToProps)(ConsumerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ConsumerScreen);
 
 
 const styles = StyleSheet.create({
