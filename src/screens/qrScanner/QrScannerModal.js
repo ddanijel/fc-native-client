@@ -111,9 +111,6 @@ class QrScannerModal extends Component {
     };
 
     onModalClosed = () => {
-        if (this.props.mode === Common.mode.CONSUMER) {
-            this.props.thisNavigationRef.navigate('Home');
-        }
         this.props.onQrScannerModalClose();
     };
 

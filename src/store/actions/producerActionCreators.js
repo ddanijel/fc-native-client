@@ -13,13 +13,14 @@ import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
-        fetch(`${Common.BACKEND_BASE_URL}/producers/registerData`)
+        fetch(`${Common.BACKEND_BASE_URL}/api/v2/producers/registerData`)
             .catch(error => {
                 alert("Error while fetching form data from the server.");
                 console.error(error);
             })
             .then(response => response.json())
             .then(jsonResult => {
+
 
                 const actions = jsonResult.actions;
                 const certificates = jsonResult.certificates;

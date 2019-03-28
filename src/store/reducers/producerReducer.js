@@ -7,7 +7,7 @@ import {
     CLOSE_ALERT_ON_SCAN_ACTION,
     SET_PRODUCER_SCANNED_PT_ACTION,
     // SCANNED_PT_ALREADY_SCANNED_ACTION,
-    SET_PT_FOR_MAP_VIEW_ACTION
+    // SET_PT_FOR_MAP_VIEW_ACTION
 } from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
@@ -15,7 +15,7 @@ import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
 
 const initialState = {
     scannedProductTags: [],
-    ptForMapView: [],
+    // ptForMapView: [],
     scannedProductTagAlreadyScanned: false,
     isAlertOnScanOpen: false,
     actions: [],
@@ -75,12 +75,12 @@ const reducer = (state = initialState, action) => {
                 scannedProductTagAlreadyScanned: false
             }
         }
-        case SET_PT_FOR_MAP_VIEW_ACTION: {
-            return {
-                ...state,
-                ptForMapView: action.pt
-            }
-        }
+        // case SET_PT_FOR_MAP_VIEW_ACTION: {
+        //     return {
+        //         ...state,
+        //         ptForMapView: action.pt
+        //     }
+        // }
         default:
             return state;
     }
