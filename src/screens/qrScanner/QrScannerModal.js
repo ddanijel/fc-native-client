@@ -28,6 +28,18 @@ class QrScannerModal extends Component {
         }
     };
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log('componentWillReceiveProps valid: ', nextProps.scannedProductTagValid);
+        console.log('componentWillReceiveProps exists: ', nextProps.producerScannedProductTagAlreadyScanned);
+        // if(this.props.isQrScannerModalOpen) {
+        //     this.setState({
+        //         ...this.state,
+        //         alertOpen: false
+        //     });
+        //     this.showAlertOnPTScan();
+        // }
+    }
+
     showAlertOnPTScan = () => {
         this.setState({...this.state, alertOpen: true});
         const {
@@ -37,26 +49,25 @@ class QrScannerModal extends Component {
         } = (this.props.mode === Common.mode.PRODUCER) ?
             this.getProducerAlertData() : this.getConsumerAlertData();
 
-        setTimeout(function () {
             Alert.alert(
                 alertTitle,
                 alertMessage,
                 alertButtons,
                 {cancelable: false},
-            )}, 500);
+            )
 
 
     };
 
     getProducerAlertData = () => {
         console.log('valid: ', this.props.scannedProductTagValid);
-        console.log('exists: ', this.props.scannedProductTagAlreadyScanned);
-        const title = (!this.props.scannedProductTagValid || this.props.scannedProductTagAlreadyScanned) ?
+        console.log('exists: ', this.props.producerScannedProductTagAlreadyScanned);
+        const title = (!this.props.scannedProductTagValid || this.props.producerScannedProductTagAlreadyScanned) ?
             'Error' : 'Success';
         let message = 'Product successfully scanned.';
         if (!this.props.scannedProductTagValid) {
             message = 'Scanned product tag is not valid.'
-        } else if (this.props.scannedProductTagAlreadyScanned) {
+        } else if (this.props.producerScannedProductTagAlreadyScanned) {
             message = 'This product is already scanned.'
         }
         return {
@@ -82,9 +93,19 @@ class QrScannerModal extends Component {
 
 
     getConsumerAlertData = () => {
+        console.log('valid: ', this.props.scannedProductTagValid);
+        console.log('exists: ', this.props.consumerScannedProductTagAlreadyScanned);
+        const title = (!this.props.scannedProductTagValid || this.props.consumerScannedProductTagAlreadyScanned) ?
+            'Error' : 'Success';
+        let message = 'Product successfully scanned.';
+        if (!this.props.scannedProductTagValid) {
+            message = 'Scanned product tag is not valid.'
+        } else if (this.props.consumerScannedProductTagAlreadyScanned) {
+            message = 'This product is already scanned.'
+        }
         return {
-            alertTitle: '',
-            alertMessage: '',
+            alertTitle: title,
+            alertMessage: message,
             alertButtons: [
                 {
                     text: 'Scan again',
@@ -96,7 +117,7 @@ class QrScannerModal extends Component {
                 {
                     text: 'Close', onPress: () => {
                         this.onAlertClosed();
-                        this.onModalClosed();
+                        this.props.onQrScannerModalClose();
                     }
                 }
             ]
@@ -169,7 +190,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
-        scannedProductTagAlreadyScanned: state.producer.scannedProductTagAlreadyScanned,
+        producerScannedProductTagAlreadyScanned: state.producer.scannedProductTagAlreadyScanned,
+        consumerScannedProductTagAlreadyScanned: state.consumer.scannedProductTagAlreadyScanned,
         scannedProductTagValid: state.productTag.scannedProductTagValid
     };
 };

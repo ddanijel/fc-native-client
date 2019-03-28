@@ -11,6 +11,7 @@ import {
 } from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
+import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 
 const initialState = {
@@ -84,23 +85,6 @@ const reducer = (state = initialState, action) => {
         default:
             return state;
     }
-};
-
-// const getUpdatedPTToAdd = scannedProductTag => {
-//     const {hash, ptChain} = scannedProductTag;
-//     const ptDetails = ptChain.filter(pt => pt.productTagHash === hash)[0];
-//     const scannedPT = {
-//         hash,
-//         ptDetails,
-//         ptChain
-//     };
-//     return scannedPT;
-// };
-
-const checkIfAlreadyScanned = (scannedProductTags, productTag) => {
-    return scannedProductTags.some(pt => (
-        pt.hash === productTag.hash
-    ))
 };
 
 export default reducer;

@@ -1,25 +1,30 @@
-import {SET_CONSUMER_SCANNED_PT_ACTION} from "../actions/actionTypes";
+import {PT_ALREADY_SCANNED_ACTION, SET_CONSUMER_SCANNED_PT_ACTION} from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
+import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 const initialState = {
     scannedProductTags: [],
-    // hash: null,
-    // ptDetails: null,
-    // ptChain: []
+    scannedProductTagAlreadyScanned: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CONSUMER_SCANNED_PT_ACTION:
-            // const {hash, ptDetails, ptChain} = getUpdatedPTToAdd(action.scannedProductTag);
-            // return {
-            //     hash,
-            //     ptDetails,
-            //     ptChain
-            // };
+            const updatedProductTag = getUpdatedPTToAdd(action.scannedProductTag);
+            const alreadyScanned = checkIfAlreadyScanned(state.scannedProductTags, updatedProductTag);
+            return alreadyScanned ? {
+                ...state,
+                scannedProductTagAlreadyScanned: true
+            } : {
+                ...state,
+                scannedProductTags: [...state.scannedProductTags, updatedProductTag],
+                scannedProductTagAlreadyScanned: false
+            };
+        case PT_ALREADY_SCANNED_ACTION:
             return {
-                scannedProductTags: [...state.scannedProductTags, getUpdatedPTToAdd(action.scannedProductTag)]
+                ...state,
+                scannedProductTagAlreadyScanned: action.scanned
             };
         default:
             return state;

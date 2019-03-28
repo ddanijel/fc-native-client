@@ -1,7 +1,11 @@
 import {
     SET_FETCHED_PT_ACTION,
     PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION,
-    PT_DOES_NOT_EXIST_ACTION, SET_PRODUCER_SCANNED_PT_ACTION, SCANNED_PT_VALID_ACTION, SET_CONSUMER_SCANNED_PT_ACTION
+    PT_DOES_NOT_EXIST_ACTION,
+    SET_PRODUCER_SCANNED_PT_ACTION,
+    SCANNED_PT_VALID_ACTION,
+    SET_CONSUMER_SCANNED_PT_ACTION,
+    PT_ALREADY_SCANNED_ACTION
 } from "./actionTypes";
 
 import Common from '../../constants/Common'
@@ -20,6 +24,7 @@ export const fetchPTByHash = (hash, mode) => {
             .then(ptChain => {
                 if (ptChain.length === 0) {
                     dispatch(scannedProductTagValid(false));
+                    dispatch(productTagAlreadyScanned(false));
                 } else {
                     dispatch(scannedProductTagValid(true));
                     dispatch(setScannedPT(hash, ptChain, mode))
@@ -81,5 +86,12 @@ export const setPTDoesNotExist = () => {
 export const initializeScannedPtState = () => {
     return {
         type: PREPARE_STATE_FOR_QR_SCANNER_SCREEN_ACTION
+    }
+};
+
+export const productTagAlreadyScanned = scanned => {
+    return {
+        type: PT_ALREADY_SCANNED_ACTION,
+        scanned
     }
 };

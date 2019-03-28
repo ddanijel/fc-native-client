@@ -20,6 +20,8 @@ import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import {images} from '../../../../assets/images';
 import {fetchSignUpFormData, tryAuth} from "../../../store/actions/producerActionCreators";
 import {LOG_IN_ACTION, SIGN_UP_ACTION} from "../../../store/actions/actionTypes";
+import ProducerActionList from "../../../components/ProducerActionList";
+import ProducerCertificateList from "../../../components/ProducerCertificateList";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -175,6 +177,75 @@ class ProducerAuthScreen extends Component {
 
     cleanUpState = () => {
 
+    };
+
+
+    handleActionToggleChange = (value, action) => {
+        const signUp = value ? {
+            ...this.state.signUp,
+            actions: [...this.state.signUp.actions, action],
+        } : {
+            ...this.state.signUp,
+            actions: [...this.state.signUp.actions.filter(act => act.actionName !== action.actionName)]
+        };
+        this.setState({signUp})
+    };
+
+    handleNewActionChangeText = newAction => {
+        const signUp = {
+            ...this.state.signUp,
+            newAction
+        };
+        this.setState({signUp})
+    };
+
+    handleAddNewAction = () => {
+        this.props.signUpFormInitData.actions.push({
+            actionName: this.state.signUp.newAction
+        });
+        const signUp = {
+            ...this.state.signUp,
+            actions: [...this.state.signUp.actions, {
+                actionName: this.state.signUp.newAction
+            }],
+            newAction: ''
+        };
+        this.setState({signUp});
+        // this.shakeInput2 && this.shakeInput2.shake()
+    };
+
+    handleCertificateToggleChange = (value, certificate) => {
+        const signUp = value ? {
+            ...this.state.signUp,
+            certificates: [...this.state.signUp.certificates, certificate],
+        } : {
+            ...this.state.signUp,
+            certificates: [...this.state.signUp.certificates.filter(cert => cert.certificateName !== certificate.certificateName)]
+        };
+        this.setState({signUp})
+    };
+
+    handleNewCertificateChangeText = newCertificate => {
+        const signUp = {
+            ...this.state.signUp,
+            newCertificate
+        };
+        this.setState({signUp})
+    };
+
+    handleAddNewCertificate = () => {
+        this.props.signUpFormInitData.certificates.push({
+            certificateName: this.state.signUp.newCertificate
+        });
+        const signUp = {
+            ...this.state.signUp,
+            certificates: [...this.state.signUp.certificates, {
+                certificateName: this.state.signUp.newCertificate
+            }],
+            newCertificate: ''
+        };
+        this.setState({signUp});
+        // this.shakeInput2 && this.shakeInput2.shake()
     };
 
     render() {
@@ -585,128 +656,34 @@ class ProducerAuthScreen extends Component {
                                                 // }
                                             />
 
-                                            <Card title="Certificates">
-                                                <View style={{width: '100%'}}>
-                                                    <ScrollView style={{
-                                                        height: SCREEN_HEIGHT * 0.3,
-                                                        width: '100%'
-                                                    }}>
-                                                        {this.props.signUpFormInitData.certificates.map(certificate => (
-                                                            <ListItem title={certificate.certificateName}
-                                                                      key={Math.random()} switch={{
-                                                                value: this.state.signUp.certificates.some(cert => cert.certificateName === certificate.certificateName),
-                                                                onValueChange: value => {
-                                                                    const signUp = value ? {
-                                                                        ...this.state.signUp,
-                                                                        certificates: [...this.state.signUp.certificates, certificate],
-                                                                    } : {
-                                                                        ...this.state.signUp,
-                                                                        certificates: [...this.state.signUp.certificates.filter(cert => cert.certificateName !== certificate.certificateName)]
-                                                                    };
-                                                                    this.setState({signUp})
-                                                                },
-                                                            }} bottomDivider/>
-                                                        ))}
-                                                    </ScrollView>
+                                            <Card title="Certificates" style={{
+                                                width: '100%'
+                                            }}>
+                                                <ProducerCertificateList
+                                                    heightPercent={0.3}
+                                                    certificates={this.props.signUpFormInitData.certificates}
+                                                    selectedCertificates={this.state.signUp.certificates}
+                                                    onCertificateToggleChange={(value, certificate) => this.handleCertificateToggleChange(value, certificate)}
+                                                    newCertificateValue={this.state.signUp.newCertificate}
+                                                    onNewCertificateChangeText={newCertificate => this.handleNewCertificateChangeText(newCertificate)}
+                                                    onAddNewCertificate={() => this.handleAddNewCertificate()}
+                                                />
 
-                                                    <Input
-                                                        style={{width: '100%'}}
-                                                        containerStyle={[styles.inputContainerStyle]}
-                                                        placeholder="Enter new Certificate"
-                                                        value={this.state.signUp.newCertificate}
-                                                        onChangeText={newCertificate => {
-                                                            const signUp = {
-                                                                ...this.state.signUp,
-                                                                newCertificate
-                                                            };
-                                                            this.setState({signUp})
-                                                        }}
-                                                        ref={ref1 => (this.shakeInput1 = ref1)}
-                                                        rightIcon={
-                                                            <Button
-                                                                title="Add"
-                                                                onPress={() => {
-                                                                    this.props.signUpFormInitData.certificates.push({
-                                                                        certificateName: this.state.signUp.newCertificate
-                                                                    });
-                                                                    const signUp = {
-                                                                        ...this.state.signUp,
-                                                                        certificates: [...this.state.signUp.certificates, {
-                                                                            certificateName: this.state.signUp.newCertificate
-                                                                        }],
-                                                                        newCertificate: ''
-                                                                    };
-                                                                    this.setState({signUp});
-                                                                    this.shakeInput1 && this.shakeInput1.shake()
-                                                                }}
-                                                            />
-                                                        }
-                                                        // errorMessage="Shake me on error !"
-                                                    />
-                                                </View>
                                             </Card>
 
-                                            <Card title="Default Actions">
-                                                <View style={{width: '100%'}}>
-                                                    <ScrollView style={{
-                                                        height: SCREEN_HEIGHT * 0.3,
-                                                        width: '100%'
-                                                    }}>
-                                                        {this.props.signUpFormInitData.actions.map(action => (
-                                                            <ListItem title={action.actionName}
-                                                                      key={Math.random()} switch={{
-                                                                value: this.state.signUp.actions.some(act => act.actionName === action.actionName),
-                                                                onValueChange: value => {
-                                                                    const signUp = value ? {
-                                                                        ...this.state.signUp,
-                                                                        actions: [...this.state.signUp.actions, action],
-                                                                    } : {
-                                                                        ...this.state.signUp,
-                                                                        actions: [...this.state.signUp.actions.filter(act => act.actionName !== action.actionName)]
-                                                                    };
-                                                                    this.setState({signUp})
-                                                                },
-                                                            }} bottomDivider/>
-                                                        ))}
-                                                    </ScrollView>
-
-                                                    <Input
-                                                        style={{width: '100%'}}
-                                                        containerStyle={[styles.inputContainerStyle]}
-                                                        placeholder="Enter new Action"
-                                                        value={this.state.signUp.newAction}
-                                                        onChangeText={newAction => {
-                                                            const signUp = {
-                                                                ...this.state.signUp,
-                                                                newAction
-                                                            };
-                                                            this.setState({signUp})
-                                                        }}
-                                                        ref={ref => (this.shakeInput2 = ref)}
-                                                        rightIcon={
-                                                            <Button
-                                                                title="Add"
-                                                                onPress={() => {
-                                                                    this.props.signUpFormInitData.actions.push({
-                                                                        actionName: this.state.signUp.newAction
-                                                                    });
-                                                                    const signUp = {
-                                                                        ...this.state.signUp,
-                                                                        actions: [...this.state.signUp.actions, {
-                                                                            actionName: this.state.signUp.newAction
-                                                                        }],
-                                                                        newAction: ''
-                                                                    };
-                                                                    this.setState({signUp});
-                                                                    this.shakeInput2 && this.shakeInput2.shake()
-                                                                }}
-                                                            />
-                                                        }
-                                                        // errorMessage="Shake me on error !"
-                                                    />
-                                                </View>
+                                            <Card title="Default Actions" style={{
+                                                width: '100%'
+                                            }}>
+                                                <ProducerActionList
+                                                    heightPercent={0.3}
+                                                    actions={this.props.signUpFormInitData.actions}
+                                                    selectedActions={this.state.signUp.actions}
+                                                    onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
+                                                    newActionValue={this.state.signUp.newAction}
+                                                    onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
+                                                    onAddNewAction={() => this.handleAddNewAction()}
+                                                />
                                             </Card>
-
                                         </View>
                                     )}
 
