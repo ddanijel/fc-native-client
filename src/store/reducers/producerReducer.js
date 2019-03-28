@@ -6,6 +6,7 @@ import {
     OPEN_ALERT_ON_SCAN_ACTION,
     CLOSE_ALERT_ON_SCAN_ACTION,
     SET_PRODUCER_SCANNED_PT_ACTION,
+    // INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION,
     // SCANNED_PT_ALREADY_SCANNED_ACTION,
     // SET_PT_FOR_MAP_VIEW_ACTION
 } from "../actions/actionTypes";
@@ -15,6 +16,15 @@ import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 
 const initialState = {
+    newProductTag: {
+        longitude: null,
+        latitude: null,
+        previousProductTagHashes: [],
+        productTagActions: [],
+        productTagProducer: {
+            producerId: null
+        }
+    },
     scannedProductTags: [],
     // ptForMapView: [],
     scannedProductTagAlreadyScanned: false,
@@ -49,7 +59,11 @@ const reducer = (state = initialState, action) => {
         case SET_PRODUCER_DATA_ACTION: {
             return {
                 ...state,
-                activeProducer: action.producerData
+                activeProducer: action.producerData,
+                newProductTag: {
+                    ...state.newProductTag,
+                    productTagActions: action.producerData.producerActions
+                }
             }
         }
         case OPEN_ALERT_ON_SCAN_ACTION: {
@@ -76,6 +90,15 @@ const reducer = (state = initialState, action) => {
                 scannedProductTagAlreadyScanned: false
             }
         }
+        // case INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION: {
+        //     return {
+        //         ...state,
+        //         newProductTag: {
+        //             ...state.newProductTag,
+        //             productTagActions: state.activeProducer.producerActions
+        //         }
+        //     }
+        // }
         // case SET_PT_FOR_MAP_VIEW_ACTION: {
         //     return {
         //         ...state,

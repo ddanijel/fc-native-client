@@ -1,5 +1,6 @@
 import {
     AUTH_SET_JWT_TOKEN_ACTION,
+    // INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION,
     LOG_IN_ACTION,
     SET_PRODUCER_DATA_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
@@ -165,3 +166,9 @@ export const authSetJwtToken = (token, producerId) => {
         producerId
     }
 };
+
+// export const initNewPtOnProducerScreenOpen = () => {
+//     return {
+//         type: INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION
+//     }
+// };

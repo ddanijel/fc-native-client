@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Location, Permissions} from 'expo';
 import {Icon} from "native-base";
 import {connect} from "react-redux";
 import {Button, Card, ListItem} from "react-native-elements";
 import Layout from "../../constants/Layout";
 import Common from "../../constants/Common";
-import {fetchProducerData} from "../../store/actions/producerActionCreators";
+import {fetchProducerData, fetchSignUpFormData} from "../../store/actions/producerActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import QrScannerModal from "../qrScanner/QrScannerModal";
 import {
@@ -13,8 +14,15 @@ import {
     openQrScannerModal
 } from "../../store/actions/uiActionCreators";
 import MapViewModal from "../map/MapViewModal";
+import ProducerActionList from "../../components/ProducerActionList";
 
 class ProducerScreen extends Component {
+    state = {
+        newProductTag: {
+            newActionValue: ''
+        }
+    };
+
     static navigationOptions = ({navigation}) => {
         return {
             headerLeft: (
@@ -45,7 +53,10 @@ class ProducerScreen extends Component {
         navigation.setParams({
             openSettingsScreen: this.openSettingsScreen,
             signOut: this.signOut
-        })
+        });
+        if (this.props.allActions.length === 0) {
+            this.props.onSignUpDataNotLoaded();
+        }
     }
 
     openSettingsScreen = () => {
@@ -78,6 +89,22 @@ class ProducerScreen extends Component {
 
     };
 
+    handleActionToggleChange = (value, action) => {
+        console.log('handleActionToggleChange')
+    };
+
+    handleNewActionChangeText = newAction => {
+        console.log('handleNewActionChangeText')
+    };
+
+    handleAddNewAction = () => {
+        console.log('handleAddNewAction')
+    };
+
+    onGenerateNewProductTagPressed = () => {
+
+    };
+
     render() {
         const {width, height} = Layout.window;
         return (
@@ -107,60 +134,25 @@ class ProducerScreen extends Component {
                 </Card>
 
                 <Button title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
+
+                <Card title="Product Tag Actions" style={{
+                    width: '100%'
+                }}>
+                    <ProducerActionList
+                        heightPercent={0.3}
+                        actions={this.props.allActions}
+                        selectedActions={this.props.newProductTagActions}
+                        onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
+                        newActionValue={this.state.newProductTag.newActionValue}
+                        onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
+                        onAddNewAction={() => this.handleAddNewAction()}
+                    />
+                </Card>
+
                 {this.props.isQrScannerModalOpen ? <QrScannerModal mode={Common.mode.PRODUCER}/> : null}
                 {this.props.isMapViewModalOpen ? <MapViewModal mode={Common.mode.PRODUCER}/> : null}
 
-                <Card style={{width: width}} title="PT Actions">
-                    <View style={{width: width}}>
-                        <ScrollView style={{
-                            height: height * 0.3,
-                            width: '100%'
-                        }}>
-                            {this.props.producerData ?
-                                this.props.producerData.producerActions.map(action => (
-                                    <ListItem title={action.actionName}
-                                              key={Math.random()} bottomDivider/>
-                                )) : null}
-                        </ScrollView>
-
-                        {/*<Input*/}
-                        {/*style={{width: '100%'}}*/}
-                        {/*containerStyle={[styles.inputContainerStyle]}*/}
-                        {/*placeholder="Enter new Action"*/}
-                        {/*value={this.state.signUp.newAction}*/}
-                        {/*onChangeText={newAction => {*/}
-                        {/*const signUp = {*/}
-                        {/*...this.state.signUp,*/}
-                        {/*newAction*/}
-                        {/*};*/}
-                        {/*this.setState({signUp})*/}
-                        {/*}}*/}
-                        {/*ref={ref => (this.shakeInput2 = ref)}*/}
-                        {/*rightIcon={*/}
-                        {/*<Button*/}
-                        {/*title="Add"*/}
-                        {/*onPress={() => {*/}
-                        {/*this.props.signUpFormInitData.actions.push({*/}
-                        {/*actionName: this.state.signUp.newAction*/}
-                        {/*});*/}
-                        {/*const signUp = {*/}
-                        {/*...this.state.signUp,*/}
-                        {/*actions: [...this.state.signUp.actions, {*/}
-                        {/*actionName: this.state.signUp.newAction*/}
-                        {/*}],*/}
-                        {/*newAction: ''*/}
-                        {/*};*/}
-                        {/*this.setState({signUp});*/}
-                        {/*this.shakeInput2 && this.shakeInput2.shake()*/}
-                        {/*}}*/}
-                        {/*/>*/}
-                        {/*}*/}
-                        {/*// errorMessage="Shake me on error !"*/}
-                        {/*/>*/}
-                    </View>
-                </Card>
-
-                <Button title="Generate Product Tag" onPress={() => console.log('generate pt')}/>
+                <Button title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
             </ScrollView>
         );
     }
@@ -176,18 +168,22 @@ const mapStateToProps = state => {
         // scannedProductTagValid: state.productTag.scannedProductTagValid,
         isAlertOnScanOpen: state.producer.isAlertOnScanOpen,
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
-        isMapViewModalOpen: state.ui.isMapViewModalOpen
+        isMapViewModalOpen: state.ui.isMapViewModalOpen,
+        allActions: state.producer.signUpFormInitData.actions,
+        newProductTagActions: state.producer.newProductTag.productTagActions
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        onSignUpDataNotLoaded: () => dispatch(fetchSignUpFormData()),
         onProducerScreenMounted: (token, producerId) => dispatch(fetchProducerData(token, producerId)),
         // closeAlertOnScan: () => dispatch(closeAlertOnScan()),
         onQrScannerModalOpen: () => dispatch(openQrScannerModal()),
         onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
         onMapViewModalOpen: () => dispatch(openMapViewModal()),
-        setPTForMapView: productTag => dispatch(setPTForMapView(productTag))
+        setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
+
     }
 };
 
