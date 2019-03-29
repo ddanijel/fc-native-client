@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import {Modal, Text, View, Alert, StyleSheet, TouchableOpacity} from 'react-native';
+import {Alert, Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from "react-redux";
 import Layout from "../../constants/Layout";
-import {closeQrScannerModal} from "../../store/actions/uiActionCreators";
+import {closeQrScannerModal, openMapViewModal} from "../../store/actions/uiActionCreators";
 // import {openAlertOnScan} from "../../store/actions/producerActionCreators";
 import {fetchPTByHash} from "../../store/actions/productTagActionCreators";
 
 import {BarCodeScanner, Permissions} from "expo";
 import Common from "../../constants/Common";
+import ptUpdateUtil from "../../util/ptUpdateUtil";
+import {setPTForMapView} from "../../store/actions/mapActionCreators";
 
 
 class QrScannerModal extends Component {
@@ -47,12 +49,12 @@ class QrScannerModal extends Component {
         } = (this.props.mode === Common.mode.PRODUCER) ?
             this.getProducerAlertData(nextProps) : this.getConsumerAlertData(nextProps);
 
-            Alert.alert(
-                alertTitle,
-                alertMessage,
-                alertButtons,
-                {cancelable: false},
-            )
+        Alert.alert(
+            alertTitle,
+            alertMessage,
+            alertButtons,
+            {cancelable: false},
+        )
 
 
     };
@@ -101,24 +103,40 @@ class QrScannerModal extends Component {
         } else if (nextProps.consumerScannedProductTagAlreadyScanned) {
             message = 'This product is already scanned.'
         }
+
+        const alertButtons = [
+            {
+                text: 'Scan again',
+                onPress: () => {
+                    this.onAlertClosed();
+                },
+                style: 'default',
+            },
+            {
+                text: 'Close', onPress: () => {
+                    this.onAlertClosed();
+                    this.props.onQrScannerModalClose();
+                }
+            }
+        ];
+
+        if (nextProps.scannedProductTagValid) {
+            const detailsButton =
+                {
+                    text: 'Show Details', onPress: () => {
+                        this.props.onQrScannerModalClose();
+                        this.props.setPTForMapView(ptUpdateUtil(this.props.currentScannedConsumerProductTag));
+                        this.props.onMapViewModalOpen();
+                    }
+                };
+            alertButtons.splice(1, 0, detailsButton);
+            alertButtons.join();
+        }
+
         return {
             alertTitle: title,
             alertMessage: message,
-            alertButtons: [
-                {
-                    text: 'Scan again',
-                    onPress: () => {
-                        this.onAlertClosed();
-                    },
-                    style: 'default',
-                },
-                {
-                    text: 'Close', onPress: () => {
-                        this.onAlertClosed();
-                        this.props.onQrScannerModalClose();
-                    }
-                }
-            ]
+            alertButtons
         };
     };
 
@@ -181,7 +199,9 @@ class QrScannerModal extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         fetchPTByHash: (hash, mode) => dispatch(fetchPTByHash(hash, mode)),
-        onQrScannerModalClose: () => dispatch(closeQrScannerModal())
+        onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
+        setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
+        onMapViewModalOpen: () => dispatch(openMapViewModal())
     }
 };
 
@@ -191,7 +211,8 @@ const mapStateToProps = state => {
         producerScannedProductTagAlreadyScanned: state.producer.scannedProductTagAlreadyScanned,
         consumerScannedProductTagAlreadyScanned: state.consumer.scannedProductTagAlreadyScanned,
         scannedProductTagValid: state.productTag.scannedProductTagValid,
-        numOfScannedProductTags: state.productTag.numOfScannedProductTags
+        numOfScannedProductTags: state.productTag.numOfScannedProductTags,
+        currentScannedConsumerProductTag: state.consumer.currentScannedConsumerProductTag
     };
 };
 

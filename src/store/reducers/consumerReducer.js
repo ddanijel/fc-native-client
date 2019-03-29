@@ -5,7 +5,8 @@ import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 const initialState = {
     scannedProductTags: [],
-    scannedProductTagAlreadyScanned: false
+    scannedProductTagAlreadyScanned: false,
+    currentScannedConsumerProductTag: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +20,8 @@ const reducer = (state = initialState, action) => {
             } : {
                 ...state,
                 scannedProductTags: [...state.scannedProductTags, updatedProductTag],
-                scannedProductTagAlreadyScanned: false
+                scannedProductTagAlreadyScanned: false,
+                currentScannedConsumerProductTag: updatedProductTag
             };
         case PT_ALREADY_SCANNED_ACTION:
             return {

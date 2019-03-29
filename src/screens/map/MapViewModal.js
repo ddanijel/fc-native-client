@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import {Alert, Dimensions, Modal, View, TouchableOpacity, Text, StyleSheet} from "react-native";
+import {Alert, Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {closeMapViewModal} from "../../store/actions/uiActionCreators";
 import {connect} from "react-redux";
 import {MapView} from "expo";
 import CustomMarker from "../../components/map/CustomMarker";
 import ProductTagDetails from "../../components/productTag/ProductTagDetails";
 
+import Colors from '../../constants/Colors'
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 // const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
 
 class MapViewModal extends Component {
@@ -20,6 +23,9 @@ class MapViewModal extends Component {
     // }
 
     render() {
+
+        const polylines = [];
+
         return (
             <Modal
                 animationType="slide"
@@ -36,6 +42,25 @@ class MapViewModal extends Component {
                             latitude: pt.latitude,
                             longitude: pt.longitude,
                         };
+
+                        pt.previousProductTagHashes.forEach(previousProductTagHash => {
+                            this.props.ptChain.forEach(previousProductTag => {
+                                if (previousProductTagHash === previousProductTag.productTagHash) {
+                                    const previousPtCoordinates = {
+                                        latitude: previousProductTag.latitude,
+                                        longitude: previousProductTag.longitude
+                                    };
+                                    polylines.push(
+                                        <MapView.Polyline
+                                            key={Math.random()}
+                                            coordinates={[coords, previousPtCoordinates]}
+                                            strokeWidth={5}
+                                            strokeColor= {Colors.red}
+                                        />)
+                                }
+                            })
+                        });
+
                         const metadata = `Status: ${pt.productTagId}`;
                         // const markerScannedPTHashRef = (this.props.ptHash === pt.productTagHash) ?
                         //     SCANNED_HASH_MARKER_REF : null;
@@ -64,7 +89,10 @@ class MapViewModal extends Component {
                             </MapView.Marker>
                         );
                     })}
+                    {polylines}
                 </MapView>
+
+
                 <TouchableOpacity
                     style={styles.mapButton}
                     onPress={() => this.props.onModalClose()}
@@ -98,7 +126,7 @@ const styles = StyleSheet.create({
     mapButton: {
         width: 120,
         height: 40,
-        borderRadius: 85/2,
+        borderRadius: 85 / 2,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 10,
