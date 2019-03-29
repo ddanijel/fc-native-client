@@ -7,6 +7,8 @@ import {Icon} from "native-base";
 import Drawer from 'react-native-drawer'
 import HomeScreenDrawer from './HomescreenDrawer';
 
+import Colors from '../../constants/Colors';
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -85,7 +87,7 @@ class HomeScreen extends React.Component {
                                 loading={false}
                                 loadingProps={{size: 'small', color: 'white'}}
                                 buttonStyle={{
-                                    backgroundColor: 'rgba(111, 202, 186, 1)',
+                                    backgroundColor: Colors.tintColor,
                                     borderRadius: 5,
                                 }}
                                 titleStyle={{fontWeight: 'bold', fontSize: 23}}
@@ -98,7 +100,7 @@ class HomeScreen extends React.Component {
                                 loading={false}
                                 loadingProps={{size: 'small', color: 'white'}}
                                 buttonStyle={{
-                                    backgroundColor: 'rgba(111, 202, 186, 1)',
+                                    backgroundColor: Colors.tintColor,
                                     borderRadius: 5,
                                 }}
                                 titleStyle={{fontWeight: 'bold', fontSize: 23}}

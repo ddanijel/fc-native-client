@@ -76,11 +76,14 @@ class ConsumerScreen extends React.Component {
                     <QrScannerModal mode={Common.mode.CONSUMER}/> : null}
                 {this.props.isMapViewModalOpen ?
                     <MapViewModal mode={Common.mode.CONSUMER}/> : null}
-                <Button
-                    style={{
-                        // top: 10
-                    }}
-                    title="Scan Product"
+                <Button activeOpacity={0.7} style={{
+                    ...styles.buttonStyle,
+                    width: width * 0.8,
+                    marginTop: 15,
+                    marginBottom: 15,
+                    alignSelf: 'center'
+                }}
+                        title="Scan Product"
                     onPress={() =>  this.props.onQrScannerModalOpen()}/>
             </ImageBackground>
         );
@@ -118,6 +121,13 @@ const styles = StyleSheet.create({
         height: SCREEN_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    buttonStyle: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 24,
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
     },
 });
 
