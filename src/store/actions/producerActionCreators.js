@@ -167,6 +167,30 @@ export const authSetJwtToken = (token, producerId) => {
     }
 };
 
+
+export const generateNewProductTag = (token, newProductTagData) => {
+    console.log('generating new pt: ', JSON.stringify(newProductTagData));
+    return dispatch => {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v1/productTags`, {
+            method: 'POST',
+            body: JSON.stringify(newProductTagData),
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .catch(error => {
+                console.error("Error: ", error);
+                alert("Error occurred while creating a new Product Tag, please try again!");
+            })
+            // .then(result => JSON.parse(result))
+            .then(jsonResult => {
+                console.log('jsonResult: ', jsonResult);
+                // alert(jsonResult);
+            });
+    };
+};
+
 // export const initNewPtOnProducerScreenOpen = () => {
 //     return {
 //         type: INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION

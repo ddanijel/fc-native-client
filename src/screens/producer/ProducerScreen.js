@@ -1,12 +1,31 @@
 import React, {Component} from 'react';
-import {KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {Location, Permissions} from 'expo';
+import {
+    KeyboardAvoidingView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+    Platform,
+    Alert
+} from "react-native";
+import {
+    Location,
+    Permissions
+} from 'expo';
 import {Icon} from "native-base";
 import {connect} from "react-redux";
-import {Button, Card, ListItem} from "react-native-elements";
+import {
+    Button,
+    Card,
+    ListItem
+} from "react-native-elements";
 import Layout from "../../constants/Layout";
 import Common from "../../constants/Common";
-import {fetchProducerData, fetchSignUpFormData} from "../../store/actions/producerActionCreators";
+import {
+    fetchProducerData,
+    fetchSignUpFormData, generateNewProductTag
+} from "../../store/actions/producerActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import QrScannerModal from "../qrScanner/QrScannerModal";
 import {
@@ -18,6 +37,9 @@ import ProducerActionList from "../../components/ProducerActionList";
 
 class ProducerScreen extends Component {
     state = {
+        componentInitMount: true,
+        locationErrorMessage: '',
+        newActionValue: '',
         newProductTag: {
             longitude: null,
             latitude: null,
@@ -25,8 +47,7 @@ class ProducerScreen extends Component {
             productTagActions: [],
             productTagProducer: {
                 producerId: null
-            },
-            newActionValue: ''
+            }
         }
     };
 
@@ -67,12 +88,16 @@ class ProducerScreen extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.producerData) {
+        if (nextProps.producerData && this.state.componentInitMount) {
             this.setState({
                 ...this.state,
+                componentInitMount: false,
                 newProductTag: {
                     ...this.state.newProductTag,
-                    productTagActions: nextProps.producerData.producerActions
+                    productTagActions: nextProps.producerData.producerActions,
+                    productTagProducer: {
+                        producerId: nextProps.producerData.producerId
+                    }
                 }
             })
         }
@@ -119,29 +144,91 @@ class ProducerScreen extends Component {
         this.setState({newProductTag});
     };
 
-    handleNewActionChangeText = newAction => {
-        const newProductTag = {
-            ...this.state.newProductTag,
-            newActionValue: newAction
-        };
-        this.setState({newProductTag})
+    handleNewActionChangeText = newActionValue => {
+        this.setState({newActionValue})
     };
 
     handleAddNewAction = () => {
         const newAction = {
-            actionName: this.state.newProductTag.newActionValue
+            actionName: this.state.newActionValue
         };
         this.props.allActions.push(newAction);
         const newProductTag = {
             ...this.state.newProductTag,
             productTagActions: [...this.state.newProductTag.productTagActions, newAction],
-            newActionValue: '',
         };
-        this.setState({newProductTag});
+        this.setState({newProductTag, newActionValue: ''});
     };
 
-    onGenerateNewProductTagPressed = () => {
-        console.log('generating new product tag: ')
+    _getLocationAsync = async () => {
+        if (Platform.OS === 'android' && !Constants.isDevice) {
+            this.setState({
+                errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+            });
+        } else {
+            let {status} = await Permissions.askAsync(Permissions.LOCATION);
+            if (status !== 'granted') {
+                this.setState({
+                    locationErrorMessage: 'Permission to access location was denied!'
+                });
+            }
+
+            const location = await Location.getCurrentPositionAsync({});
+            this.setState({
+                ...this.state,
+                newProductTag: {
+                    ...this.state.newProductTag,
+                    longitude: location.coords.longitude,
+                    latitude: location.coords.latitude
+                }
+            });
+        }
+
+    };
+
+    showNoPTAlert = () => {
+        Alert.alert(
+            'Warning',
+            'You have not scanned any product tag, are you sure it is the first product tag in the chain?',
+            [
+                {
+                    text: 'Yes, create Product Tag', onPress: () => {
+                        const productTag = {
+                            ...this.state.newProductTag,
+                            previousProductTagHashes: [Common.GENESIS_PRODUCT_TAG_HASH_VALUE]
+                        };
+                        this.props.generateNewProductTag(this.props.jwtToken, productTag);
+                    }
+                },
+                {text: 'Scan Product', onPress: () => this.props.onQrScannerModalOpen()},
+                {text: 'Close', onPress: () => console.log('Close Pressed')},
+            ],
+            {cancelable: false}
+        )
+    };
+
+    showNoActionsAlert = () => {
+        Alert.alert(
+            'Warning',
+            'You have not selected any action for this product tag!',
+            [
+                {text: 'Close', onPress: () => console.log('Close Pressed')},
+            ],
+            {cancelable: false}
+        )
+    };
+
+    onGenerateNewProductTagPressed = async () => {
+        await this._getLocationAsync();
+        if (this.props.scannedProductTags.length === 0) {
+            this.showNoPTAlert();
+        } else if (this.state.newProductTag.productTagActions.length === 0) {
+            this.showNoActionsAlert();
+        } else {
+            const previousProductTagHashes = this.props.scannedProductTags.map(productTag => productTag.hash);
+            await this.setState({newProductTag: {...this.state.newProductTag, previousProductTagHashes}});
+            this.props.generateNewProductTag(this.props.jwtToken, this.state.newProductTag);
+        }
     };
 
     render() {
@@ -149,6 +236,10 @@ class ProducerScreen extends Component {
         return (
             <KeyboardAvoidingView
                 behavior="position"
+                style={{
+                    // alignItems: 'center',
+                    // margin: -20
+                }}
             >
                 <ScrollView>
                     {/*<Button title="Show me more of the app" onPress={this.openSettingsScreen}/>*/}
@@ -175,7 +266,12 @@ class ProducerScreen extends Component {
                         </View>
                     </Card>
 
-                    <Button title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
+                    <Button activeOpacity={0.7} style={{
+                        ...styles.buttonStyle,
+                        width: width * 0.8,
+                        marginTop: 15,
+                        alignSelf: 'center'
+                    }} title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
 
                     <Card title="Product Tag Actions" style={{
                         width: '100%'
@@ -185,7 +281,7 @@ class ProducerScreen extends Component {
                             actions={this.props.allActions}
                             selectedActions={this.state.newProductTag.productTagActions}
                             onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
-                            newActionValue={this.state.newProductTag.newActionValue}
+                            newActionValue={this.state.newActionValue}
                             onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
                             onAddNewAction={() => this.handleAddNewAction()}
                         />
@@ -194,7 +290,13 @@ class ProducerScreen extends Component {
                     {this.props.isQrScannerModalOpen ? <QrScannerModal mode={Common.mode.PRODUCER}/> : null}
                     {this.props.isMapViewModalOpen ? <MapViewModal mode={Common.mode.PRODUCER}/> : null}
 
-                    <Button title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
+                    <Button activeOpacity={0.7} style={{
+                        ...styles.buttonStyle,
+                        width: width * 0.8,
+                        marginTop: 15,
+                        marginBottom: 15,
+                        alignSelf: 'center'
+                    }} title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
                 </ScrollView>
             </KeyboardAvoidingView>
         );
@@ -226,6 +328,7 @@ const mapDispatchToProps = dispatch => {
         onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
         onMapViewModalOpen: () => dispatch(openMapViewModal()),
         setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
+        generateNewProductTag: (jwtToken, productTagData) => dispatch(generateNewProductTag(jwtToken, productTagData))
     }
 };
 
@@ -239,5 +342,13 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         marginRight: 10
-    }
+    },
+    buttonStyle: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 24,
+        fontFamily: 'light',
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+    },
 });
