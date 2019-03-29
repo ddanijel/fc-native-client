@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Location, Permissions} from 'expo';
 import {Icon} from "native-base";
 import {connect} from "react-redux";
@@ -108,52 +108,56 @@ class ProducerScreen extends Component {
     render() {
         const {width, height} = Layout.window;
         return (
-            <ScrollView>
-                {/*<Button title="Show me more of the app" onPress={this.openSettingsScreen}/>*/}
-                {/*<Button title="Actually, sign me out :)" onPress={this.signOut}/>*/}
+            <KeyboardAvoidingView
+                behavior="position"
+            >
+                <ScrollView>
+                    {/*<Button title="Show me more of the app" onPress={this.openSettingsScreen}/>*/}
+                    {/*<Button title="Actually, sign me out :)" onPress={this.signOut}/>*/}
 
 
-                <Card style={{width: width}} title="Scanned Products">
-                    <View>
-                        <ScrollView style={{
-                            height: height * 0.3,
-                            // width: '100%'
-                        }}>
-                            {this.props.scannedProductTags.map(pt => {
-                                const hash = pt.hash;
-                                return <ListItem key={hash}
-                                                 title={pt.ptDetails.dateTime}
-                                                 buttonGroup={{
-                                                     buttons: ['Details', 'Remove'],
-                                                     onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
-                                                 }}
-                                />
-                            })}
-                        </ScrollView>
-                    </View>
-                </Card>
+                    <Card style={{width: width}} title="Scanned Products">
+                        <View>
+                            <ScrollView style={{
+                                height: height * 0.3,
+                                // width: '100%'
+                            }}>
+                                {this.props.scannedProductTags.map(pt => {
+                                    const hash = pt.hash;
+                                    return <ListItem key={hash}
+                                                     title={pt.ptDetails.dateTime}
+                                                     buttonGroup={{
+                                                         buttons: ['Details', 'Remove'],
+                                                         onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
+                                                     }}
+                                    />
+                                })}
+                            </ScrollView>
+                        </View>
+                    </Card>
 
-                <Button title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
+                    <Button title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
 
-                <Card title="Product Tag Actions" style={{
-                    width: '100%'
-                }}>
-                    <ProducerActionList
-                        heightPercent={0.3}
-                        actions={this.props.allActions}
-                        selectedActions={this.props.newProductTagActions}
-                        onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
-                        newActionValue={this.state.newProductTag.newActionValue}
-                        onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
-                        onAddNewAction={() => this.handleAddNewAction()}
-                    />
-                </Card>
+                    <Card title="Product Tag Actions" style={{
+                        width: '100%'
+                    }}>
+                        <ProducerActionList
+                            heightPercent={0.3}
+                            actions={this.props.allActions}
+                            selectedActions={this.props.newProductTagActions}
+                            onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
+                            newActionValue={this.state.newProductTag.newActionValue}
+                            onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
+                            onAddNewAction={() => this.handleAddNewAction()}
+                        />
+                    </Card>
 
-                {this.props.isQrScannerModalOpen ? <QrScannerModal mode={Common.mode.PRODUCER}/> : null}
-                {this.props.isMapViewModalOpen ? <MapViewModal mode={Common.mode.PRODUCER}/> : null}
+                    {this.props.isQrScannerModalOpen ? <QrScannerModal mode={Common.mode.PRODUCER}/> : null}
+                    {this.props.isMapViewModalOpen ? <MapViewModal mode={Common.mode.PRODUCER}/> : null}
 
-                <Button title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
-            </ScrollView>
+                    <Button title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
+                </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 
