@@ -19,6 +19,13 @@ import ProducerActionList from "../../components/ProducerActionList";
 class ProducerScreen extends Component {
     state = {
         newProductTag: {
+            longitude: null,
+            latitude: null,
+            previousProductTagHashes: [],
+            productTagActions: [],
+            productTagProducer: {
+                producerId: null
+            },
             newActionValue: ''
         }
     };
@@ -59,6 +66,18 @@ class ProducerScreen extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.producerData) {
+            this.setState({
+                ...this.state,
+                newProductTag: {
+                    ...this.state.newProductTag,
+                    productTagActions: nextProps.producerData.producerActions
+                }
+            })
+        }
+    }
+
     openSettingsScreen = () => {
         this.props.navigation.navigate('ProducerSettings');
     };
@@ -90,19 +109,39 @@ class ProducerScreen extends Component {
     };
 
     handleActionToggleChange = (value, action) => {
-        console.log('handleActionToggleChange')
+        const newProductTag = value ? {
+            ...this.state.newProductTag,
+            productTagActions: [...this.state.newProductTag.productTagActions, action]
+        } : {
+            ...this.state.newProductTag,
+            productTagActions: [...this.state.newProductTag.productTagActions.filter(act => act.actionName !== action.actionName)]
+        };
+        this.setState({newProductTag});
     };
 
     handleNewActionChangeText = newAction => {
-        console.log('handleNewActionChangeText')
+        const newProductTag = {
+            ...this.state.newProductTag,
+            newActionValue: newAction
+        };
+        this.setState({newProductTag})
     };
 
     handleAddNewAction = () => {
-        console.log('handleAddNewAction')
+        const newAction = {
+            actionName: this.state.newProductTag.newActionValue
+        };
+        this.props.allActions.push(newAction);
+        const newProductTag = {
+            ...this.state.newProductTag,
+            productTagActions: [...this.state.newProductTag.productTagActions, newAction],
+            newActionValue: '',
+        };
+        this.setState({newProductTag});
     };
 
     onGenerateNewProductTagPressed = () => {
-
+        console.log('generating new product tag: ')
     };
 
     render() {
@@ -144,7 +183,7 @@ class ProducerScreen extends Component {
                         <ProducerActionList
                             heightPercent={0.3}
                             actions={this.props.allActions}
-                            selectedActions={this.props.newProductTagActions}
+                            selectedActions={this.state.newProductTag.productTagActions}
                             onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
                             newActionValue={this.state.newProductTag.newActionValue}
                             onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
@@ -174,7 +213,7 @@ const mapStateToProps = state => {
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
         allActions: state.producer.signUpFormInitData.actions,
-        newProductTagActions: state.producer.newProductTag.productTagActions
+        // newProductTagActions: state.producer.newProductTag.productTagActions
     };
 };
 
@@ -187,7 +226,6 @@ const mapDispatchToProps = dispatch => {
         onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
         onMapViewModalOpen: () => dispatch(openMapViewModal()),
         setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
-
     }
 };
 

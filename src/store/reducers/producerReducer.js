@@ -16,15 +16,15 @@ import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 
 const initialState = {
-    newProductTag: {
-        longitude: null,
-        latitude: null,
-        previousProductTagHashes: [],
-        productTagActions: [],
-        productTagProducer: {
-            producerId: null
-        }
-    },
+    // newProductTag: {
+    //     longitude: null,
+    //     latitude: null,
+    //     previousProductTagHashes: [],
+    //     productTagActions: [],
+    //     productTagProducer: {
+    //         producerId: null
+    //     }
+    // },
     scannedProductTags: [],
     // ptForMapView: [],
     scannedProductTagAlreadyScanned: false,
@@ -60,10 +60,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeProducer: action.producerData,
-                newProductTag: {
-                    ...state.newProductTag,
-                    productTagActions: action.producerData.producerActions
-                }
+                // newProductTag: {
+                //     ...state.newProductTag,
+                //     productTagActions: action.producerData.producerActions
+                // }
             }
         }
         case OPEN_ALERT_ON_SCAN_ACTION: {
