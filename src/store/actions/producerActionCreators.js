@@ -4,7 +4,9 @@ import {
     LOG_IN_ACTION,
     SET_PRODUCER_DATA_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-    SIGN_UP_ACTION
+    SIGN_UP_ACTION,
+    ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
+    ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION
 } from "./actionTypes";
 
 import Common from '../../constants/Common';
@@ -171,7 +173,7 @@ export const authSetJwtToken = (token, producerId) => {
 export const generateNewProductTag = (token, newProductTagData) => {
     console.log('generating new pt: ', JSON.stringify(newProductTagData));
     return dispatch => {
-        fetch(`${Common.BACKEND_BASE_URL}/api/v1/productTags`, {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v2/productTags`, {
             method: 'POST',
             body: JSON.stringify(newProductTagData),
             headers: {
@@ -181,14 +183,31 @@ export const generateNewProductTag = (token, newProductTagData) => {
         })
             .catch(error => {
                 console.error("Error: ", error);
-                alert("Error occurred while creating a new Product Tag, please try again!");
+                Alert.alert("Error occurred while creating a new Product Tag, please try again!");
             })
-            // .then(result => JSON.parse(result))
+            .then(result => result.json())
             .then(jsonResult => {
-                console.log('jsonResult: ', jsonResult);
-                // alert(jsonResult);
+                if (jsonResult.error) {
+                    dispatch(onCreateProductTagError(jsonResult));
+                } else {
+                    dispatch(onCreateProductTagSuccess(jsonResult));
+                }
             });
     };
+};
+
+export const onCreateProductTagError = response => {
+    return {
+        type: ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
+        response
+    }
+};
+
+export const onCreateProductTagSuccess = productTag => {
+    return {
+        type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
+        productTag
+    }
 };
 
 // export const initNewPtOnProducerScreenOpen = () => {

@@ -35,6 +35,8 @@ import {
 import MapViewModal from "../map/MapViewModal";
 import ProducerActionList from "../../components/ProducerActionList";
 
+import ptUpdateUtil from '../../util/ptUpdateUtil';
+
 class ProducerScreen extends Component {
     state = {
         componentInitMount: true,
@@ -100,6 +102,13 @@ class ProducerScreen extends Component {
                     }
                 }
             })
+        }
+        if (this.props.numberOfGeneratedProductTags < nextProps.numberOfGeneratedProductTags) {
+            if (nextProps.productTagSuccessfullyGenerated) {
+                this.showAlertOnSuccessGeneratedProductTag(nextProps);
+            } else {
+                this.showAlertOnErrorGeneratedProductTag(nextProps);
+            }
         }
     }
 
@@ -231,6 +240,37 @@ class ProducerScreen extends Component {
         }
     };
 
+    showAlertOnErrorGeneratedProductTag = nextProps => {
+        Alert.alert(
+            'Error',
+            'An error occurred while generating the product tag!',
+            [
+                {text: 'Try again', onPress: () => this.onGenerateNewProductTagPressed()},
+                {text: 'Close', onPress: () => console.log('Close Pressed')},
+            ],
+            {cancelable: false}
+        )
+    };
+
+    showAlertOnSuccessGeneratedProductTag = nextProps => {
+        console.log('generated pt nextProps: ', nextProps);
+        Alert.alert(
+            'Success',
+            'Product Tag successfully generated!',
+            [
+                {text: 'Pring QR Code', onPress: () => console.log('pring qr code pressed')},
+                {
+                    text: 'Show Details', onPress: () => {
+                        this.props.setPTForMapView(ptUpdateUtil(nextProps.generatedProductTag));
+                        this.props.onMapViewModalOpen();
+                    }
+                },
+                {text: 'Close', onPress: () => console.log('Close Pressed')},
+            ],
+            {cancelable: false}
+        )
+    };
+
     render() {
         const {width, height} = Layout.window;
         return (
@@ -315,6 +355,9 @@ const mapStateToProps = state => {
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
         allActions: state.producer.signUpFormInitData.actions,
+        numberOfGeneratedProductTags: state.producer.numberOfGeneratedProductTags,
+        productTagSuccessfullyGenerated: state.producer.productTagSuccessfullyGenerated,
+        generatedProductTag: state.producer.generatedProductTag
         // newProductTagActions: state.producer.newProductTag.productTagActions
     };
 };
