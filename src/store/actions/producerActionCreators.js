@@ -14,6 +14,7 @@ import Common from '../../constants/Common';
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
 
 import web3 from '../../ethereum/web3';
+import FoodChain from '../../ethereum/foodchain';
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
@@ -191,7 +192,7 @@ export const generateNewProductTag = (token, newProductTagData) => {
                 if (jsonResult.error || jsonResult.errors) {
                     dispatch(onCreateProductTagError(jsonResult));
                 } else {
-                    dispatch(onCreateProductTagSuccess(jsonResult));
+                    dispatch(onCreateProductTagSuccessFromServer(jsonResult));
                 }
             });
     };
@@ -204,11 +205,31 @@ export const onCreateProductTagError = response => {
     }
 };
 
-export const onCreateProductTagSuccess = productTag => {
-    return {
-        type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
-        productTag
-    }
+export const onCreateProductTagSuccessFromServer = async productTag => {
+
+    // console.log('sending hash: ', productTag.hash);
+    const foodChain = await FoodChain.methods.isHashValid('a').call();
+
+    console.log('result from the call: ', foodChain);
+
+    // return dispatch => {
+
+        // if(foodChain !== undefined) {
+        //     console.log('food chain contract instance: ', foodChain);
+        // }
+        // foodChain.methods.addProductTagHash(productTag.hash)
+        //     .send({from: Common.FOODCHAIN_ACCOUNT_PRIVATEKEY})
+        //     .catch(error => {
+        //         console.log('error from sending the transaction: ', error)
+        //     })
+        //     .then(result => {
+        //         console.log('result from sending the transaction: ', result);
+        //     })
+    // }
+    // return {
+    //     type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
+    //     productTag
+    // }
 };
 
 // export const initNewPtOnProducerScreenOpen = () => {
