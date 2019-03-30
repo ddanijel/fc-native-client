@@ -13,6 +13,7 @@ import Common from '../../constants/Common';
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
 
+import web3 from '../../ethereum/web3';
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
