@@ -187,7 +187,7 @@ export const generateNewProductTag = (token, newProductTagData) => {
             })
             .then(result => result.json())
             .then(jsonResult => {
-                if (jsonResult.error) {
+                if (jsonResult.error || jsonResult.errors) {
                     dispatch(onCreateProductTagError(jsonResult));
                 } else {
                     dispatch(onCreateProductTagSuccess(jsonResult));
