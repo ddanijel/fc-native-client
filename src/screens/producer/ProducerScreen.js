@@ -290,7 +290,7 @@ class ProducerScreen extends Component {
                             width: width * 0.8,
                             marginTop: 15,
                             alignSelf: 'center'
-                        }} title="All My Products" onPress={() => this.props.onQrScannerModalOpen()}/>
+                        }} title="All My Products" onPress={() => this.props.navigation.navigate('AllProductsScreen')}/>
 
 
                         <Card style={{width: width}} title="Scanned Products">
