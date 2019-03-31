@@ -249,7 +249,8 @@ class ProducerScreen extends Component {
     };
 
     showAlertOnSuccessGeneratedProductTag = nextProps => {
-        console.log('generated pt nextProps: ', nextProps);
+        // console.log('generated pt nextProps: ', nextProps);
+        console.log('showAlertOnSuccessGeneratedProductTag called: ');
         Alert.alert(
             'Success',
             'Product Tag successfully generated!',
@@ -282,6 +283,14 @@ class ProducerScreen extends Component {
                     <ScrollView>
                         {/*<Button title="Show me more of the app" onPress={this.openSettingsScreen}/>*/}
                         {/*<Button title="Actually, sign me out :)" onPress={this.signOut}/>*/}
+
+
+                        <Button activeOpacity={0.7} style={{
+                            ...styles.buttonStyle,
+                            width: width * 0.8,
+                            marginTop: 15,
+                            alignSelf: 'center'
+                        }} title="All My Products" onPress={() => this.props.onQrScannerModalOpen()}/>
 
 
                         <Card style={{width: width}} title="Scanned Products">
@@ -334,7 +343,12 @@ class ProducerScreen extends Component {
                             marginTop: 15,
                             marginBottom: 15,
                             alignSelf: 'center'
-                        }} title="Generate Product Tag" onPress={() => this.onGenerateNewProductTagPressed()}/>
+                        }}
+                                title="Generate Product Tag"
+                                onPress={() => this.onGenerateNewProductTagPressed()}
+                                loading={this.props.isLoading}
+                                disabled={this.props.isLoading}
+                        />
                     </ScrollView>
                 </KeyboardAvoidingView>
             </ImageBackground>
@@ -353,6 +367,7 @@ const mapStateToProps = state => {
         isAlertOnScanOpen: state.producer.isAlertOnScanOpen,
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
+        isLoading: state.ui.isLoading,
         allActions: state.producer.signUpFormInitData.actions,
         numberOfGeneratedProductTags: state.producer.numberOfGeneratedProductTags,
         productTagSuccessfullyGenerated: state.producer.productTagSuccessfullyGenerated,

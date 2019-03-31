@@ -1,20 +1,18 @@
 import {
     AUTH_SET_JWT_TOKEN_ACTION,
-    // INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION,
     LOG_IN_ACTION,
+    ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
+    ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
     SET_PRODUCER_DATA_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-    SIGN_UP_ACTION,
-    ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
-    ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION
+    SIGN_UP_ACTION
 } from "./actionTypes";
 
 import Common from '../../constants/Common';
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
-
-import web3 from '../../ethereum/web3';
 import FoodChain from '../../ethereum/foodchain';
+import hdWalletProvider from "../../ethereum/hdWalletProvider";
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
@@ -175,6 +173,7 @@ export const authSetJwtToken = (token, producerId) => {
 export const generateNewProductTag = (token, newProductTagData) => {
     console.log('generating new pt: ', JSON.stringify(newProductTagData));
     return dispatch => {
+        dispatch(uiStartLoading());
         fetch(`${Common.BACKEND_BASE_URL}/api/v2/productTags`, {
             method: 'POST',
             body: JSON.stringify(newProductTagData),
@@ -186,13 +185,14 @@ export const generateNewProductTag = (token, newProductTagData) => {
             .catch(error => {
                 console.error("Error: ", error);
                 Alert.alert("Error occurred while creating a new Product Tag, please try again!");
+                dispatch(uiStopLoading());
             })
             .then(result => result.json())
             .then(jsonResult => {
                 if (jsonResult.error || jsonResult.errors) {
                     dispatch(onCreateProductTagError(jsonResult));
                 } else {
-                    dispatch(onCreateProductTagSuccessFromServer(jsonResult));
+                    onCreateProductTagSuccessFromServer(dispatch, jsonResult);
                 }
             });
     };
@@ -205,31 +205,38 @@ export const onCreateProductTagError = response => {
     }
 };
 
-export const onCreateProductTagSuccessFromServer = async productTag => {
+export const onCreateProductTagSuccessFromServer = (dispatch, productTag) => {
+    let confirmed = false;
+    const accounts = hdWalletProvider.addresses;
+    FoodChain.methods.addProductTagHash(productTag.hash)
+        .send({
+            from: accounts[0]
+        })
+        .on('error', (error) => {
+            dispatch(uiStopLoading());
+            console.error('error: ', error)
+        })
+        // .on('transactionHash', (transactionHash) => {
+        //     console.log('transactionHash: ', transactionHash)
+        // })
+        .on('confirmation', confirmationNumber => {
+            // no idea why this is called several times so had to put a flag to call onSuccess only once...
+            console.log('confirmationNumber: ', confirmationNumber);
+            if (!confirmed) {
+                confirmed = true;
+                dispatch(uiStopLoading());
+                dispatch(onSuccessfulETHTransaction(productTag));
+            }
+        });
+};
 
-    // console.log('sending hash: ', productTag.hash);
-    const foodChain = await FoodChain.methods.isHashValid('a').call();
 
-    console.log('result from the call: ', foodChain);
-
-    // return dispatch => {
-
-        // if(foodChain !== undefined) {
-        //     console.log('food chain contract instance: ', foodChain);
-        // }
-        // foodChain.methods.addProductTagHash(productTag.hash)
-        //     .send({from: Common.FOODCHAIN_ACCOUNT_PRIVATEKEY})
-        //     .catch(error => {
-        //         console.log('error from sending the transaction: ', error)
-        //     })
-        //     .then(result => {
-        //         console.log('result from sending the transaction: ', result);
-        //     })
-    // }
-    // return {
-    //     type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
-    //     productTag
-    // }
+export const onSuccessfulETHTransaction = productTag => {
+    console.log('onSuccessfulETHTransaction called: ', productTag.hash);
+    return {
+        type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
+        productTag
+    }
 };
 
 // export const initNewPtOnProducerScreenOpen = () => {
@@ -237,3 +244,5 @@ export const onCreateProductTagSuccessFromServer = async productTag => {
 //         type: INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION
 //     }
 // };
+
+

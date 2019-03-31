@@ -1,4 +1,4 @@
 import Web3 from 'web3';
-import Common from '../constants/Common';
+import hdWalletProvider from './hdWalletProvider';
 
-export default new Web3(new Web3.providers.HttpProvider(Common.FOODCHAIN_WEB3J_RINKEBY_HTTPSERVICE_URL));
+export default new Web3(hdWalletProvider);
