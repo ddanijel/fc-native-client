@@ -214,7 +214,7 @@ export const onCreateProductTagSuccessFromServer = (dispatch, productTag) => {
         })
         .on('error', (error) => {
             dispatch(uiStopLoading());
-            console.error('error: ', error)
+            console.log('error: ', error)
         })
         // .on('transactionHash', (transactionHash) => {
         //     console.log('transactionHash: ', transactionHash)

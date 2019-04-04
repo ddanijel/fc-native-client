@@ -4,6 +4,6 @@ import rinkebyConfig from './rinkebyConfig';
 
 
 export default new HDWalletProvider(
-    rinkebyConfig.accountPrivatekey,
+    rinkebyConfig.ethWalletMnemonic,
     rinkebyConfig.rinkebyAccessNode
 );
