@@ -4,6 +4,7 @@ import {
     ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
     ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
     SET_PRODUCER_DATA_ACTION,
+    SET_PRODUCERS_PRODUCT_TAGS_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
     SIGN_UP_ACTION
 } from "./actionTypes";
@@ -169,7 +170,6 @@ export const authSetJwtToken = (token, producerId) => {
 
 
 export const generateNewProductTag = (token, newProductTagData) => {
-    console.log('generating new pt: ', JSON.stringify(newProductTagData));
     return dispatch => {
         dispatch(uiStartLoading());
         fetch(`${Common.BACKEND_BASE_URL}/api/v2/productTags`, {
@@ -205,7 +205,6 @@ export const onCreateProductTagError = response => {
 };
 
 
-
 export const onSuccessPTGeneration = productTag => {
     return {
         type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
@@ -213,10 +212,33 @@ export const onSuccessPTGeneration = productTag => {
     }
 };
 
-// export const initNewPtOnProducerScreenOpen = () => {
-//     return {
-//         type: INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION
-//     }
-// };
+
+export const onProducersAllPTScreenOpen = (token, producerId) => {
+    return dispatch => {
+        fetch(`${Common.BACKEND_BASE_URL}/api/v2/productTags/producer/${producerId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .catch(error => {
+                alert("Error while fetching producer's product tags.");
+                console.error(error);
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(jsonResult => {
+                dispatch(setProducerProductTags(jsonResult));
+            })
+    }
+};
+
+
+export const setProducerProductTags = productTags => {
+    return {
+        type: SET_PRODUCERS_PRODUCT_TAGS_ACTION,
+        productTags
+    }
+};
 
 

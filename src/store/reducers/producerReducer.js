@@ -2,13 +2,12 @@ import {
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
     AUTH_SET_JWT_TOKEN_ACTION,
     SET_PRODUCER_DATA_ACTION,
-    SCANNED_PT_VALID_ACTION,
     OPEN_ALERT_ON_SCAN_ACTION,
     CLOSE_ALERT_ON_SCAN_ACTION,
-    SET_PRODUCER_SCANNED_PT_ACTION, ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION, ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
-    // INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION,
-    // SCANNED_PT_ALREADY_SCANNED_ACTION,
-    // SET_PT_FOR_MAP_VIEW_ACTION
+    SET_PRODUCER_SCANNED_PT_ACTION,
+    ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
+    ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
+    SET_PRODUCERS_PRODUCT_TAGS_ACTION
 } from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
@@ -16,15 +15,6 @@ import checkIfAlreadyScanned from "../../util/ptCheckIfScannedUtil";
 
 
 const initialState = {
-    // newProductTag: {
-    //     longitude: null,
-    //     latitude: null,
-    //     previousProductTagHashes: [],
-    //     productTagActions: [],
-    //     productTagProducer: {
-    //         producerId: null
-    //     }
-    // },
     generatedProductTag: null,
     numberOfGeneratedProductTags: 0,
     productTagSuccessfullyGenerated: false,
@@ -39,7 +29,8 @@ const initialState = {
     signUpFormInitData: {
         actions: [],
         certificates: []
-    }
+    },
+    allProducersProductTags: []
 };
 
 
@@ -94,6 +85,7 @@ const reducer = (state = initialState, action) => {
             }
         }
         case ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION: {
+            console.log('success: ', action.productTag);
             return {
                 ...state,
                 generatedProductTag: action.productTag,
@@ -110,21 +102,12 @@ const reducer = (state = initialState, action) => {
                 numberOfGeneratedProductTags: state.numberOfGeneratedProductTags + 1
             }
         }
-        // case INIT_NEW_PT_ON_PRODUCER_SCREEN_OPEN_ACTION: {
-        //     return {
-        //         ...state,
-        //         newProductTag: {
-        //             ...state.newProductTag,
-        //             productTagActions: state.activeProducer.producerActions
-        //         }
-        //     }
-        // }
-        // case SET_PT_FOR_MAP_VIEW_ACTION: {
-        //     return {
-        //         ...state,
-        //         ptForMapView: action.pt
-        //     }
-        // }
+        case SET_PRODUCERS_PRODUCT_TAGS_ACTION: {
+            return {
+                ...state,
+                allProducersProductTags: action.productTags.map(productTag => getUpdatedPTToAdd(productTag))
+            }
+        }
         default:
             return state;
     }
