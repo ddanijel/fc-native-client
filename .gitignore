@@ -7,4 +7,3 @@ npm-debug.*
 *.mobileprovision
 .idea/
 .idea/*
-config.priv.txt

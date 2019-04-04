@@ -11,8 +11,6 @@ import {
 import Common from '../../constants/Common';
 
 import {uiStartLoading, uiStopLoading} from "./uiActionCreators";
-import FoodChain from '../../ethereum/foodchain';
-import hdWalletProvider from "../../ethereum/hdWalletProvider";
 
 export const fetchSignUpFormData = () => {
     return dispatch => {
@@ -192,7 +190,8 @@ export const generateNewProductTag = (token, newProductTagData) => {
                 if (jsonResult.error || jsonResult.errors) {
                     dispatch(onCreateProductTagError(jsonResult));
                 } else {
-                    onCreateProductTagSuccessFromServer(dispatch, jsonResult);
+                    dispatch(uiStopLoading());
+                    dispatch(onSuccessPTGeneration(jsonResult));
                 }
             });
     };
@@ -205,34 +204,9 @@ export const onCreateProductTagError = response => {
     }
 };
 
-export const onCreateProductTagSuccessFromServer = (dispatch, productTag) => {
-    let confirmed = false;
-    const accounts = hdWalletProvider.addresses;
-    FoodChain.methods.addProductTagHash(productTag.hash)
-        .send({
-            from: accounts[0]
-        })
-        .on('error', (error) => {
-            dispatch(uiStopLoading());
-            console.error('error: ', error)
-        })
-        // .on('transactionHash', (transactionHash) => {
-        //     console.log('transactionHash: ', transactionHash)
-        // })
-        .on('confirmation', confirmationNumber => {
-            // no idea why this is called several times so had to put a flag to call onSuccess only once...
-            console.log('confirmationNumber: ', confirmationNumber);
-            if (!confirmed) {
-                confirmed = true;
-                dispatch(uiStopLoading());
-                dispatch(onSuccessfulETHTransaction(productTag));
-            }
-        });
-};
 
 
-export const onSuccessfulETHTransaction = productTag => {
-    console.log('onSuccessfulETHTransaction called: ', productTag.hash);
+export const onSuccessPTGeneration = productTag => {
     return {
         type: ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
         productTag

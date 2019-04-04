@@ -1,4 +1,3 @@
-import './global';
 import React from 'react';
 import InitApp from './InitApp';
 import {Provider} from 'react-redux';
