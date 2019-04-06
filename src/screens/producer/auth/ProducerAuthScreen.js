@@ -679,6 +679,7 @@ class ProducerAuthScreen extends Component {
                                                     actions={this.props.signUpFormInitData.actions}
                                                     selectedActions={this.state.signUp.actions}
                                                     onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
+                                                    showNewActionInput={true}
                                                     newActionValue={this.state.signUp.newAction}
                                                     onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
                                                     onAddNewAction={() => this.handleAddNewAction()}

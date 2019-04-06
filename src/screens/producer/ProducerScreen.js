@@ -19,7 +19,8 @@ import Common from "../../constants/Common";
 import {
     fetchProducerData,
     fetchSignUpFormData,
-    generateNewProductTag
+    generateNewProductTag,
+    producerSignOut
 } from "../../store/actions/producerActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import QrScannerModal from "../qrScanner/QrScannerModal";
@@ -29,6 +30,8 @@ import ProducerActionList from "../../components/ProducerActionList";
 
 import ptUpdateUtil from '../../util/ptUpdateUtil';
 import {images} from "../../../assets/images";
+
+import printQrCode from '../../util/qrCodePrintUtil'
 
 class ProducerScreen extends Component {
     state = {
@@ -115,6 +118,7 @@ class ProducerScreen extends Component {
     signOut = async () => {
         // await AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
+        this.props.handleSignOutPressed();
     };
 
 
@@ -147,22 +151,6 @@ class ProducerScreen extends Component {
             productTagActions: [...this.state.newProductTag.productTagActions.filter(act => act.actionName !== action.actionName)]
         };
         this.setState({newProductTag});
-    };
-
-    handleNewActionChangeText = newActionValue => {
-        this.setState({newActionValue})
-    };
-
-    handleAddNewAction = () => {
-        const newAction = {
-            actionName: this.state.newActionValue
-        };
-        this.props.allActions.push(newAction);
-        const newProductTag = {
-            ...this.state.newProductTag,
-            productTagActions: [...this.state.newProductTag.productTagActions, newAction],
-        };
-        this.setState({newProductTag, newActionValue: ''});
     };
 
     _getLocationAsync = async () => {
@@ -250,12 +238,16 @@ class ProducerScreen extends Component {
 
     showAlertOnSuccessGeneratedProductTag = nextProps => {
         // console.log('generated pt nextProps: ', nextProps);
-        console.log('showAlertOnSuccessGeneratedProductTag called: ');
+        // console.log('showAlertOnSuccessGeneratedProductTag called: ', nextProps.generatedProductTag);
+
         Alert.alert(
             'Success',
             'Product Tag successfully generated!',
             [
-                {text: 'Pring QR Code', onPress: () => console.log('pring qr code pressed')},
+                {
+                    text: 'Pring QR Code',
+                    onPress: () => this.handlePrintQrPressed(nextProps.generatedProductTag.hash)
+                },
                 {
                     text: 'Show Details', onPress: () => {
                         this.props.setPTForMapView(ptUpdateUtil(nextProps.generatedProductTag));
@@ -266,6 +258,14 @@ class ProducerScreen extends Component {
             ],
             {cancelable: false}
         )
+    };
+
+    handlePrintQrPressed = async hash => {
+        try {
+            await printQrCode(hash);
+        } catch (e) {
+            console.log('error while printing');
+        }
     };
 
     render() {
@@ -302,7 +302,7 @@ class ProducerScreen extends Component {
                                     {this.props.scannedProductTags.map(pt => {
                                         const hash = pt.hash;
                                         return <ListItem key={hash}
-                                                         title={pt.ptDetails.dateTime}
+                                                         title={new Date(pt.ptDetails.dateTime).toLocaleDateString()}
                                                          buttonGroup={{
                                                              buttons: ['Details', 'Remove'],
                                                              onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
@@ -328,9 +328,7 @@ class ProducerScreen extends Component {
                                 actions={this.props.allActions}
                                 selectedActions={this.state.newProductTag.productTagActions}
                                 onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
-                                newActionValue={this.state.newActionValue}
-                                onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
-                                onAddNewAction={() => this.handleAddNewAction()}
+                                showNewActionInput={false}
                             />
                         </Card>
 
@@ -363,7 +361,6 @@ const mapStateToProps = state => {
         activeProducerId: state.producer.activeProducerId,
         jwtToken: state.producer.jwtToken,
         scannedProductTags: state.producer.scannedProductTags,
-        // scannedProductTagValid: state.productTag.scannedProductTagValid,
         isAlertOnScanOpen: state.producer.isAlertOnScanOpen,
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
@@ -372,7 +369,6 @@ const mapStateToProps = state => {
         numberOfGeneratedProductTags: state.producer.numberOfGeneratedProductTags,
         productTagSuccessfullyGenerated: state.producer.productTagSuccessfullyGenerated,
         generatedProductTag: state.producer.generatedProductTag
-        // newProductTagActions: state.producer.newProductTag.productTagActions
     };
 };
 
@@ -380,12 +376,12 @@ const mapDispatchToProps = dispatch => {
     return {
         onSignUpDataNotLoaded: () => dispatch(fetchSignUpFormData()),
         onProducerScreenMounted: (token, producerId) => dispatch(fetchProducerData(token, producerId)),
-        // closeAlertOnScan: () => dispatch(closeAlertOnScan()),
         onQrScannerModalOpen: () => dispatch(openQrScannerModal()),
         onQrScannerModalClose: () => dispatch(closeQrScannerModal()),
         onMapViewModalOpen: () => dispatch(openMapViewModal()),
         setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
-        generateNewProductTag: (jwtToken, productTagData) => dispatch(generateNewProductTag(jwtToken, productTagData))
+        generateNewProductTag: (jwtToken, productTagData) => dispatch(generateNewProductTag(jwtToken, productTagData)),
+        handleSignOutPressed: () => dispatch(producerSignOut())
     }
 };
 

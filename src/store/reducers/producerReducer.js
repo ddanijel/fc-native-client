@@ -7,7 +7,7 @@ import {
     SET_PRODUCER_SCANNED_PT_ACTION,
     ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
     ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
-    SET_PRODUCERS_PRODUCT_TAGS_ACTION
+    SET_PRODUCERS_PRODUCT_TAGS_ACTION, SIGN_OUT_ACTION
 } from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
@@ -90,7 +90,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 generatedProductTag: action.productTag,
                 productTagSuccessfullyGenerated: true,
-                numberOfGeneratedProductTags: state.numberOfGeneratedProductTags + 1
+                numberOfGeneratedProductTags: state.numberOfGeneratedProductTags + 1,
+                scannedProductTags: []
             }
         }
         case ON_CREATE_PRODUCT_TAG_ERROR_ACTION: {
@@ -106,6 +107,23 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allProducersProductTags: action.productTags.map(productTag => getUpdatedPTToAdd(productTag))
+            }
+        }
+        case SIGN_OUT_ACTION: {
+            return {
+                ...state,
+                generatedProductTag: null,
+                numberOfGeneratedProductTags: 0,
+                productTagSuccessfullyGenerated: false,
+                errorResponseOnGenerateProductTag: null,
+                scannedProductTags: [],
+                scannedProductTagAlreadyScanned: false,
+                isAlertOnScanOpen: false,
+                actions: [],
+                activeProducer: null,
+                activeProducerId: null,
+                jwtToken: null,
+                allProducersProductTags: []
             }
         }
         default:

@@ -17,7 +17,7 @@ const ProducerActionList = props => {
                 ))}
             </ScrollView>
 
-            <Input
+            {props.showNewActionInput ? <Input
                 style={{width: '100%'}}
                 containerStyle={[styles.inputContainerStyle]}
                 placeholder="Enter new Action"
@@ -44,7 +44,7 @@ const ProducerActionList = props => {
                     />
                 }
                 // errorMessage="Shake me on error !"
-            />
+            />: null}
         </View>
     );
 };

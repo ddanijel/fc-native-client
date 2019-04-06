@@ -1,6 +1,7 @@
 import {
     AUTH_SET_JWT_TOKEN_ACTION,
     LOG_IN_ACTION,
+    SIGN_OUT_ACTION,
     ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
     ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
     SET_PRODUCER_DATA_ACTION,
@@ -241,4 +242,8 @@ export const setProducerProductTags = productTags => {
     }
 };
 
-
+export const producerSignOut = () => {
+    return {
+        type: SIGN_OUT_ACTION
+    }
+};

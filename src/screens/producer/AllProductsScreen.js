@@ -1,7 +1,5 @@
 import React, {ReactHTMLElement} from 'react';
 import {Card, ListItem} from "react-native-elements";
-import {Print, } from "expo";
-import QRCode from 'qrcode'
 
 import {ImageBackground, ScrollView, StyleSheet, View} from "react-native";
 import Layout from "../../constants/Layout";
@@ -12,6 +10,8 @@ import {
 import {openMapViewModal} from "../../store/actions/uiActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import {connect} from "react-redux";
+
+import printQrCode from '../../util/qrCodePrintUtil'
 
 class AllProductsScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -29,9 +29,10 @@ class AllProductsScreen extends React.Component {
         switch (index) {
             case 0: {
                 this.showPTDetails(pt);
+                return ;
             }
             case 1: {
-                await this.printQrCode(hash);
+                await this.handlePrintQrCode(hash);
             }
         }
     };
@@ -41,25 +42,11 @@ class AllProductsScreen extends React.Component {
         this.props.onMapViewModalOpen();
     };
 
-    printQrCode = async hash => {
-
-        const qrcode = await this.generateQr(hash);
-        console.log(qrcode);
-        // Print.printAsync({
-        //     html: `<style>html, body { width: 5cm; height: 5cm; }</style><div>${qrcode}</div>`,
-        // });
-
-        await Print.printAsync({
-            html: `<div>${qrcode}</div>`
-        });
-
-    };
-
-    generateQr = async hash => {
+    handlePrintQrCode = async hash => {
         try {
-            return await QRCode.toString(hash);
+            await printQrCode(hash);
         } catch (e) {
-            console.log(e);
+            console.log('error while printing');
         }
     };
 
@@ -70,7 +57,7 @@ class AllProductsScreen extends React.Component {
                 <Card style={{
                     width: width,
                     height: height * 0.8
-                }} title="Scanned Products">
+                }} title="My Products">
                     <View style={{
                         height: height * 0.7,
                         width: width * 0.8
@@ -84,6 +71,7 @@ class AllProductsScreen extends React.Component {
                                                      buttons: ['Details', 'Print QR'],
                                                      onPress: (index) => this.onPTButtonGroupPressed(index, pt, hash)
                                                  }}
+                                                 bottomDivider
                                 />
                             })}
                         </ScrollView>

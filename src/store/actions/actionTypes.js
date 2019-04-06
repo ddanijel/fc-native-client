@@ -1,5 +1,6 @@
 export const LOG_IN_ACTION = 'LOG_IN_ACTION';
 export const SIGN_UP_ACTION = 'SIGN_UP_ACTION';
+export const SIGN_OUT_ACTION = 'SIGN_OUT_ACTION';
 
 export const SET_PRODUCER_DATA_ACTION = 'SET_PRODUCER_DATA_ACTION';
 

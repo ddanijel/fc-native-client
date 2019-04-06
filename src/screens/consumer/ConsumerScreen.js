@@ -61,11 +61,12 @@ class ConsumerScreen extends React.Component {
                             {this.props.scannedProductTags.map(pt => {
                                 const hash = pt.hash;
                                 return <ListItem key={hash}
-                                                 title={pt.ptDetails.dateTime}
+                                                 title={new Date(pt.ptDetails.dateTime).toLocaleDateString()}
                                                  buttonGroup={{
                                                      buttons: ['Details'],
                                                      onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
                                                  }}
+                                                 bottomDivider
                                 />
                             })}
                         </ScrollView>
