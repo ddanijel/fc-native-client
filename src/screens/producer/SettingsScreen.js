@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, Input} from "react-native-elements";
-import {ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet} from "react-native";
+import {Button, Card, Input, Text} from "react-native-elements";
+import {ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, View} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import ProducerCertificateList from "../../components/ProducerCertificateList";
@@ -9,8 +9,7 @@ import {connect} from "react-redux";
 import {openQrScannerModal} from "../../store/actions/uiActionCreators";
 import {images} from "../../../assets/images";
 import Layout from "../../constants/Layout";
-import {fetchSignUpFormData} from "../../store/actions/producerActionCreators";
-import removeDuplicates from '../../util/uniqueArrayElements';
+import {fetchSignUpFormData, updateProducer} from "../../store/actions/producerActionCreators";
 
 class SettingsScreen extends React.Component {
     // static navigationOptions = ({navigation}) => {
@@ -47,28 +46,13 @@ class SettingsScreen extends React.Component {
     };
 
     componentDidMount() {
-        const {activeProducer, signUpFormInitData, fetchSignUpFormInitData} = this.props;
-        // console.log('active producer: ', activeProducer);
-        // console.log('initial sign up form init data: ', signUpFormInitData);
-
-        let certificates = activeProducer.producerCertificates;
-        let actions = activeProducer.producerActions;
-
-        if (signUpFormInitData.actions.length === 0 || signUpFormInitData.certificates.length === 0) {
-            fetchSignUpFormInitData();
-        } else {
-            // console.log('inside else: ', signUpFormInitData);
-            certificates = [...certificates, ...signUpFormInitData.certificates];
-            actions = [...actions, ...signUpFormInitData.actions];
-
-            certificates = [...removeDuplicates(certificates, 'certificateName')];
-            actions = [...removeDuplicates(actions, 'actionName')];
-            console.log('after concat: ', certificates);
-        }
-
+        const {activeProducer, fetchSignUpFormInitData} = this.props;
+        fetchSignUpFormInitData();
         this.setState({
             ...this.state,
             producerToUpdate: {
+                ...this.state.producerToUpdate,
+                username: activeProducer.username,
                 isPasswordValid: true,
                 isConfirmationValid: true,
                 producerName: activeProducer.producerName,
@@ -76,344 +60,428 @@ class SettingsScreen extends React.Component {
                 isEthereumAccountValid: true,
                 licenceNumber: activeProducer.licenceNumber,
                 website: activeProducer.url,
-                certificates,
-                actions,
+                certificates: activeProducer.producerCertificates,
+                actions: activeProducer.producerActions,
                 newCertificate: '',
                 newAction: ''
             }
         })
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        console.log("nextProps: ", nextProps);
-        const {actions, certificates} = this.props.signUpFormInitData;
-        if ((actions.length === 0 || certificates.length) &&
-            (nextProps.signUpFormInitData.actions.length !== 0 ||
-                nextProps.signUpFormInitData.certificates.length !== 0)) {
-            this.setState({
-                ...this.state,
-                producerToUpdate: {
-                    ...this.state.producerToUpdate,
-                    certificates: [...this.state.producerToUpdate.certificates, nextProps.signUpFormInitData.certificates],
-                    actions: [...this.state.producerToUpdate.actions, nextProps.signUpFormInitData.actions]
-                }
-            })
-        }
-    }
+    handleActionToggleChange = (value, action) => {
+        const producerToUpdate = value ? {
+            ...this.state.producerToUpdate,
+            actions: [...this.state.producerToUpdate.actions, action]
+        } : {
+            ...this.state.producerToUpdate,
+            actions: [...this.state.producerToUpdate.actions.filter(act => act.actionName !== action.actionName)]
+        };
+        this.setState({producerToUpdate});
+    };
 
+    handleNewActionChangeText = newAction => {
+        const producerToUpdate = {
+            ...this.state.producerToUpdate,
+            newAction
+        };
+        this.setState({producerToUpdate})
+    };
+
+    handleAddNewAction = () => {
+        this.props.signUpFormInitData.actions.push({
+            actionName: this.state.producerToUpdate.newAction
+        });
+        const producerToUpdate = {
+            ...this.state.producerToUpdate,
+            actions: [...this.state.producerToUpdate.actions, {
+                actionName: this.state.producerToUpdate.newAction
+            }],
+            newAction: ''
+        };
+        this.setState({producerToUpdate});
+        // this.shakeInput2 && this.shakeInput2.shake()
+    };
+
+    handleCertificateToggleChange = (value, certificate) => {
+        const producerToUpdate = value ? {
+            ...this.state.producerToUpdate,
+            certificates: [...this.state.producerToUpdate.certificates, certificate]
+        } : {
+            ...this.state.producerToUpdate,
+            certificates: [...this.state.producerToUpdate.certificates.filter(cert => cert.certificateName !== certificate.certificateName)]
+        };
+        this.setState({producerToUpdate});
+    };
+
+    handleNewCertificateChangeText = newCertificate => {
+        const producerToUpdate = {
+            ...this.state.producerToUpdate,
+            newCertificate
+        };
+        this.setState({producerToUpdate})
+    };
+
+    handleAddNewCertificate = () => {
+        this.props.signUpFormInitData.certificates.push({
+            certificateName: this.state.producerToUpdate.newCertificate
+        });
+        const producerToUpdate = {
+            ...this.state.producerToUpdate,
+            certificates: [...this.state.producerToUpdate.certificates, {
+                certificateName: this.state.producerToUpdate.newCertificate
+            }],
+            newCertificate: ''
+        };
+        this.setState({producerToUpdate});
+        // this.shakeInput2 && this.shakeInput2.shake()
+    };
+
+    handleUpdateProducerPressed = () => {
+        const {producerToUpdate} = this.state;
+        const producerUpdateData = {
+            producerName: producerToUpdate.producerName,
+            url: producerToUpdate.website,
+            licenceNumber: producerToUpdate.licenceNumber,
+            ethereumAccount: producerToUpdate.ethereumAccount,
+            producerActions: producerToUpdate.actions,
+            producerCertificates: producerToUpdate.certificates
+        };
+        this.props.updateProducer(this.props.jwtToken, this.props.activeProducerId, producerUpdateData);
+    };
 
     render() {
         return (
             <ImageBackground source={images.background}
                              style={{...styles.bgImage}}
             >
+
                 <KeyboardAvoidingView
-                    behavior="position"
+                    behavior="padding"
                     style={{
+                        marginTop: 15,
+                        flex: 1,
                         width: Layout.window.width * 0.9
                     }}
-                    contentContainerStyle={{
-                        marginBottom: -50
-                    }}
+                    keyboardVerticalOffset={100}
                 >
-                    <ScrollView
-                        style={{
+                    <ScrollView>
+                        <View style={{backgroundColor: 'white'}}>
+
+
+                            <Text style={{
+                                fontWeight: 'bold',
+                                fontSize: 22,
+                                alignSelf: 'center',
+                                marginTop: 15,
+                                marginBottom: 10
+                            }}>Producer Details</Text>
+
+                            <Input
+                                leftIcon={
+                                    <Icon
+                                        name="user-o"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.producerName}
+                                keyboardAppearance="light"
+                                autoFocus={false}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType="default"
+                                returnKeyType="next"
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Producer Name'}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                ref={input => (this.userInput = input)}
+                                onSubmitEditing={() => this.userInput.focus()}
+                                onChangeText={producerName => {
+                                    const producerToUpdate = {
+                                        ...this.state.producerToUpdate,
+                                        producerName
+                                    };
+                                    this.setState({producerToUpdate})
+                                }}
+                                // errorMessage={
+                                //     isEmailValid ? null : 'Please enter a username'
+                                // }
+                            />
+
+                            <Input
+                                leftIcon={
+                                    <Icon
+                                        name="drivers-license-o"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.licenceNumber}
+                                keyboardAppearance="light"
+                                autoFocus={false}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType="default"
+                                returnKeyType="next"
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Licence Number'}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                ref={input => (this.userInput = input)}
+                                onSubmitEditing={() => this.userInput.focus()}
+                                onChangeText={licenceNumber => {
+                                    const producerToUpdate = {
+                                        ...this.state.producerToUpdate,
+                                        licenceNumber
+                                    };
+                                    this.setState({producerToUpdate})
+                                }}
+                                // errorMessage={
+                                //     isEmailValid ? null : 'Please enter a username'
+                                // }
+                            />
+
+                            <Input
+                                leftIcon={
+                                    <Icon
+                                        name="user"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.username}
+                                keyboardAppearance="light"
+                                autoFocus={false}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType="default"
+                                returnKeyType="next"
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Username'}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                // ref={input => (this.userInput = input)}
+                                // onSubmitEditing={() => this.userInput.focus()}
+                                // onChangeText={username => {
+                                //     const producerToUpdate = {
+                                //         ...this.state.producerToUpdate,
+                                //         username
+                                //     };
+                                //     this.setState({producerToUpdate})
+                                // }}
+                                // errorMessage={
+                                //     isEmailValid ? null : 'Please enter a username'
+                                // }
+                            />
+
+                            <Input
+                                leftIcon={
+                                    <SimpleIcon
+                                        name="lock"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.password}
+                                keyboardAppearance="light"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                secureTextEntry={true}
+                                // returnKeyType={isSignUpPage ? 'next' : 'done'}
+                                blurOnSubmit={true}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Password'}
+                                ref={input => (this.passwordInput = input)}
+                                // onSubmitEditing={() =>
+                                //     isSignUpPage
+                                //         ? this.confirmationInput.focus()
+                                //         : this.login()
+                                // }
+                                onChangeText={password => {
+                                    const producerToUpdate = {
+                                        ...this.state.producerToUpdate,
+                                        password
+                                    };
+                                    this.setState({producerToUpdate})
+                                }}
+                                errorMessage={
+                                    this.state.producerToUpdate.isPasswordValid
+                                        ? null
+                                        : 'Please enter at least 8 characters'
+                                }
+                            />
+
+                            {/*<Input*/}
+                            {/*    icon={*/}
+                            {/*        <SimpleIcon*/}
+                            {/*            name="lock"*/}
+                            {/*            color="rgba(0, 0, 0, 0.38)"*/}
+                            {/*            size={25}*/}
+                            {/*            style={{backgroundColor: 'transparent'}}*/}
+                            {/*        />*/}
+                            {/*    }*/}
+                            {/*    value={this.state.producerToUpdate.passwordConfirmation}*/}
+                            {/*    secureTextEntry={true}*/}
+                            {/*    keyboardAppearance="light"*/}
+                            {/*    autoCapitalize="none"*/}
+                            {/*    autoCorrect={false}*/}
+                            {/*    keyboardType="default"*/}
+                            {/*    returnKeyType={'done'}*/}
+                            {/*    blurOnSubmit={true}*/}
+                            {/*    containerStyle={{*/}
+                            {/*        marginBottom: 16,*/}
+                            {/*        borderBottomColor: 'rgba(0, 0, 0, 0.38)',*/}
+                            {/*    }}*/}
+                            {/*    inputStyle={{marginLeft: 10}}*/}
+                            {/*    placeholder={'Confirm password'}*/}
+                            {/*    ref={input => (this.confirmationInput = input)}*/}
+                            {/*    onSubmitEditing={this.signUp}*/}
+                            {/*    onChangeText={passwordConfirmation => {*/}
+                            {/*        const producerToUpdate = {*/}
+                            {/*            ...this.state.producerToUpdate,*/}
+                            {/*            passwordConfirmation*/}
+                            {/*        };*/}
+                            {/*        this.setState({producerToUpdate})*/}
+                            {/*    }}*/}
+                            {/*    errorMessage={*/}
+                            {/*        this.state.producerToUpdate.isConfirmationValid*/}
+                            {/*            ? null*/}
+                            {/*            : 'Please enter the same password'*/}
+                            {/*    }*/}
+                            {/*/>*/}
+
+
+                            <Input
+                                leftIcon={
+                                    <Icon
+                                        name="connectdevelop"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.ethereumAccount}
+                                keyboardAppearance="light"
+                                autoFocus={false}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType="default"
+                                returnKeyType="next"
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Ethereum Account'}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                ref={input => (this.userInput = input)}
+                                onSubmitEditing={() => this.userInput.focus()}
+                                onChangeText={ethereumAccount => {
+                                    const producerToUpdate = {
+                                        ...this.state.producerToUpdate,
+                                        ethereumAccount
+                                    };
+                                    this.setState({producerToUpdate})
+                                }}
+                                // errorMessage={
+                                //     isEmailValid ? null : 'Please enter a username'
+                                // }
+                            />
+
+                            <Input
+                                leftIcon={
+                                    <Icon
+                                        name="chrome"
+                                        color="rgba(0, 0, 0, 0.38)"
+                                        size={25}
+                                        style={{backgroundColor: 'transparent'}}
+                                    />
+                                }
+                                value={this.state.producerToUpdate.website}
+                                keyboardAppearance="light"
+                                autoFocus={false}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType="default"
+                                returnKeyType="next"
+                                inputStyle={{marginLeft: 10}}
+                                placeholder={'Your Website URL'}
+                                containerStyle={{
+                                    marginBottom: 16,
+                                    borderBottomColor: 'rgba(0, 0, 0, 0.38)',
+                                }}
+                                ref={input => (this.userInput = input)}
+                                onSubmitEditing={() => this.userInput.focus()}
+                                onChangeText={website => {
+                                    const producerToUpdate = {
+                                        ...this.state.producerToUpdate,
+                                        website
+                                    };
+                                    this.setState({producerToUpdate})
+                                }}
+                                // errorMessage={
+                                //     isEmailValid ? null : 'Please enter a username'
+                                // }
+                            />
+
+                            <Card title="Certificates" style={{
+                                width: '100%'
+                            }}>
+                                <ProducerCertificateList
+                                    heightPercent={0.3}
+                                    certificates={this.props.signUpFormInitData.certificates}
+                                    selectedCertificates={this.state.producerToUpdate.certificates}
+                                    onCertificateToggleChange={(value, certificate) => this.handleCertificateToggleChange(value, certificate)}
+                                    newCertificateValue={this.state.producerToUpdate.newCertificate}
+                                    onNewCertificateChangeText={newCertificate => this.handleNewCertificateChangeText(newCertificate)}
+                                    onAddNewCertificate={() => this.handleAddNewCertificate()}
+                                />
+
+                            </Card>
+
+                            <Card title="Default Actions" style={{
+                                width: '100%',
+                                marginBottom: 10
+                            }}>
+                                <ProducerActionList
+                                    heightPercent={0.3}
+                                    actions={this.props.signUpFormInitData.actions}
+                                    selectedActions={this.state.producerToUpdate.actions}
+                                    onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
+                                    showNewActionInput={true}
+                                    newActionValue={this.state.producerToUpdate.newAction}
+                                    onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
+                                    onAddNewAction={() => this.handleAddNewAction()}
+                                />
+                            </Card>
+                        </View>
+                        <Button activeOpacity={0.7} style={{
+                            ...styles.buttonStyle,
+                            width: Layout.window.width * 0.8,
                             marginTop: 15,
                             marginBottom: 15,
-                            backgroundColor: 'white',
+                            alignSelf: 'center'
                         }}
-                    >
-                        <Input
-                            leftIcon={
-                                <Icon
-                                    name="user-o"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.producerName}
-                            keyboardAppearance="light"
-                            autoFocus={false}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType="next"
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Producer Name'}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            ref={input => (this.userInput = input)}
-                            onSubmitEditing={() => this.userInput.focus()}
-                            onChangeText={producerName => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    producerName
-                                };
-                                this.setState({signUp})
-                            }}
-                            // errorMessage={
-                            //     isEmailValid ? null : 'Please enter a username'
-                            // }
+                                title="Update Producer"
+                                onPress={() => this.handleUpdateProducerPressed()}
+                                loading={this.props.isLoading}
+                                // disabled={this.props.isLoading}
+                                disabled={true}
                         />
-
-                        <Input
-                            leftIcon={
-                                <Icon
-                                    name="drivers-license-o"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.licenceNumber}
-                            keyboardAppearance="light"
-                            autoFocus={false}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType="next"
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Licence Number'}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            ref={input => (this.userInput = input)}
-                            onSubmitEditing={() => this.userInput.focus()}
-                            onChangeText={licenceNumber => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    licenceNumber
-                                };
-                                this.setState({signUp})
-                            }}
-                            // errorMessage={
-                            //     isEmailValid ? null : 'Please enter a username'
-                            // }
-                        />
-
-                        <Input
-                            leftIcon={
-                                <Icon
-                                    name="user"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.username}
-                            keyboardAppearance="light"
-                            autoFocus={false}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType="next"
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Username'}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            ref={input => (this.userInput = input)}
-                            onSubmitEditing={() => this.userInput.focus()}
-                            onChangeText={username => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    username
-                                };
-                                this.setState({signUp})
-                            }}
-                            // errorMessage={
-                            //     isEmailValid ? null : 'Please enter a username'
-                            // }
-                        />
-
-                        <Input
-                            leftIcon={
-                                <SimpleIcon
-                                    name="lock"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.password}
-                            keyboardAppearance="light"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            secureTextEntry={true}
-                            // returnKeyType={isSignUpPage ? 'next' : 'done'}
-                            blurOnSubmit={true}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Password'}
-                            ref={input => (this.passwordInput = input)}
-                            // onSubmitEditing={() =>
-                            //     isSignUpPage
-                            //         ? this.confirmationInput.focus()
-                            //         : this.login()
-                            // }
-                            onChangeText={password => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    password
-                                };
-                                this.setState({signUp})
-                            }}
-                            errorMessage={
-                                this.state.producerToUpdate.isPasswordValid
-                                    ? null
-                                    : 'Please enter at least 8 characters'
-                            }
-                        />
-
-                        <Input
-                            icon={
-                                <SimpleIcon
-                                    name="lock"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.passwordConfirmation}
-                            secureTextEntry={true}
-                            keyboardAppearance="light"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType={'done'}
-                            blurOnSubmit={true}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Confirm password'}
-                            ref={input => (this.confirmationInput = input)}
-                            onSubmitEditing={this.signUp}
-                            onChangeText={passwordConfirmation => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    passwordConfirmation
-                                };
-                                this.setState({signUp})
-                            }}
-                            errorMessage={
-                                this.state.producerToUpdate.isConfirmationValid
-                                    ? null
-                                    : 'Please enter the same password'
-                            }
-                        />
-
-
-                        <Input
-                            leftIcon={
-                                <Icon
-                                    name="connectdevelop"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.ethereumAccount}
-                            keyboardAppearance="light"
-                            autoFocus={false}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType="next"
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Ethereum Account'}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            ref={input => (this.userInput = input)}
-                            onSubmitEditing={() => this.userInput.focus()}
-                            onChangeText={ethereumAccount => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    ethereumAccount
-                                };
-                                this.setState({signUp})
-                            }}
-                            // errorMessage={
-                            //     isEmailValid ? null : 'Please enter a username'
-                            // }
-                        />
-
-                        <Input
-                            leftIcon={
-                                <Icon
-                                    name="chrome"
-                                    color="rgba(0, 0, 0, 0.38)"
-                                    size={25}
-                                    style={{backgroundColor: 'transparent'}}
-                                />
-                            }
-                            value={this.state.producerToUpdate.website}
-                            keyboardAppearance="light"
-                            autoFocus={false}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType="default"
-                            returnKeyType="next"
-                            inputStyle={{marginLeft: 10}}
-                            placeholder={'Your Website URL'}
-                            containerStyle={{
-                                marginBottom: 16,
-                                borderBottomColor: 'rgba(0, 0, 0, 0.38)',
-                            }}
-                            ref={input => (this.userInput = input)}
-                            onSubmitEditing={() => this.userInput.focus()}
-                            onChangeText={website => {
-                                const signUp = {
-                                    ...this.state.producerToUpdate,
-                                    website
-                                };
-                                this.setState({signUp})
-                            }}
-                            // errorMessage={
-                            //     isEmailValid ? null : 'Please enter a username'
-                            // }
-                        />
-
-                        <Card title="Certificates" style={{
-                            width: '100%'
-                        }}>
-                            <ProducerCertificateList
-                                heightPercent={0.3}
-                                certificates={this.state.producerToUpdate.certificates}
-                                selectedCertificates={this.props.activeProducer.producerCertificates}
-                                onCertificateToggleChange={(value, certificate) => this.handleCertificateToggleChange(value, certificate)}
-                                newCertificateValue={this.state.producerToUpdate.newCertificate}
-                                onNewCertificateChangeText={newCertificate => this.handleNewCertificateChangeText(newCertificate)}
-                                onAddNewCertificate={() => this.handleAddNewCertificate()}
-                            />
-
-                        </Card>
-
-                        <Card title="Default Actions" style={{
-                            width: '100%'
-                        }}>
-                            <ProducerActionList
-                                heightPercent={0.3}
-                                actions={this.state.producerToUpdate.actions}
-                                selectedActions={this.props.activeProducer.producerActions}
-                                onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
-                                showNewActionInput={true}
-                                newActionValue={this.state.producerToUpdate.newAction}
-                                onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
-                                onAddNewAction={() => this.handleAddNewAction()}
-                            />
-                        </Card>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </ImageBackground>
@@ -425,15 +493,18 @@ class SettingsScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         activeProducer: state.producer.activeProducer,
-        signUpFormInitData: state.producer.signUpFormInitData
+        activeProducerId: state.producer.activeProducerId,
+        jwtToken: state.producer.jwtToken,
+        signUpFormInitData: state.producer.signUpFormInitData,
+        isLoading: state.ui.isLoading
     };
 };
-
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchSignUpFormInitData: () => dispatch(fetchSignUpFormData()),
-        onQrScannerModalOpen: () => dispatch(openQrScannerModal())
+        onQrScannerModalOpen: () => dispatch(openQrScannerModal()),
+        updateProducer: (token, producerId, producerData) => dispatch(updateProducer(token, producerId, producerData))
     }
 };
 
@@ -441,6 +512,9 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen);
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     loginContainer: {
         alignItems: 'center',
         justifyContent: 'center'

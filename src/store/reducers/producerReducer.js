@@ -7,7 +7,9 @@ import {
     SET_PRODUCER_SCANNED_PT_ACTION,
     ON_CREATE_PRODUCT_TAG_SUCCESS_ACTION,
     ON_CREATE_PRODUCT_TAG_ERROR_ACTION,
-    SET_PRODUCERS_PRODUCT_TAGS_ACTION, SIGN_OUT_ACTION
+    SET_PRODUCERS_PRODUCT_TAGS_ACTION,
+    SIGN_OUT_ACTION,
+    REMOVE_SCANNED_PT_ACTION
 } from "../actions/actionTypes";
 
 import getUpdatedPTToAdd from "../../util/ptUpdateUtil";
@@ -124,6 +126,12 @@ const reducer = (state = initialState, action) => {
                 activeProducerId: null,
                 jwtToken: null,
                 allProducersProductTags: []
+            }
+        }
+        case REMOVE_SCANNED_PT_ACTION: {
+            return {
+                ...state,
+                scannedProductTags: state.scannedProductTags.filter(pt => pt.hash !== action.hash)
             }
         }
         default:

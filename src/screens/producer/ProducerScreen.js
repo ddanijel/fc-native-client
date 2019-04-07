@@ -20,7 +20,8 @@ import {
     fetchProducerData,
     fetchSignUpFormData,
     generateNewProductTag,
-    producerSignOut
+    producerSignOut,
+    removeScannedPt
 } from "../../store/actions/producerActionCreators";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import QrScannerModal from "../qrScanner/QrScannerModal";
@@ -139,7 +140,7 @@ class ProducerScreen extends Component {
     };
 
     removeSelectedPT = productTag => {
-
+        this.props.onRemoveScannedPTPressed(productTag.hash);
     };
 
     handleActionToggleChange = (value, action) => {
@@ -381,7 +382,8 @@ const mapDispatchToProps = dispatch => {
         onMapViewModalOpen: () => dispatch(openMapViewModal()),
         setPTForMapView: productTag => dispatch(setPTForMapView(productTag)),
         generateNewProductTag: (jwtToken, productTagData) => dispatch(generateNewProductTag(jwtToken, productTagData)),
-        handleSignOutPressed: () => dispatch(producerSignOut())
+        handleSignOutPressed: () => dispatch(producerSignOut()),
+        onRemoveScannedPTPressed: hash => dispatch(removeScannedPt(hash))
     }
 };
 

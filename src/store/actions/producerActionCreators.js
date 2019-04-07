@@ -7,7 +7,8 @@ import {
     SET_PRODUCER_DATA_ACTION,
     SET_PRODUCERS_PRODUCT_TAGS_ACTION,
     SET_SIGN_UP_FORM_INIT_DATA_ACTION,
-    SIGN_UP_ACTION
+    SIGN_UP_ACTION,
+    REMOVE_SCANNED_PT_ACTION
 } from "./actionTypes";
 
 import Common from '../../constants/Common';
@@ -245,5 +246,43 @@ export const setProducerProductTags = productTags => {
 export const producerSignOut = () => {
     return {
         type: SIGN_OUT_ACTION
+    }
+};
+
+
+export const updateProducer = (token, producerId, producerData) => {
+    return dispatch => {
+        dispatch(uiStartLoading());
+        fetch(`${Common.BACKEND_BASE_URL}/api/v1/producers/${producerId}`, {
+            method: 'PUT',
+            body: JSON.stringify(producerData),
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .catch(error => {
+                console.error("Error: ", error);
+                alert("Error while updating producer, please try again!");
+                dispatch(uiStopLoading())
+            })
+            .then(result => result.json())
+            .then(jsonResult => {
+                console.log('after update result: ', jsonResult);
+                dispatch(uiStopLoading());
+                if (jsonResult.httpStatus !== 200) {
+                    alert("Producer update failed, please try again!");
+                } else {
+                    console.log('update sucessfull, result: ', jsonResult);
+                    dispatch(fetchProducerData(token, producerId))
+                }
+            });
+    };
+};
+
+export const removeScannedPt = hash => {
+    return {
+        type: REMOVE_SCANNED_PT_ACTION,
+        hash
     }
 };
