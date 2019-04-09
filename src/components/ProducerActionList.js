@@ -7,7 +7,11 @@ import Layout from '../constants/Layout'
 const ProducerActionList = props => {
     return (
         <View>
-            <ScrollView style={{height: Layout.window.height * props.heightPercent}}>
+            <ScrollView
+                onTouchStart={() => props.handleScroll(false)}
+                onMomentumScrollEnd={() => props.handleScroll(true)}
+                onScrollEndDrag={() => props.handleScroll(true)}
+                style={{height: Layout.window.height * props.heightPercent}} >
                 {props.actions.map(action => (
                     <ListItem title={action.actionName}
                               key={Math.random()} switch={{

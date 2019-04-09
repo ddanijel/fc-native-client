@@ -4,7 +4,7 @@ import {
     Dimensions,
     ImageBackground,
     KeyboardAvoidingView,
-    LayoutAnimation,
+    LayoutAnimation, Platform,
     ScrollView,
     StyleSheet,
     Text,
@@ -47,6 +47,7 @@ class ProducerAuthScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            scrollEnabled: true,
             logIn: {
                 username: 'qqq',
                 password: 'qqq',
@@ -248,10 +249,19 @@ class ProducerAuthScreen extends Component {
         // this.shakeInput2 && this.shakeInput2.shake()
     };
 
+    handleScroll = scrollEnabled => {
+        this.setState({
+            ...this.state,
+            scrollEnabled
+        })
+    };
+
     render() {
         const {
+            scrollEnabled,
             selectedCategory
         } = this.state;
+
 
         const {isLoading} = this.props;
         const isLoginPage = selectedCategory === 0;
@@ -265,6 +275,7 @@ class ProducerAuthScreen extends Component {
                             behavior="position"
                         >
                             <ScrollView
+                                scrollEnabled={Platform.OS === 'android' ? scrollEnabled: {}}
                                 contentContainerStyle={styles.loginContainer}>
 
                                 <View style={styles.titleContainer}>
@@ -683,6 +694,8 @@ class ProducerAuthScreen extends Component {
                                                     newActionValue={this.state.signUp.newAction}
                                                     onNewActionChangeText={newAction => this.handleNewActionChangeText(newAction)}
                                                     onAddNewAction={() => this.handleAddNewAction()}
+                                                    scrollEnabled={scrollEnabled}
+                                                    handleScroll={scrollEnabled => this.handleScroll(scrollEnabled)}
                                                 />
                                             </Card>
                                         </View>
