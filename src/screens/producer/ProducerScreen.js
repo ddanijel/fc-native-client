@@ -36,7 +36,6 @@ import printQrCode from '../../util/qrCodePrintUtil'
 
 class ProducerScreen extends Component {
     state = {
-        scrollEnabled: true,
         componentInitMount: true,
         locationErrorMessage: '',
         newActionValue: '',
@@ -273,13 +272,6 @@ class ProducerScreen extends Component {
         }
     };
 
-    handleScroll = scrollEnabled => {
-        this.setState({
-            ...this.state,
-            scrollEnabled
-        })
-    };
-
     render() {
         const {translations} = this.props;
         const {width, height} = Layout.window;
@@ -293,7 +285,7 @@ class ProducerScreen extends Component {
                         // margin: -20
                     }}
                 >
-                    <ScrollView scrollEnabled={Platform.OS === 'android' ? this.state.scrollEnabled: {}}>
+                    <ScrollView>
                         {/*<Button title="Show me more of the app" onPress={this.openSettingsScreen}/>*/}
                         {/*<Button title="Actually, sign me out :)" onPress={this.signOut}/>*/}
 
@@ -342,8 +334,6 @@ class ProducerScreen extends Component {
                                 selectedActions={this.state.newProductTag.productTagActions}
                                 onActionToggleChange={(value, action) => this.handleActionToggleChange(value, action)}
                                 showNewActionInput={false}
-                                scrollEnabled={this.state.scrollEnabled}
-                                handleScroll={scrollEnabled => this.handleScroll(scrollEnabled)}
                             />
                         </Card>
 

@@ -10,9 +10,6 @@ const ProducerActionList = props => {
     return (
         <View>
             <ScrollView
-                onTouchStart={() => props.handleScroll(false)}
-                onMomentumScrollEnd={() => props.handleScroll(true)}
-                onScrollEndDrag={() => props.handleScroll(true)}
                 style={{height: Layout.window.height * props.heightPercent}} >
                 {props.actions.map(action => (
                     <ListItem title={action.actionName}
