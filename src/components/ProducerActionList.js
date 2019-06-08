@@ -3,8 +3,10 @@ import {ScrollView, StyleSheet, View, Alert} from "react-native";
 import {Button, Input, ListItem} from "react-native-elements";
 
 import Layout from '../constants/Layout'
+import {connect} from "react-redux";
 
 const ProducerActionList = props => {
+    const {translations} = props;
     return (
         <View>
             <ScrollView style={{height: Layout.window.height * props.heightPercent}}>
@@ -20,24 +22,24 @@ const ProducerActionList = props => {
             {props.showNewActionInput ? <Input
                 style={{width: '100%'}}
                 containerStyle={[styles.inputContainerStyle]}
-                placeholder="Enter new Action"
+                placeholder={translations.enterNewAction}
                 value={props.newActionValue}
                 onChangeText={newAction => props.onNewActionChangeText(newAction)}
                 // ref={ref => (this.shakeInput2 = ref)}
                 rightIcon={
                     <Button
-                        title="Add"
+                        title={translations.add}
                         onPress={() => {
                             if (props.newActionValue.length < 3) {
                                 Alert.alert(
-                                    'Error',
-                                    'Value not valid'
+                                    translations.error,
+                                    translations.valueNotValid
                                 )
                             } else {
                                 props.onAddNewAction();
                                 Alert.alert(
-                                    'Success',
-                                    `Action successfully added. Value: ${props.newActionValue}`
+                                    translations.success,
+                                    `${translations.actionCreated} ${props.newActionValue}`
                                 )
                             }
                         }}
@@ -49,7 +51,13 @@ const ProducerActionList = props => {
     );
 };
 
-export default ProducerActionList;
+const mapStateToProps = state => {
+    return {
+        translations: state.languages.translations
+    }
+};
+
+export default connect(mapStateToProps, null)(ProducerActionList);
 
 const styles = StyleSheet.create({
     inputContainerStyle: {

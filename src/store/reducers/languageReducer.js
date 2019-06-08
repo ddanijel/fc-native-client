@@ -12,8 +12,36 @@ const enTranslation = {
     mapOpenFullScreen: 'Full Screen',
     mapCloseFullScreen: 'Close Full Screen',
     productTagDetails: 'Product Tag Details',
-    productTagActions: 'Product Tag Action',
-    logIn: 'Login'
+    productTagActions: 'Product Tag Actions',
+    logIn: 'Login',
+    signUp: 'Sign up',
+    signOut: 'Sign Out',
+    username: 'Username',
+    password: 'Password',
+    atLeast8Characters: 'Please enter at least 8 characters',
+    producerName: 'Producer Name',
+    licenceNumber: 'Licence Number',
+    confirmPassword: 'Confirm Password',
+    samePasswordError: 'Please enter the same password',
+    scannedProducts: 'Scanned Products',
+    ethereumAccount: 'Ethereum Account',
+    websiteUrl: 'Your Website URL',
+    certificates: 'Certificates',
+    valueNotValid: 'Value not valid',
+    enterNewCertificate: 'Enter new Certificate',
+    error: 'Error',
+    success: 'Success',
+    certificateCreated: 'Certificate successfully added. Value:',
+    defaultActions: 'Default Actions',
+    enterNewAction: 'Enter new Action',
+    actionCreated: 'Action successfully added. Value:',
+    add: 'Add',
+    loginUppercase: 'LOGIN',
+    signUpUppercase: 'SIGN UP',
+    producerMode: 'Producer Mode',
+    settings: 'Settings',
+    allMyProducts: 'All My Products',
+    generatePTButton: 'Generate Product Tag',
 
 };
 
@@ -35,9 +63,9 @@ const deTranslation = {
 
 const initialState = {
     languages: ['EN', 'DE', 'FR', 'IT'],
-    defaultLanguage: 'DE',
-    currentLanguage: 'DE',
-    translations: deTranslation
+    defaultLanguage: 'EN',
+    currentLanguage: 'EN',
+    translations: enTranslation
 };
 
 const reducer = (state = initialState, action) => {

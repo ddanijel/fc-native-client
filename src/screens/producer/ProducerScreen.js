@@ -58,10 +58,10 @@ class ProducerScreen extends Component {
                                       navigation.getParam('signOut')();
                                   }}>
                     <Icon style={{color: 'red'}} name="ios-log-out"/>
-                    <Text style={{color: 'red', marginLeft: 5}}>Sign Out</Text>
+                    <Text style={{color: 'red', marginLeft: 5}}>{navigation.getParam('signOutText')}</Text>
                 </TouchableOpacity>
             ),
-            title: navigation.getParam('otherParam', 'Producer Mode'),
+            title: navigation.getParam('mode'),
             headerTitleStyle: {
                 marginLeft: Platform.OS === 'android' ? 50 : 0
             },
@@ -70,7 +70,7 @@ class ProducerScreen extends Component {
                                   onPress={() => {
                                       navigation.getParam('openSettingsScreen')();
                                   }}>
-                    <Text style={{color: 'blue', marginRight: 5}}>Settings</Text>
+                    <Text style={{color: 'blue', marginRight: 5}}>{navigation.getParam('settingsText')}</Text>
                     <Icon style={{color: 'blue'}} name="ios-settings"/>
                 </TouchableOpacity>
             )
@@ -78,11 +78,14 @@ class ProducerScreen extends Component {
     };
 
     componentDidMount() {
-        const {navigation, onProducerScreenMounted} = this.props;
+        const {navigation, translations, onProducerScreenMounted} = this.props;
         onProducerScreenMounted(this.props.jwtToken, this.props.activeProducerId);
         navigation.setParams({
             openSettingsScreen: this.openSettingsScreen,
-            signOut: this.signOut
+            signOut: this.signOut,
+            signOutText: translations.signOut,
+            mode: translations.producerMode,
+            settingsText: translations.settings
         });
         if (this.props.allActions.length === 0) {
             this.props.onSignUpDataNotLoaded();
@@ -270,6 +273,7 @@ class ProducerScreen extends Component {
     };
 
     render() {
+        const {translations} = this.props;
         const {width, height} = Layout.window;
         return (
             <ImageBackground source={images.background} style={styles.bgImage}>
@@ -291,10 +295,10 @@ class ProducerScreen extends Component {
                             width: width * 0.8,
                             marginTop: 15,
                             alignSelf: 'center'
-                        }} title="All My Products" onPress={() => this.props.navigation.navigate('AllProductsScreen')}/>
+                        }} title={translations.allMyProducts} onPress={() => this.props.navigation.navigate('AllProductsScreen')}/>
 
 
-                        <Card style={{width: width}} title="Scanned Products">
+                        <Card style={{width: width}} title={translations.scannedProducts}>
                             <View>
                                 <ScrollView style={{
                                     height: height * 0.3,
@@ -319,9 +323,9 @@ class ProducerScreen extends Component {
                             width: width * 0.8,
                             marginTop: 15,
                             alignSelf: 'center'
-                        }} title="Scan Product" onPress={() => this.props.onQrScannerModalOpen()}/>
+                        }} title={translations.scanButton} onPress={() => this.props.onQrScannerModalOpen()}/>
 
-                        <Card title="Product Tag Actions" style={{
+                        <Card title={translations.productTagActions} style={{
                             width: '100%'
                         }}>
                             <ProducerActionList
@@ -343,7 +347,7 @@ class ProducerScreen extends Component {
                             marginBottom: 15,
                             alignSelf: 'center'
                         }}
-                                title="Generate Product Tag"
+                                title={translations.generatePTButton}
                                 onPress={() => this.onGenerateNewProductTagPressed()}
                                 loading={this.props.isLoading}
                                 disabled={this.props.isLoading}
@@ -369,7 +373,8 @@ const mapStateToProps = state => {
         allActions: state.producer.signUpFormInitData.actions,
         numberOfGeneratedProductTags: state.producer.numberOfGeneratedProductTags,
         productTagSuccessfullyGenerated: state.producer.productTagSuccessfullyGenerated,
-        generatedProductTag: state.producer.generatedProductTag
+        generatedProductTag: state.producer.generatedProductTag,
+        translations: state.languages.translations
     };
 };
 

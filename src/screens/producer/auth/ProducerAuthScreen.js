@@ -253,7 +253,7 @@ class ProducerAuthScreen extends Component {
             selectedCategory
         } = this.state;
 
-        const {isLoading} = this.props;
+        const {isLoading, translations} = this.props;
         const isLoginPage = selectedCategory === 0;
         const isSignUpPage = selectedCategory === 1;
         return (
@@ -286,7 +286,7 @@ class ProducerAuthScreen extends Component {
                                             styles.categoryText,
                                             isLoginPage && styles.selectedCategoryText,
                                         ]}
-                                        title={'Login'}
+                                        title={translations.logIn}
                                     />
                                     <Button
                                         disabled={isLoading}
@@ -301,7 +301,7 @@ class ProducerAuthScreen extends Component {
                                             styles.categoryText,
                                             isSignUpPage && styles.selectedCategoryText,
                                         ]}
-                                        title={'Sign up'}
+                                        title={translations.signUp}
                                     />
                                 </View>
                                 <View style={styles.rowSelector}>
@@ -329,7 +329,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Username'}
+                                                placeholder={translations.username}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -369,7 +369,7 @@ class ProducerAuthScreen extends Component {
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
                                                 }}
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Password'}
+                                                placeholder={translations.password}
                                                 ref={input => (this.passwordInput = input)}
                                                 onSubmitEditing={() =>
                                                     isSignUpPage
@@ -386,7 +386,7 @@ class ProducerAuthScreen extends Component {
                                                 errorMessage={
                                                     this.state.logIn.isPasswordValid
                                                         ? null
-                                                        : 'Please enter at least 8 characters'
+                                                        : translations.atLeast8Characters
                                                 }
                                             />
                                         </View>
@@ -411,7 +411,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Producer Name'}
+                                                placeholder={translations.producerName}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -447,7 +447,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Licence Number'}
+                                                placeholder={translations.licenceNumber}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -483,7 +483,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Username'}
+                                                placeholder={translations.username}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -523,7 +523,7 @@ class ProducerAuthScreen extends Component {
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
                                                 }}
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Password'}
+                                                placeholder={translations.password}
                                                 ref={input => (this.passwordInput = input)}
                                                 onSubmitEditing={() =>
                                                     isSignUpPage
@@ -540,7 +540,7 @@ class ProducerAuthScreen extends Component {
                                                 errorMessage={
                                                     this.state.signUp.isPasswordValid
                                                         ? null
-                                                        : 'Please enter at least 8 characters'
+                                                        : translations.atLeast8Characters
                                                 }
                                             />
 
@@ -566,7 +566,7 @@ class ProducerAuthScreen extends Component {
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
                                                 }}
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Confirm password'}
+                                                placeholder={translations.confirmPassword}
                                                 ref={input => (this.confirmationInput = input)}
                                                 onSubmitEditing={this.signUp}
                                                 onChangeText={passwordConfirmation => {
@@ -579,7 +579,7 @@ class ProducerAuthScreen extends Component {
                                                 errorMessage={
                                                     this.state.signUp.isConfirmationValid
                                                         ? null
-                                                        : 'Please enter the same password'
+                                                        : translations.samePasswordError
                                                 }
                                             />
 
@@ -601,7 +601,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Ethereum Account'}
+                                                placeholder={translations.ethereumAccount}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -637,7 +637,7 @@ class ProducerAuthScreen extends Component {
                                                 keyboardType="default"
                                                 returnKeyType="next"
                                                 inputStyle={{marginLeft: 10}}
-                                                placeholder={'Your Website URL'}
+                                                placeholder={translations.websiteUrl}
                                                 containerStyle={{
                                                     marginBottom: 16,
                                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -656,7 +656,7 @@ class ProducerAuthScreen extends Component {
                                                 // }
                                             />
 
-                                            <Card title="Certificates" style={{
+                                            <Card title={translations.certificates} style={{
                                                 width: '100%'
                                             }}>
                                                 <ProducerCertificateList
@@ -671,7 +671,7 @@ class ProducerAuthScreen extends Component {
 
                                             </Card>
 
-                                            <Card title="Default Actions" style={{
+                                            <Card title={translations.defaultActions} style={{
                                                 width: '100%'
                                             }}>
                                                 <ProducerActionList
@@ -692,7 +692,7 @@ class ProducerAuthScreen extends Component {
                                         buttonStyle={styles.loginButton}
                                         containerStyle={{marginTop: 32, flex: 0}}
                                         activeOpacity={0.8}
-                                        title={isLoginPage ? 'LOGIN' : 'SIGN UP'}
+                                        title={isLoginPage ? translations.loginUppercase : translations.signUpUppercase}
                                         onPress={isLoginPage ? this.login : this.signUp}
                                         titleStyle={styles.loginTextButton}
                                         loading={isLoading}
@@ -714,7 +714,8 @@ class ProducerAuthScreen extends Component {
 const mapStateToProps = state => {
     return {
         signUpFormInitData: state.producer.signUpFormInitData,
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        translations: state.languages.translations
     };
 };
 

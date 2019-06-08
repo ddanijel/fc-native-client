@@ -48,11 +48,12 @@ class ConsumerScreen extends React.Component {
 
     render() {
         const {width, height} = Layout.window;
+        const {translations} = this.props;
         return (
             <ImageBackground source={images.background} style={styles.bgImage}>
                 <Card
                     // style={{width: width}}
-                      title="Scanned Products">
+                      title={translations.scannedProducts}>
                     <View style={{
                         height: height * 0.6,
                         width: width * 0.8
@@ -84,7 +85,7 @@ class ConsumerScreen extends React.Component {
                     marginBottom: 15,
                     alignSelf: 'center'
                 }}
-                        title="Scan Product"
+                        title={translations.scanButton}
                     onPress={() =>  this.props.onQrScannerModalOpen()}/>
             </ImageBackground>
         );
@@ -95,7 +96,8 @@ const mapStateToProps = state => {
     return {
         isQrScannerModalOpen: state.ui.isQrScannerModalOpen,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
-        scannedProductTags: state.consumer.scannedProductTags
+        scannedProductTags: state.consumer.scannedProductTags,
+        translations: state.languages.translations
     };
 };
 
