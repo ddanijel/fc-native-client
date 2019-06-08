@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from "react-native";
+import {View, ScrollView, StyleSheet} from "react-native";
 import {Card, ListItem, Text} from "react-native-elements";
 
 const ProductTagDetails = props => {
@@ -15,67 +15,69 @@ const ProductTagDetails = props => {
         previousProductTagHashes
     } = props.productTag;
     return (
-            <ScrollView>
-                <Text style={{fontWeight: 'bold'}} h4>
-                    Product Tag Details
-                </Text>
-                <ListItem
-                    title={new Date(dateTime).toLocaleDateString()}
-                    titleStyle={styles.titleStyle}
-                    subtitle={"Date"}
-                    subtitleStyle={styles.subtitleStyle}
-                    bottomDivider
-                />
+            <View style={{flex: 1}}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                    <Text style={{fontWeight: 'bold'}} h4>
+                        Product Tag Details
+                    </Text>
+                    <ListItem
+                        title={new Date(dateTime).toLocaleDateString()}
+                        titleStyle={styles.titleStyle}
+                        subtitle={"Date"}
+                        subtitleStyle={styles.subtitleStyle}
+                        bottomDivider
+                    />
 
-                <ListItem
-                    title={productTagHash}
-                    titleStyle={styles.titleStyle}
-                    subtitle={"Product Tag Hash"}
-                    subtitleStyle={styles.subtitleStyle}
-                    bottomDivider
-                />
+                    <ListItem
+                        title={productTagHash}
+                        titleStyle={styles.titleStyle}
+                        subtitle={"Product Tag Hash"}
+                        subtitleStyle={styles.subtitleStyle}
+                        bottomDivider
+                    />
 
-                <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Actions">
-                    {productTagActions.map((action, index) => (
+                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Actions">
+                        {productTagActions.map((action, index) => (
+                            <ListItem
+                                key={index}
+                                title={`${index + 1}. ${action.actionName}`}
+                                titleStyle={styles.titleStyle}
+                                style={{marginTop: -15, marginLeft: -15}}
+                                // subtitle={"Producer Name"}
+                                // subtitleStyle={styles.subtitleStyle}
+                                // bottomDivider
+                            />
+                        ))}
+
+                    </Card>
+
+                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Producer">
                         <ListItem
-                            key={index}
-                            title={`${index + 1}. ${action.actionName}`}
-                            titleStyle={styles.titleStyle}
                             style={{marginTop: -15, marginLeft: -15}}
-                            // subtitle={"Producer Name"}
-                            // subtitleStyle={styles.subtitleStyle}
-                            // bottomDivider
+                            title={productTagProducer.producerName}
+                            titleStyle={styles.titleStyle}
+                            subtitle={"Producer Name"}
+                            subtitleStyle={styles.subtitleStyle}
+                            bottomDivider
                         />
-                    ))}
-
-                </Card>
-
-                <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Producer">
-                    <ListItem
-                        style={{marginTop: -15, marginLeft: -15}}
-                        title={productTagProducer.producerName}
-                        titleStyle={styles.titleStyle}
-                        subtitle={"Producer Name"}
-                        subtitleStyle={styles.subtitleStyle}
-                        bottomDivider
-                    />
-                    <ListItem
-                        style={{marginLeft: -15}}
-                        title={productTagProducer.licenceNumber}
-                        titleStyle={styles.titleStyle}
-                        subtitle={"Producer Licence Number"}
-                        subtitleStyle={styles.subtitleStyle}
-                        bottomDivider
-                    />
-                    <ListItem
-                        style={{marginLeft: -15, marginBottom: -15}}
-                        title={productTagProducer.url}
-                        titleStyle={styles.titleStyle}
-                        subtitle={"Producer URL"}
-                        subtitleStyle={styles.subtitleStyle}
-                    />
-                </Card>
-            </ScrollView>
+                        <ListItem
+                            style={{marginLeft: -15}}
+                            title={productTagProducer.licenceNumber}
+                            titleStyle={styles.titleStyle}
+                            subtitle={"Producer Licence Number"}
+                            subtitleStyle={styles.subtitleStyle}
+                            bottomDivider
+                        />
+                        <ListItem
+                            style={{marginLeft: -15, marginBottom: -15}}
+                            title={productTagProducer.url}
+                            titleStyle={styles.titleStyle}
+                            subtitle={"Producer URL"}
+                            subtitleStyle={styles.subtitleStyle}
+                        />
+                    </Card>
+                </ScrollView>
+            </View>
 
     );
 };
