@@ -68,7 +68,7 @@ export const authLogin = (authData, thisRef) => {
         })
             .catch(error => {
                 console.error("Error: ", error);
-                alert("Authentication failed, please try again!");
+                alert("Layout.window.heightcation failed, please try again!");
                 dispatch(uiStopLoading())
             })
             .then(result => result.json())

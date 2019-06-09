@@ -184,12 +184,13 @@ class ProducerScreen extends Component {
     };
 
     showNoPTAlert = () => {
+        const {translations} = this.props;
         Alert.alert(
-            'Warning',
-            'You have not scanned any product tag, are you sure it is the first product tag in the chain?',
+            translations.warning,
+            translations.ptNotScanned,
             [
                 {
-                    text: 'Yes, create Product Tag', onPress: () => {
+                    text: translations.yesCreatePt, onPress: () => {
                         const productTag = {
                             ...this.state.newProductTag,
                             previousProductTagHashes: [Common.GENESIS_PRODUCT_TAG_HASH_VALUE]
@@ -197,19 +198,20 @@ class ProducerScreen extends Component {
                         this.props.generateNewProductTag(this.props.jwtToken, productTag);
                     }
                 },
-                {text: 'Scan Product', onPress: () => this.props.onQrScannerModalOpen()},
-                {text: 'Close', onPress: () => console.log('Close Pressed')},
+                {text: translations.scanButton, onPress: () => this.props.onQrScannerModalOpen()},
+                {text: translations.close, onPress: () => console.log('Close Pressed')},
             ],
             {cancelable: false}
         )
     };
 
     showNoActionsAlert = () => {
+        const {translations} = this.props;
         Alert.alert(
-            'Warning',
-            'You have not selected any action for this product tag!',
+            translations.warning,
+            translations.noActionsSelected,
             [
-                {text: 'Close', onPress: () => console.log('Close Pressed')},
+                {text: translations.close, onPress: () => console.log('Close Pressed')},
             ],
             {cancelable: false}
         )
@@ -229,36 +231,38 @@ class ProducerScreen extends Component {
     };
 
     showAlertOnErrorGeneratedProductTag = nextProps => {
+        const {translations} = this.props;
         Alert.alert(
-            'Error',
-            'An error occurred while generating the product tag!',
+            translations.error,
+            translations.errorWhileGeneratingPt,
             [
-                {text: 'Try again', onPress: () => this.onGenerateNewProductTagPressed()},
-                {text: 'Close', onPress: () => console.log('Close Pressed')},
+                {text: translations.tryAgain, onPress: () => this.onGenerateNewProductTagPressed()},
+                {text: translations.close, onPress: () => console.log('Close Pressed')},
             ],
             {cancelable: false}
         )
     };
 
     showAlertOnSuccessGeneratedProductTag = nextProps => {
+        const {translations} = this.props;
         // console.log('generated pt nextProps: ', nextProps);
         // console.log('showAlertOnSuccessGeneratedProductTag called: ', nextProps.generatedProductTag);
 
         Alert.alert(
-            'Success',
-            'Product Tag successfully generated!',
+            translations.success,
+            translations.ptGenerated,
             [
                 {
-                    text: 'Pring QR Code',
+                    text: translations.printQR,
                     onPress: () => this.handlePrintQrPressed(nextProps.generatedProductTag.hash)
                 },
                 {
-                    text: 'Show Details', onPress: () => {
+                    text: translations.showDetails, onPress: () => {
                         this.props.setPTForMapView(ptUpdateUtil(nextProps.generatedProductTag));
                         this.props.onMapViewModalOpen();
                     }
                 },
-                {text: 'Close', onPress: () => console.log('Close Pressed')},
+                {text: translations.close, onPress: () => console.log('Close Pressed')},
             ],
             {cancelable: false}
         )
@@ -268,7 +272,7 @@ class ProducerScreen extends Component {
         try {
             await printQrCode(hash);
         } catch (e) {
-            console.log('error while printing');
+            console.error('error while printing');
         }
     };
 

@@ -1,29 +1,26 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from "react-native";
 import {Card, ListItem, Text} from "react-native-elements";
+import {connect} from "react-redux";
 
 const ProductTagDetails = props => {
-    // console.log("ProductTagDetails: ", props.productTag);
+    const {translations} = props;
     const {
-        productTagId,
         dateTime,
         productTagHash,
         productTagActions,
-        longitude,
-        latitude,
-        productTagProducer,
-        previousProductTagHashes
+        productTagProducer
     } = props.productTag;
     return (
             <View style={{flex: 1}}>
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     <Text style={{fontWeight: 'bold'}} h4>
-                        Product Tag Details
+                        {translations.productTagDetails}
                     </Text>
                     <ListItem
                         title={new Date(dateTime).toLocaleDateString()}
                         titleStyle={styles.titleStyle}
-                        subtitle={"Date"}
+                        subtitle={translations.date}
                         subtitleStyle={styles.subtitleStyle}
                         bottomDivider
                     />
@@ -31,12 +28,12 @@ const ProductTagDetails = props => {
                     <ListItem
                         title={productTagHash}
                         titleStyle={styles.titleStyle}
-                        subtitle={"Product Tag Hash"}
+                        subtitle={translations.productTagHash}
                         subtitleStyle={styles.subtitleStyle}
                         bottomDivider
                     />
 
-                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Actions">
+                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title={translations.productTagActions}>
                         {productTagActions.map((action, index) => (
                             <ListItem
                                 key={index}
@@ -51,12 +48,12 @@ const ProductTagDetails = props => {
 
                     </Card>
 
-                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title="Product Tag Producer">
+                    <Card containerStyle={{marginLeft: 0, marginRight: 0}} title={translations.productTagProducer}>
                         <ListItem
                             style={{marginTop: -15, marginLeft: -15}}
                             title={productTagProducer.producerName}
                             titleStyle={styles.titleStyle}
-                            subtitle={"Producer Name"}
+                            subtitle={translations.producerName}
                             subtitleStyle={styles.subtitleStyle}
                             bottomDivider
                         />
@@ -64,7 +61,7 @@ const ProductTagDetails = props => {
                             style={{marginLeft: -15}}
                             title={productTagProducer.licenceNumber}
                             titleStyle={styles.titleStyle}
-                            subtitle={"Producer Licence Number"}
+                            subtitle={translations.licenceNumber}
                             subtitleStyle={styles.subtitleStyle}
                             bottomDivider
                         />
@@ -72,7 +69,7 @@ const ProductTagDetails = props => {
                             style={{marginLeft: -15, marginBottom: -15}}
                             title={productTagProducer.url}
                             titleStyle={styles.titleStyle}
-                            subtitle={"Producer URL"}
+                            subtitle={translations.url}
                             subtitleStyle={styles.subtitleStyle}
                         />
                     </Card>
@@ -82,7 +79,14 @@ const ProductTagDetails = props => {
     );
 };
 
-export default ProductTagDetails;
+const mapStateToProps = state => {
+    return {
+        translations: state.languages.translations
+    };
+};
+
+
+export default connect(mapStateToProps, null)(ProductTagDetails);
 
 const styles = StyleSheet.create({
     titleStyle: {

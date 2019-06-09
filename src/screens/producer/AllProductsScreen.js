@@ -14,15 +14,18 @@ import {connect} from "react-redux";
 import printQrCode from '../../util/qrCodePrintUtil'
 
 class AllProductsScreen extends React.Component {
-    static navigationOptions = ({navigation}) => {
-        return {
-            title: 'All Products'
-        }
-    };
+    // static navigationOptions = ({navigation}) => {
+    //     return {
+    //         title: navigation.getParam('headerTitle')
+    //     }
+    // };
 
     componentDidMount() {
-        const {jwtToken, activeProducerId} = this.props;
-        this.props.onProducersAllPTScreenOpen(jwtToken, activeProducerId)
+        const {navigation, translations, jwtToken, activeProducerId, onProducersAllPTScreenOpen} = this.props;
+        // navigation.setParams({
+        //     headerTitle: translations.allMyProducts
+        // });
+        onProducersAllPTScreenOpen(jwtToken, activeProducerId)
     }
 
     onPTButtonGroupPressed = async (index, pt, hash) => {
@@ -46,18 +49,19 @@ class AllProductsScreen extends React.Component {
         try {
             await printQrCode(hash);
         } catch (e) {
-            console.log('error while printing');
+            console.error('error while printing');
         }
     };
 
     render() {
+        const {translations} = this.props;
         const {width, height} = Layout.window;
         return (
             <ImageBackground source={images.background} style={styles.bgImage}>
                 <Card style={{
                     width: width,
                     height: height * 0.8
-                }} title="My Products">
+                }} title={translations.allMyProducts}>
                     <View style={{
                         height: height * 0.7,
                         width: width * 0.8
@@ -68,7 +72,7 @@ class AllProductsScreen extends React.Component {
                                 return <ListItem key={hash}
                                                  title={new Date(pt.ptDetails.dateTime).toDateString()}
                                                  buttonGroup={{
-                                                     buttons: ['Details', 'Print QR'],
+                                                     buttons: [translations.details, translations.printQR],
                                                      onPress: (index) => this.onPTButtonGroupPressed(index, pt, hash)
                                                  }}
                                                  bottomDivider
@@ -90,7 +94,8 @@ const mapStateToProps = state => {
         jwtToken: state.producer.jwtToken,
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
         isLoading: state.ui.isLoading,
-        productTags: state.producer.allProducersProductTags
+        productTags: state.producer.allProducersProductTags,
+        translations: state.languages.translations
     };
 };
 

@@ -150,6 +150,7 @@ class SettingsScreen extends React.Component {
     };
 
     render() {
+        const {translations} = this.props;
         return (
             <ImageBackground source={images.background}
                              style={{...styles.bgImage}}
@@ -174,7 +175,7 @@ class SettingsScreen extends React.Component {
                                 alignSelf: 'center',
                                 marginTop: 15,
                                 marginBottom: 10
-                            }}>Producer Details</Text>
+                            }}>{translations.producerDetails}</Text>
 
                             <Input
                                 leftIcon={
@@ -193,7 +194,7 @@ class SettingsScreen extends React.Component {
                                 keyboardType="default"
                                 returnKeyType="next"
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Producer Name'}
+                                placeholder={translations.producerName}
                                 containerStyle={{
                                     marginBottom: 16,
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -229,7 +230,7 @@ class SettingsScreen extends React.Component {
                                 keyboardType="default"
                                 returnKeyType="next"
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Licence Number'}
+                                placeholder={translations.licenceNumber}
                                 containerStyle={{
                                     marginBottom: 16,
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -265,7 +266,7 @@ class SettingsScreen extends React.Component {
                                 keyboardType="default"
                                 returnKeyType="next"
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Username'}
+                                placeholder={translations.username}
                                 containerStyle={{
                                     marginBottom: 16,
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -305,7 +306,7 @@ class SettingsScreen extends React.Component {
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
                                 }}
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Password'}
+                                placeholder={translations.password}
                                 ref={input => (this.passwordInput = input)}
                                 // onSubmitEditing={() =>
                                 //     isSignUpPage
@@ -322,7 +323,7 @@ class SettingsScreen extends React.Component {
                                 errorMessage={
                                     this.state.producerToUpdate.isPasswordValid
                                         ? null
-                                        : 'Please enter at least 8 characters'
+                                        : translations.atLeast8Characters
                                 }
                             />
 
@@ -383,7 +384,7 @@ class SettingsScreen extends React.Component {
                                 keyboardType="default"
                                 returnKeyType="next"
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Ethereum Account'}
+                                placeholder={translations.ethereumAccount}
                                 containerStyle={{
                                     marginBottom: 16,
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -419,7 +420,7 @@ class SettingsScreen extends React.Component {
                                 keyboardType="default"
                                 returnKeyType="next"
                                 inputStyle={{marginLeft: 10}}
-                                placeholder={'Your Website URL'}
+                                placeholder={translations.websiteUrl}
                                 containerStyle={{
                                     marginBottom: 16,
                                     borderBottomColor: 'rgba(0, 0, 0, 0.38)',
@@ -438,7 +439,7 @@ class SettingsScreen extends React.Component {
                                 // }
                             />
 
-                            <Card title="Certificates" style={{
+                            <Card title={translations.certificates} style={{
                                 width: '100%'
                             }}>
                                 <ProducerCertificateList
@@ -453,7 +454,7 @@ class SettingsScreen extends React.Component {
 
                             </Card>
 
-                            <Card title="Default Actions" style={{
+                            <Card title={translations.defaultActions} style={{
                                 width: '100%',
                                 marginBottom: 10
                             }}>
@@ -476,7 +477,7 @@ class SettingsScreen extends React.Component {
                             marginBottom: 15,
                             alignSelf: 'center'
                         }}
-                                title="Update Producer"
+                                title={translations.updateProducerButton}
                                 onPress={() => this.handleUpdateProducerPressed()}
                                 loading={this.props.isLoading}
                                 // disabled={this.props.isLoading}
@@ -496,7 +497,8 @@ const mapStateToProps = state => {
         activeProducerId: state.producer.activeProducerId,
         jwtToken: state.producer.jwtToken,
         signUpFormInitData: state.producer.signUpFormInitData,
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        translations: state.languages.translations
     };
 };
 

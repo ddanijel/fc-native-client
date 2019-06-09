@@ -38,6 +38,7 @@ class HomeScreen extends React.Component {
     };
 
     render() {
+        const {translations} = this.props;
         const drawerStyles = {
             drawer: {shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
             main: {paddingLeft: 3},
@@ -73,17 +74,17 @@ class HomeScreen extends React.Component {
                                     fontWeight: 'bold',
                                     marginBottom: 20,
                                 }}>
-                                Food Chain Tracking System
+                                {translations.fcTrackingSystemTitle}
                             </Text>
                         </View>
                         <View>
                             <Text style={{fontSize: 36, fontWeight: 'bold', marginBottom: 20}}>
-                                Select your role
+                                {translations.selectRoleTitle}
                             </Text>
                         </View>
                         <View style={{width: '80%', alignItems: 'center', justifyContent: 'center'}}>
                             <Button
-                                title={this.props.producerTitle}
+                                title={translations.producerTitle}
                                 loading={false}
                                 loadingProps={{size: 'small', color: 'white'}}
                                 buttonStyle={{
@@ -96,7 +97,7 @@ class HomeScreen extends React.Component {
                                 underlayColor="transparent"
                             />
                             <Button
-                                title={this.props.consumerTitle}
+                                title={translations.consumerTitle}
                                 loading={false}
                                 loadingProps={{size: 'small', color: 'white'}}
                                 buttonStyle={{
@@ -166,8 +167,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        producerTitle: state.languages.translations.producerTitle,
-        consumerTitle: state.languages.translations.consumerTitle
+        translations: state.languages.translations
     };
 };
 

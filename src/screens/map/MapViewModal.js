@@ -23,6 +23,7 @@ class MapViewModal extends Component {
     // }
 
     render() {
+        const {translations} = this.props;
 
         const polylines = [];
 
@@ -32,7 +33,7 @@ class MapViewModal extends Component {
                 transparent={false}
                 visible={this.props.isMapViewModalOpen}
                 onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
+                    Alert.alert(translations.modalClosed);
                 }}>
                 <MapView
                     style={{flex: 1}}
@@ -61,7 +62,7 @@ class MapViewModal extends Component {
                             })
                         });
 
-                        const metadata = `Status: ${pt.productTagId}`;
+                        const metadata = `${translations.markerMetadataStatus} ${pt.productTagId}`;
                         // const markerScannedPTHashRef = (this.props.ptHash === pt.productTagHash) ?
                         //     SCANNED_HASH_MARKER_REF : null;
 
@@ -69,7 +70,7 @@ class MapViewModal extends Component {
                             <MapView.Marker
                                 key={index}
                                 coordinate={coords}
-                                title={"Some title"}
+                                title={translations.markerTitle}
                                 description={metadata}
                                 // ref={markerScannedPTHashRef}
                                 // style={markerScannedPTHashRef ? {zIndex: 0} : {}}
@@ -98,7 +99,7 @@ class MapViewModal extends Component {
                     onPress={() => this.props.onModalClose()}
                 >
                     <Text style={{fontWeight: 'bold', color: 'black',}}>
-                        Close Map
+                        {translations.closeMap}
                     </Text>
                 </TouchableOpacity>
             </Modal>
@@ -116,7 +117,8 @@ const mapStateToProps = state => {
     return {
         isMapViewModalOpen: state.ui.isMapViewModalOpen,
         ptChain: state.map.ptChain,
-        ptHash: state.map.hash
+        ptHash: state.map.hash,
+        translations: state.languages.translations
     };
 };
 

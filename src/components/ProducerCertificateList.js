@@ -31,7 +31,7 @@ const ProducerCertificateList = props => {
                         onPress={() => {
                             if (props.newCertificateValue.length < 3) {
                                 Alert.alert(
-                                    'Error',
+                                    translations.error,
                                     translations.valueNotValid
                                 )
                             } else {
