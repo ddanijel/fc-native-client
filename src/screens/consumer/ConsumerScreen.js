@@ -12,8 +12,8 @@ import {Button, Card, ListItem} from "react-native-elements";
 import {setPTForMapView} from "../../store/actions/mapActionCreators";
 import Layout from "../../constants/Layout";
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Layout.window.width;
+const SCREEN_HEIGHT = Layout.window.height;
 
 
 class ConsumerScreen extends React.Component {
@@ -64,7 +64,7 @@ class ConsumerScreen extends React.Component {
                                 return <ListItem key={hash}
                                                  title={new Date(pt.ptDetails.dateTime).toLocaleDateString()}
                                                  buttonGroup={{
-                                                     buttons: ['Details'],
+                                                     buttons: [translations.details],
                                                      onPress: (index) => this.onScannedProductButtonGroupPressed(index, pt, hash)
                                                  }}
                                                  bottomDivider

@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {Alert, Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {closeMapViewModal} from "../../store/actions/uiActionCreators";
 import {connect} from "react-redux";
 import {MapView} from "expo";
 import CustomMarker from "../../components/map/CustomMarker";
 import ProductTagDetails from "../../components/productTag/ProductTagDetails";
+import Colors from '../../constants/Colors';
+import Layout from '../../constants/Layout';
 
-import Colors from '../../constants/Colors'
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Layout.window.width;
+const SCREEN_HEIGHT = Layout.window.height;
 
 // const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
 

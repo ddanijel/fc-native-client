@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Dimensions,
     ImageBackground,
     KeyboardAvoidingView,
     LayoutAnimation,
@@ -13,7 +12,7 @@ import {
 } from 'react-native';
 import {connect} from "react-redux";
 import {Font} from 'expo';
-import {Button, Card, Input, ListItem} from 'react-native-elements';
+import {Button, Card, Input} from 'react-native-elements';
 import {Button as BaseButton, Text as NativeText} from "native-base";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -22,10 +21,10 @@ import {fetchSignUpFormData, tryAuth} from "../../../store/actions/producerActio
 import {LOG_IN_ACTION, SIGN_UP_ACTION} from "../../../store/actions/actionTypes";
 import ProducerActionList from "../../../components/ProducerActionList";
 import ProducerCertificateList from "../../../components/ProducerCertificateList";
+import Layout from '../../../constants/Layout'
 
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Layout.window.width;
+const SCREEN_HEIGHT = Layout.window.height;
 
 // Enable LayoutAnimation on Android
 UIManager.setLayoutAnimationEnabledExperimental &&

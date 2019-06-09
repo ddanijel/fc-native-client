@@ -1,16 +1,16 @@
 import React from 'react';
-import {Dimensions, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {images} from '../../../assets/images';
 import {connect} from 'react-redux';
 import {Icon} from "native-base";
 import Drawer from 'react-native-drawer'
 import HomeScreenDrawer from './HomescreenDrawer';
-
 import Colors from '../../constants/Colors';
+import Layout from '../../constants/Layout';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Layout.window.width;
+const SCREEN_HEIGHT = Layout.window.height;
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({navigation}) => {

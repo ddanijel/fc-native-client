@@ -42,6 +42,7 @@ const enTranslation = {
     settings: 'Settings',
     allMyProducts: 'All My Products',
     generatePTButton: 'Generate Product Tag',
+    details: 'Details',
 
 };
 

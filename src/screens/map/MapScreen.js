@@ -1,12 +1,13 @@
 import React from 'react';
 import {MapView} from 'expo';
 import {connect} from "react-redux";
-import {Dimensions, View} from "react-native";
+import {View} from "react-native";
 import CustomMarker from '../../components/map/CustomMarker';
 import ProductTagDetails from '../../components/productTag/ProductTagDetails';
+import Layout from '../../constants/Layout';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Layout.window.width;
+const SCREEN_HEIGHT = Layout.window.height;
 const SCANNED_HASH_MARKER_REF = 'SCANNED_HASH_MARKER_REF';
 
 class MapScreen extends React.Component {
