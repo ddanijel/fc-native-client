@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper,english,twoside,openany]{book}
+\usepackage[german,english]{babel}
+\usepackage[T1]{fontenc} 
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{moreverb}
+\usepackage{rotating}
+\usepackage{enumerate}
+\usepackage{graphics, graphicx,wrapfig,lipsum}
+\usepackage{fancybox}
+\usepackage{picinpar,varioref,floatflt}
+\usepackage{ae}
+\usepackage{longtable}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{unizhdt}
+\usepackage{adjustbox}
+\usepackage{tocbibind}
+\usepackage[hyphens]{url}
+\usepackage[font=scriptsize]{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{dirtytalk}
+\usepackage[section]{placeins}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define the language of the diploma thesis
+\selectlanguage{english}
+%\selectlanguage{german}
+
+\pagestyle{headings}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define the author printed on the cover page
+\author{Danijel Dordevic}
+% Define the city and country of the author
+\authorcity{Zurich, Switzerland}
+% Define the student ID (Matrikelnummer)
+%\studentid{15-709-116 }
+
+% Define the title with optional subtitle
+\title{Design and Development of a React-Native Supply Chain Tracking Application}
+% Define the supervisors
+\supervisors{Sina Rafati Niya, Prof. Burkhard Stiller}
+% Define the submission date
+\submissiondate{July 1, 2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make the title page
+\maketitle
+
+% Make the imprint on the back of the cover page
+\makeimprint
+
+\pagenumbering{roman}
+
+% Include the files of the diploma thesis
+%\cleardoublepage
+\input{abstract.tex}
+%\cleardoublepage
+
+
+\tableofcontents
+
+\cleardoublepage
+\pagenumbering{arabic}
+\input{introduction.tex}
+
+\input{main.tex}
+
+\input{evaluation.tex}
+\input{summary.tex}
+
+\input{bibliography.tex}
+
+\input{abbreviations.tex}
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\input{appendix.tex}
+
+\end{document}
