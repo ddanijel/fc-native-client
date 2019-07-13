@@ -69,6 +69,7 @@ class HomeScreen extends React.Component {
                         <View>
                             <Text
                                 style={{
+                                    color: 'white',
                                     textAlign: 'center',
                                     fontSize: 36,
                                     fontWeight: 'bold',
@@ -78,7 +79,13 @@ class HomeScreen extends React.Component {
                             </Text>
                         </View>
                         <View>
-                            <Text style={{fontSize: 36, fontWeight: 'bold', marginBottom: 20}}>
+                            <Text style={{
+                                color: 'white',
+                                fontSize: 36,
+                                fontWeight: 'bold',
+                                marginBottom: 20,
+                                textAlign: 'center'
+                            }}>
                                 {translations.selectRoleTitle}
                             </Text>
                         </View>

@@ -2,7 +2,7 @@ import {Asset} from 'expo';
 
 export const images = {
     background: require('./bg_screen1.jpg'),
-    drawerIcon: require('./user-hp.png')
+    drawerIcon: require('./csg_logo.png')
 };
 
 let imgs = [];

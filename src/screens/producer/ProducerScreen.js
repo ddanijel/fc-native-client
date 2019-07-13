@@ -130,9 +130,11 @@ class ProducerScreen extends Component {
         switch (index) {
             case 0: {
                 this.showPTDetails(pt);
+                break;
             }
             case 1: {
                 this.removeSelectedPT(pt);
+                break;
             }
         }
     };

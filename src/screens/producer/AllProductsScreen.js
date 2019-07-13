@@ -1,7 +1,7 @@
-import React, {ReactHTMLElement} from 'react';
+import React from 'react';
 import {Card, ListItem} from "react-native-elements";
 
-import {ImageBackground, ScrollView, StyleSheet, View} from "react-native";
+import {ImageBackground, ScrollView, StyleSheet, View, Alert} from "react-native";
 import Layout from "../../constants/Layout";
 import {images} from "../../../assets/images";
 import {
@@ -49,7 +49,7 @@ class AllProductsScreen extends React.Component {
         try {
             await printQrCode(hash);
         } catch (e) {
-            console.error('error while printing');
+            console.log('Printing not completed.');
         }
     };
 

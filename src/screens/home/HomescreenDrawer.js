@@ -9,15 +9,17 @@ const HomeScreenDrawer = (props) => (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{
             height: 170,
-            backgroundColor: 'gray',
+            backgroundColor: 'white',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            marginTop: 20,
+            marginBottom: 20
         }}>
             <Image source={images.drawerIcon}
                    style={{
-                       height: 120,
-                       width: 120,
-                       borderRadius: 60
+                       height: 205,
+                       width: 250,
+                       // borderRadius: 60
                    }}/>
         </View>
         <ScrollView>

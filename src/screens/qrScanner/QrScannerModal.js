@@ -14,6 +14,7 @@ import {setPTForMapView} from "../../store/actions/mapActionCreators";
 
 class QrScannerModal extends Component {
     state = {
+        scanning: false,
         hasCameraPermission: null,
         alertOpen: false
     };
@@ -24,7 +25,12 @@ class QrScannerModal extends Component {
     }
 
     handleBarCodeScanned = ({type, data}) => {
-        if (!this.state.alertOpen) {
+
+        if (!this.state.alertOpen && !this.state.scanning) {
+            this.setState({
+                ...this.state,
+                scanning: true
+            });
             this.props.fetchPTByHash(data, this.props.mode);
 
         }
@@ -145,7 +151,8 @@ class QrScannerModal extends Component {
     onAlertClosed = () => {
         this.setState({
             ...this.state,
-            alertOpen: false
+            alertOpen: false,
+            scanning: false
         })
     };
 
