@@ -28,10 +28,8 @@ import QrScannerModal from "../qrScanner/QrScannerModal";
 import {closeQrScannerModal, openMapViewModal, openQrScannerModal} from "../../store/actions/uiActionCreators";
 import MapViewModal from "../map/MapViewModal";
 import ProducerActionList from "../../components/ProducerActionList";
-
 import ptUpdateUtil from '../../util/ptUpdateUtil';
 import {images} from "../../../assets/images";
-
 import printQrCode from '../../util/qrCodePrintUtil'
 
 class ProducerScreen extends Component {
@@ -247,8 +245,6 @@ class ProducerScreen extends Component {
 
     showAlertOnSuccessGeneratedProductTag = nextProps => {
         const {translations} = this.props;
-        // console.log('generated pt nextProps: ', nextProps);
-        // console.log('showAlertOnSuccessGeneratedProductTag called: ', nextProps.generatedProductTag);
 
         Alert.alert(
             translations.success,

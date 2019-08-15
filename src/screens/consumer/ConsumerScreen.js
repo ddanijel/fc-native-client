@@ -1,7 +1,6 @@
 import React from 'react';
-import {Dimensions, ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from "react-redux";
-
 import {images} from "../../../assets/images";
 import {Button as BaseButton, Text as NativeText} from "native-base";
 import {openMapViewModal, openQrScannerModal} from "../../store/actions/uiActionCreators";
@@ -15,7 +14,6 @@ import Layout from "../../constants/Layout";
 const SCREEN_WIDTH = Layout.window.width;
 const SCREEN_HEIGHT = Layout.window.height;
 
-
 class ConsumerScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
@@ -25,10 +23,6 @@ class ConsumerScreen extends React.Component {
             </BaseButton>
         };
     };
-
-    // componentDidMount() {
-    //     this.props.onQrScannerModalOpen();
-    // }
 
     onScannedProductButtonGroupPressed = (index, pt) => {
         switch (index) {
@@ -52,7 +46,6 @@ class ConsumerScreen extends React.Component {
         return (
             <ImageBackground source={images.background} style={styles.bgImage}>
                 <Card
-                    // style={{width: width}}
                       title={translations.scannedProducts}>
                     <View style={{
                         height: height * 0.6,

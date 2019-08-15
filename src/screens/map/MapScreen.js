@@ -15,15 +15,6 @@ class MapScreen extends React.Component {
         isLoading: true,
     };
 
-    // static navigationOptions = ({navigation}) => {
-    //     return {
-    //         title: navigation.getParam('otherParam', 'Map Mode'),
-    //         headerLeft: <BaseButton hasText transparent onPress={() => navigation.navigate('Home')}>
-    //             <NativeText>Home</NativeText>
-    //         </BaseButton>
-    //     };
-    // };
-
     // please don't do this Danijel
     componentWillReceiveProps(nextProps, nextContext) {
         if (this.props.ptNotFound === false && nextProps.ptNotFound === false) {

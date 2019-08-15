@@ -29,10 +29,6 @@ class HomeScreen extends React.Component {
         })
     }
 
-    closeSideDrawer = () => {
-        this._drawer.close()
-    };
-
     openSideDrawer = () => {
         this._drawer.open()
     };
@@ -119,22 +115,6 @@ class HomeScreen extends React.Component {
                                 })}
                                 underlayColor="transparent"
                             />
-                            {/*<Button*/}
-                                {/*title={"MAP"}*/}
-                                {/*loading={false}*/}
-                                {/*loadingProps={{size: 'small', color: 'white'}}*/}
-                                {/*buttonStyle={{*/}
-                                    {/*backgroundColor: 'rgba(111, 202, 186, 1)',*/}
-                                    {/*borderRadius: 5,*/}
-                                {/*}}*/}
-                                {/*titleStyle={{fontWeight: 'bold', fontSize: 23}}*/}
-                                {/*containerStyle={{marginVertical: 10, height: 50, width: 230}}*/}
-                                {/*onPress={() => this.props.navigation.navigate('Map', {*/}
-                                    {/*itemId: 86,*/}
-                                    {/*otherParam: 'anything you want here',*/}
-                                {/*})}*/}
-                                {/*underlayColor="transparent"*/}
-                            {/*/>*/}
                         </View>
                     </View>
                 </ImageBackground>

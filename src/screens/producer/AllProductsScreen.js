@@ -14,17 +14,9 @@ import {connect} from "react-redux";
 import printQrCode from '../../util/qrCodePrintUtil'
 
 class AllProductsScreen extends React.Component {
-    // static navigationOptions = ({navigation}) => {
-    //     return {
-    //         title: navigation.getParam('headerTitle')
-    //     }
-    // };
 
     componentDidMount() {
-        const {navigation, translations, jwtToken, activeProducerId, onProducersAllPTScreenOpen} = this.props;
-        // navigation.setParams({
-        //     headerTitle: translations.allMyProducts
-        // });
+        const {jwtToken, activeProducerId, onProducersAllPTScreenOpen} = this.props;
         onProducersAllPTScreenOpen(jwtToken, activeProducerId)
     }
 

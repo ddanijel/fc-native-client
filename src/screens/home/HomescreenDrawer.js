@@ -18,8 +18,7 @@ const HomeScreenDrawer = (props) => (
             <Image source={images.drawerIcon}
                    style={{
                        height: 205,
-                       width: 250,
-                       // borderRadius: 60
+                       width: 250
                    }}/>
         </View>
         <ScrollView>
