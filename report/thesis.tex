@@ -26,6 +26,7 @@
 \usepackage{listings}
 \usepackage{dirtytalk}
 \usepackage[section]{placeins}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -33,12 +34,20 @@
     linkcolor=black,
     urlcolor=black
 }
+% \usepackage[
+% backend=biber,
+% style=alphabetic,
+% sorting=ynt
+% ]{biblatex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Define the language of the diploma thesis
 \selectlanguage{english}
 %\selectlanguage{german}
+
+%set bib file for citing
+% \addbibresource{}
 
 \pagestyle{headings}
 
@@ -73,6 +82,8 @@
 % Include the files of the diploma thesis
 %\cleardoublepage
 \input{abstract.tex}
+\input{acknowledgments.tex}
+
 %\cleardoublepage
 
 
@@ -88,6 +99,8 @@
 \input{summary.tex}
 
 \input{bibliography.tex}
+
+% \printbibliography
 
 \input{abbreviations.tex}
 
